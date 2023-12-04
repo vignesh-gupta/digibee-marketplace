@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import Navbar from "@/components/Navbar";
 import TrpcProvider from "@/components/Provider";
+import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,6 +28,7 @@ export default function RootLayout({
             <div className="flex-1 grow">{children}</div>
           </TrpcProvider>
         </main>
+        <Toaster position="bottom-right" />
       </body>
     </html>
   );

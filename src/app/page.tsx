@@ -29,12 +29,12 @@ export default function Home() {
     <>
       <MaxWidthWrapper>
         <div className="flex flex-col items-center max-w-3xl py-20 mx-auto text-center">
-          <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+          <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl [text-wrap:balance]">
             Your marketplace for high-quality{" "}
             <span className="text-blue-600">digital asset</span>.
           </h1>
 
-          <p>
+          <p className="mt-4 [text-wrap:balance]">
             Welcome to DigitalHippo. Every asset on our platform is carefully
             reviewed by our team to ensure best quality.
           </p>
