@@ -43,7 +43,7 @@ export default function Home() {
           </p>
 
           <div className="flex flex-col gap-4 mt-6 md:flex-row">
-            <Link href="/product" className={buttonVariants()}>
+            <Link href="/products" className={buttonVariants()}>
               Browse Trending
             </Link>
             <Button variant="outline">Our quality promise &rarr; </Button>

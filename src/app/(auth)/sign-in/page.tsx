@@ -44,7 +44,7 @@ const SignInPage = () => {
         return;
       }
       if (isSeller) {
-        router.push(`/${origin}`);
+        router.push(`/sell`);
         return;
       }
 
