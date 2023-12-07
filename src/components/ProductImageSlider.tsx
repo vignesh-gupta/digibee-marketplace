@@ -1,13 +1,14 @@
-import Image from "next/image";
-import type SwiperType from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
-import { Button } from "./ui/button";
-import { useEffect, useState } from "react";
-import "swiper/css";
-import "swiper/css/pagination";
+'use client'
+
 import { cn } from "@/lib/utils";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import type SwiperType from "swiper";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 const ProductImageSlider = ({ urls }: { urls: string[] }) => {
   const [swiper, setSwiper] = useState<null | SwiperType>(null);
