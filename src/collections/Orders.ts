@@ -1,11 +1,11 @@
 import { Access, CollectionConfig } from "payload/types";
 
-const yourOwnOrder: Access = async ({ req: { user } }) => {
+const yourOwn: Access = ({ req: { user } }) => {
   if (user.role === "admin") return true;
 
   return {
     user: {
-      equals: user.id,
+      equals: user?.id,
     },
   };
 };
@@ -13,22 +13,21 @@ const yourOwnOrder: Access = async ({ req: { user } }) => {
 const Orders: CollectionConfig = {
   slug: "orders",
   admin: {
-    useAsTitle: "name",
-    description: "A summary of all the order on DigiBee",
+    useAsTitle: "Your Orders",
+    description: "A summary of all your orders on DigitalHippo.",
   },
   access: {
-    read: yourOwnOrder,
-    update: ({ req }) => req.user?.role === "admin",
-    create: ({ req }) => req.user?.role === "admin",
-    delete: ({ req }) => req.user?.role === "admin",
+    read: yourOwn,
+    update: ({ req }) => req.user.role === "admin",
+    delete: ({ req }) => req.user.role === "admin",
+    create: ({ req }) => req.user.role === "admin",
   },
   fields: [
     {
-      name: "isPaid",
-      label: "Is Paid",
+      name: "_isPaid",
       type: "checkbox",
       access: {
-        read: ({ req }) => req.user?.role === "admin",
+        read: ({ req }) => req.user.role === "admin",
         create: () => false,
         update: () => false,
       },
