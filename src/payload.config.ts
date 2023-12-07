@@ -20,7 +20,7 @@ export default buildConfig({
     meta: {
       titleSuffix: " - DigiBee",
       favicon: "/favicon.ico",
-      ogImage: "/thumbnail.png",
+      ogImage: "/thumbnail.jpg",
     },
   },
   rateLimit: {

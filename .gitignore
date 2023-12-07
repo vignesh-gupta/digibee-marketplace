@@ -38,3 +38,7 @@ next-env.d.ts
 
 # env
 .env
+
+# Build folder
+dist
+build
