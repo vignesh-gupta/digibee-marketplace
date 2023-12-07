@@ -194,15 +194,19 @@ const CartPage = () => {
             </div>
 
             <div className="mt-6">
-              <Button
-                disabled={items.length === 0 || isLoading}
-                onClick={() => createCheckoutSession({ productIds })}
-                className="w-full"
-                size="lg"
-              >
-                {isLoading && <Loader2 className="h-5 w-5 animate-spin mr-1.5" />}
-                Checkout
-              </Button>
+              {isMounted && (
+                <Button
+                  disabled={items.length === 0 || isLoading}
+                  onClick={() => createCheckoutSession({ productIds })}
+                  className="w-full"
+                  size="lg"
+                >
+                  {isLoading && (
+                    <Loader2 className="h-5 w-5 animate-spin mr-1.5" />
+                  )}
+                  Checkout
+                </Button>
+              )}
             </div>
           </section>
         </div>
