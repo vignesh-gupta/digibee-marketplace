@@ -5,7 +5,7 @@ import ProductReel from "@/components/ProductReel";
 import { PRODUCT_CATEGORIES } from "@/config";
 import { getPayloadClient } from "@/get-payload";
 import { formatPrice } from "@/lib/utils";
-import { CheckIcon, Shield } from "lucide-react";
+import { Check, Shield } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -39,15 +39,13 @@ const ProductDetails = async ({
   });
   const [product] = products;
 
-  if (!product) {
-    return notFound();
-  }
+  if (!product) return notFound();
 
   const label = PRODUCT_CATEGORIES.find(
     ({ value }) => value === product.category
   )?.label;
 
-  const validURLs = product.images
+  const validUrls = product.images
     .map(({ image }) => (typeof image === "string" ? image : image.url))
     .filter(Boolean) as string[];
 
@@ -90,7 +88,7 @@ const ProductDetails = async ({
 
             <section className="mt-4">
               <div className="flex items-center">
-                <p className="font-medium text-green-900">
+                <p className="font-medium text-gray-900">
                   {formatPrice(product.price)}
                 </p>
 
@@ -106,9 +104,9 @@ const ProductDetails = async ({
               </div>
 
               <div className="mt-6 flex items-center">
-                <CheckIcon
+                <Check
                   aria-hidden="true"
-                  className="h-5 w-5 flex-shrink-0 text-gray-500"
+                  className="h-5 w-5 flex-shrink-0 text-green-500"
                 />
                 <p className="ml-2 text-sm text-muted-foreground">
                   Eligible for Instant Delivery
@@ -117,9 +115,9 @@ const ProductDetails = async ({
             </section>
           </div>
           {/* Product Image */}
-          <div className="mt-10 lg:col-start-2 lg:row-span-1 lg:mt-0 lg:self-center">
+          <div className="mt-10 lg:col-start-2 lg:row-span-2 lg:mt-0 lg:self-center">
             <div className="aspect-square rounded-lg">
-              <ProductImageSlider urls={validURLs} />
+              <ProductImageSlider urls={validUrls} />
             </div>
           </div>
 
@@ -149,6 +147,7 @@ const ProductDetails = async ({
       <ProductReel
         title={`Similar ${label}`}
         href="/products"
+        subtitle={`Browse similar high-quality ${label} just like '${product.name}'`}
         query={{
           category: product.category,
           limit: 4,
