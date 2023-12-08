@@ -141,7 +141,7 @@ const CartPage = () => {
                           </div>
                         </div>
 
-                        <p className="space-x-2 mt-4 text-sm text-gray-700">
+                        <p className="space-x-2 mt-4 text-sm text-gray-700 flex">
                           <Check className="h-5 w-5 flex-shrink-0 text-green-500" />
                           <span>Eligible for instant delivery</span>
                         </p>
