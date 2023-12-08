@@ -1,5 +1,5 @@
 {
-  "watch": ["src/server.ts", "src/collection/**/*.ts", "src/trpc/**/*.ts"],
+  "watch": ["src/server.ts", "src/collections/**/*.ts", "src/trpc/**/*.ts"],
   "exec": "ts-node --project tsconfig.server.json src/server.ts -- --I",
   "ext": "js ts",
   "stdin": false
