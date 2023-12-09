@@ -12,7 +12,7 @@ const nextConfig = {
         hostname: "digibee.up.railway.app",
         pathname: "**",
         protocol: "https",
-        port: '*',
+        port: '',
       },
     ],
   },
