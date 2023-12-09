@@ -8,6 +8,12 @@ const nextConfig = {
         protocol: "http",
         port: '3000',
       },
+      {
+        hostname: "digibee.up.railway.app",
+        pathname: "**",
+        protocol: "https",
+        port: '*',
+      },
     ],
   },
 };
