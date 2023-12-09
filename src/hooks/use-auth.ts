@@ -20,10 +20,9 @@ const useAuth = () => {
         throw new Error("Something went wrong");
       }
 
-      toast.success("Signed out successfully.");
-
       router.push("/sign-in");
       router.refresh();
+      toast.success("Signed out successfully.");
     } catch (e) {
       toast.error("Sign out failed. Please try again.");
     }

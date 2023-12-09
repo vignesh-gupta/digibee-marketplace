@@ -36,9 +36,6 @@ const SignInPage = () => {
 
   const { mutate: signIn, isLoading } = trpc.auth.signIn.useMutation({
     onSuccess: () => {
-      toast.success("Signed in successfully");
-      router.refresh();
-
       if (origin) {
         router.push(`/${origin}`);
         return;
@@ -47,8 +44,10 @@ const SignInPage = () => {
         router.push(`/sell`);
         return;
       }
+      router.push("/"); 
 
-      router.push("/");
+      router.refresh();
+      toast.success("Signed in successfully");
     },
 
     onError: (error) => {
