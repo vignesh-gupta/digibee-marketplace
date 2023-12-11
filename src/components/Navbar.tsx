@@ -8,6 +8,7 @@ import Cart from "./Cart";
 import { getServerSideUser } from "@/lib/payload-utlis";
 import { cookies } from "next/headers";
 import UserAccountNav from "./UserAccountNav";
+import Image from "next/image";
 
 const Navbar = async () => {
   const nextCookies = cookies();
@@ -23,7 +24,9 @@ const Navbar = async () => {
               {/* TODO: Mobile Nav */}
               <div className="ml-4 lg:ml-0">
                 <Link href="/">
-                  <Icons.logo className="w-10 h-10 text-blue-600" />
+                  <div className="w-12 h-12 relative">
+                    <Image src="/logo.png" fill alt="Digibee Logo" />
+                  </div>
                 </Link>
               </div>
               <div className="z-50 hidden lg:ml-8 lg:block lg:self-stretch">

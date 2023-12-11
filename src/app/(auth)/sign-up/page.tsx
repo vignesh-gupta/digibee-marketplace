@@ -12,6 +12,7 @@ import {
 import { trpc } from "@/trpc/client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -47,7 +48,7 @@ const SignUpPage = () => {
     },
     onSuccess: ({ sentToEmail }) => {
       router.push("/verify?email=" + sentToEmail);
-      router.refresh()
+      router.refresh();
       toast.success(`Verification email sent to ${sentToEmail}`);
     },
   });
@@ -62,7 +63,9 @@ const SignUpPage = () => {
       <div className="container relative flex flex-col items-center justify-center pt-20 lg:px-0">
         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
           <div className="flex flex-col items-center space-y-2 text-center">
-            <Icons.logo className="w-20 h-20" />
+            <div className="w-24 h-24 relative">
+              <Image src="/logo.png" fill alt="Digibee Logo" />
+            </div>
             <h1 className="text-2xl font-semibold tracking-tight">
               Create an account
             </h1>
