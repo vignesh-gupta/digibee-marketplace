@@ -1,6 +1,5 @@
 "use client";
 
-import { Icons } from "@/components/Icons";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -12,11 +11,11 @@ import {
 import { trpc } from "@/trpc/client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { ZodError } from "zod";
 
 const SignInPage = () => {
   const searchParams = useSearchParams();
@@ -44,7 +43,7 @@ const SignInPage = () => {
         router.push(`/sell`);
         return;
       }
-      router.push("/"); 
+      router.push("/");
 
       router.refresh();
       toast.success("Signed in successfully");
@@ -76,7 +75,9 @@ const SignInPage = () => {
       <div className="container relative flex flex-col items-center justify-center pt-20 lg:px-0">
         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
           <div className="flex flex-col items-center space-y-2 text-center">
-            <Icons.logo className="w-20 h-20" />
+            <div className="w-24 h-24 relative">
+              <Image src="/logo.png" fill alt="Digibee Logo" />
+            </div>
             <h1 className="text-2xl font-semibold tracking-tight">
               Sign in to your {isSeller ? "seller" : ""} account
             </h1>
