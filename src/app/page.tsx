@@ -34,7 +34,7 @@ export default function Home() {
         <div className="flex flex-col items-center max-w-3xl py-20 mx-auto text-center">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl [text-wrap:balance]">
             Your marketplace for high-quality{" "}
-            <span className="text-blue-600">digital asset</span>.
+            <span className="text-primary">digital asset</span>.
           </h1>
 
           <p className="mt-4 [text-wrap:balance]">
@@ -69,7 +69,7 @@ export default function Home() {
                 className="text-center md:items-center md:flex md:text-left lg:block lg:text-center"
               >
                 <div className="flex justify-center md:flex-shrink-0">
-                  <div className="flex items-center justify-center w-16 h-16 text-blue-900 bg-blue-100 rounded-full">
+                  <div className="flex items-center justify-center w-16 h-16 text-yellow-600 bg-primary/10 rounded-full">
                     <perk.Icon className="w-1/3 h-1/3" />
                   </div>
                 </div>
