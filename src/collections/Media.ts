@@ -1,9 +1,6 @@
+import { S3UploadCollectionConfig } from "payload-s3-upload";
+import { Access } from "payload/types";
 import { User } from "../payload-types";
-import {
-  Access,
-  CollectionConfig,
-  CollectionBeforeOperationHook,
-} from "payload/types";
 
 const isAdminOrHasAccessToImage =
   (): Access =>
@@ -21,7 +18,7 @@ const isAdminOrHasAccessToImage =
     };
   };
 
-const Media: CollectionConfig = {
+const Media: S3UploadCollectionConfig = {
   slug: "media",
   admin: {
     hidden: ({ user }) => user.role !== "admin",
@@ -45,10 +42,11 @@ const Media: CollectionConfig = {
         const files = args.req?.files;
         if (files && files.file && files.file.name && operation === "create") {
           const parts = files.file.name.split(".");
-          files.file.name = 
-          `${(Math.random() + 1).toString(36).substring(2)}-
-          ${Math.random().toString(36).substring(2, 15)}.
-          ${parts[parts.length - 1]}`;
+          files.file.name = `media-${(Math.random() + 1)
+            .toString(36)
+            .substring(2)}-${Math.random().toString(36).substring(2, 15)}.${
+            parts[parts.length - 1]
+          }`;
         }
       },
     ],
@@ -61,27 +59,13 @@ const Media: CollectionConfig = {
   upload: {
     staticDir: "media",
     staticURL: "/media",
-    imageSizes: [
-      {
-        name: "thumbnail",
-        width: 400,
-        height: 300,
-        position: "centre",
-      },
-      {
-        name: "card",
-        width: 768,
-        height: 1024,
-        position: "centre",
-      },
-      {
-        name: "tablet",
-        width: 1024,
-        height: undefined,
-        position: "centre",
-      },
-    ],
-    mimeTypes: ["image/*"],
+    disableLocalStorage: true,
+    s3: {
+      bucket: process.env.AWS_BUCKET_NAME!,
+      prefix: "media", // files will be stored in bucket folder images/xyz
+    },
+    adminThumbnail: ({ doc }) =>
+      `https://digibee-mediafiles.s3.ap-south-1.amazonaws.com/media/${doc.filename}`,
   },
   fields: [
     {

@@ -107,6 +107,9 @@ dependencies:
   payload:
     specifier: ^2.3.1
     version: 2.3.1(@types/react@18.2.40)(typescript@5.3.2)(webpack@5.89.0)
+  payload-s3-upload:
+    specifier: ^2.1.1
+    version: 2.1.1(@aws-sdk/client-s3@3.470.0)(payload@2.3.1)
   react:
     specifier: ^18
     version: 18.2.0
@@ -8831,6 +8834,17 @@ packages:
 
   /pause@0.0.1:
     resolution: {integrity: sha512-KG8UEiEVkR3wGEb4m5yZkVCzigAD+cVEJck2CzYZO37ZGJfctvVptVO192MwrtPhzONn6go8ylnOdMhKqi4nfg==}
+    dev: false
+
+  /payload-s3-upload@2.1.1(@aws-sdk/client-s3@3.470.0)(payload@2.3.1):
+    resolution: {integrity: sha512-BgBrNx4ag6YWy3SEiqif804Duut6xiSPDNb0T1uiBPU+LDnOiyXSVK8Ato7WRsZ9bNkbWSAhr+9mWDo9q/s7EQ==}
+    peerDependencies:
+      '@aws-sdk/client-s3': ^3.x.x
+      payload: ^1.x.x
+    dependencies:
+      '@aws-sdk/client-s3': 3.470.0(aws-crt@1.19.0)
+      payload: 2.3.1(@types/react@18.2.40)(typescript@5.3.2)(webpack@5.89.0)
+      sanitize-filename: 1.6.3
     dev: false
 
   /payload@2.3.1(@types/react@18.2.40)(typescript@5.3.2)(webpack@5.89.0):
