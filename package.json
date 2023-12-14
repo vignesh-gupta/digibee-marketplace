@@ -52,6 +52,7 @@
     "next-themes": "^0.2.1",
     "nodemailer": "^6.9.7",
     "payload": "^2.3.1",
+    "payload-s3-upload": "^2.1.1",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.48.2",

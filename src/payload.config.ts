@@ -1,28 +1,14 @@
-import dotenv from "dotenv";
-import { buildConfig } from "payload/config";
-import { slateEditor } from "@payloadcms/richtext-slate";
-import { mongooseAdapter } from "@payloadcms/db-mongodb";
 import { webpackBundler } from "@payloadcms/bundler-webpack";
+import { mongooseAdapter } from "@payloadcms/db-mongodb";
+import { slateEditor } from "@payloadcms/richtext-slate";
+import dotenv from "dotenv";
 import path from "path";
+import { buildConfig } from "payload/config";
 import { Media, Orders, ProductFiles, Products, Users } from "./collections";
-import { cloudStorage } from "@payloadcms/plugin-cloud-storage";
-import { s3Adapter } from "@payloadcms/plugin-cloud-storage/s3";
+import { S3Client } from "@aws-sdk/client-s3";
+import s3Upload from "payload-s3-upload";
 
 dotenv.config({ path: path.resolve(__dirname, "../.env") });
-
-const saveToS3Folder = (folder: string) => {
-  return s3Adapter({
-    config: {
-      credentials: {
-        accessKeyId: process.env.AWS_ACCESS_KEY!,
-        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!,
-      },
-      region: process.env.AWS_BUCKET_REGION!,
-      // ... Other S3 configuration
-    },
-    bucket: process.env.AWS_BUCKET_NAME!,
-  });
-};
 
 export default buildConfig({
   serverURL: process.env.NEXT_PUBLIC_SERVER_URL || "",
@@ -50,15 +36,14 @@ export default buildConfig({
     outputFile: path.resolve(__dirname, "payload-types.ts"),
   },
   plugins: [
-    cloudStorage({
-      collections: {
-        media: {
-          adapter: saveToS3Folder("media"),
+    s3Upload(
+      new S3Client({
+        region: process.env.AWS_BUCKET_REGION!,
+        credentials: {
+          accessKeyId: process.env.AWS_ACCESS_KEY!,
+          secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!,
         },
-        product_files: {
-          adapter: saveToS3Folder("product_files"),
-        },
-      },
-    }),
+      })
+    ),
   ],
 });
