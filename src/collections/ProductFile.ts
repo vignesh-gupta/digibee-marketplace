@@ -1,6 +1,7 @@
+import { S3UploadCollectionConfig } from "payload-s3-upload";
 import { BeforeChangeHook } from "payload/dist/collections/config/types";
+import { Access } from "payload/types";
 import { User } from "../payload-types";
-import { Access, CollectionConfig } from "payload/types";
 
 const addUser: BeforeChangeHook = ({ req, data }) => {
   const user = req.user as User | null;
@@ -61,12 +62,25 @@ const yourOwnAndPurchased: Access = async ({ req }) => {
   };
 };
 
-export const ProductFiles: CollectionConfig = {
+export const ProductFiles: S3UploadCollectionConfig = {
   slug: "product_files",
   admin: {
     hidden: ({ user }) => user.role !== "admin",
   },
   hooks: {
+    beforeOperation: [
+      async ({ args, operation }) => {
+        const files = args.req?.files;
+        if (files && files.file && files.file.name && operation === "create") {
+          const parts = files.file.name.split(".");
+          files.file.name = `media-${(Math.random() + 1)
+            .toString(36)
+            .substring(2)}-${Math.random().toString(36).substring(2, 15)}.${
+            parts[parts.length - 1]
+          }`;
+        }
+      },
+    ],
     beforeChange: [addUser],
   },
   access: {
@@ -78,6 +92,12 @@ export const ProductFiles: CollectionConfig = {
     staticURL: "/product_files",
     staticDir: "product_files",
     mimeTypes: ["image/*", "font/*", "application/postscript"],
+    s3: {
+      bucket: process.env.AWS_BUCKET_NAME!,
+      prefix: "product_files", // files will be stored in bucket folder images/xyz
+    },
+    adminThumbnail: ({ doc }) =>
+      `https://digibee-mediafiles.s3.ap-south-1.amazonaws.com/media/${doc.filename}`,
   },
   fields: [
     {
