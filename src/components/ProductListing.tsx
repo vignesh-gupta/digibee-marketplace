@@ -33,7 +33,11 @@ const ProductListing = ({ index, product }: ProductListingProps) => {
   )?.label;
 
   const validURLs = product.images
-    .map(({ image }) => (typeof image === "string" ? image : image.url))
+    .map(({ image }) =>
+      typeof image === "string"
+        ? image
+        : `https://digibee-mediafiles.s3.ap-south-1.amazonaws.com/media/${image.filename}`
+    )
     .filter(Boolean) as string[];
 
   if (product && isVisible) {

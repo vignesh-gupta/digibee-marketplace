@@ -6,13 +6,15 @@ const nextConfig = {
         hostname: "localhost",
         pathname: "**",
         protocol: "http",
-        port: '3000',
+        port: "3000",
       },
       {
         hostname: "digibee.up.railway.app",
-        pathname: "**",
         protocol: "https",
-        port: '',
+      },
+      {
+        hostname: "digibee-mediafiles.s3.ap-south-1.amazonaws.com",
+        protocol: "https",
       },
     ],
   },
