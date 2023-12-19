@@ -93,7 +93,7 @@ export const ProductFiles: S3UploadCollectionConfig = {
     staticDir: "product_files",
     mimeTypes: ["image/*", "font/*", "application/postscript"],
     s3: {
-      bucket: process.env.AWS_BUCKET_NAME!,
+      bucket: process.env.S3_BUCKET_NAME!,
       prefix: "product_files", // files will be stored in bucket folder images/xyz
     },
     adminThumbnail: ({ doc }) =>

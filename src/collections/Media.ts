@@ -61,7 +61,7 @@ const Media: S3UploadCollectionConfig = {
     staticURL: "/media",
     disableLocalStorage: true,
     s3: {
-      bucket: process.env.AWS_BUCKET_NAME!,
+      bucket: process.env.S3_BUCKET_NAME!,
       prefix: "media", // files will be stored in bucket folder images/xyz
     },
     adminThumbnail: ({ doc }) =>
