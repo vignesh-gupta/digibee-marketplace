@@ -2,13 +2,11 @@ import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import { cn, constructMetadata } from "@/lib/utils";
-import { ThemeProvider } from "@/components/ui/theme-provider";
 import Navbar from "@/components/Navbar";
 import TrpcProvider from "@/components/Provider";
 import { Toaster } from "sonner";
 
-const inter = Inter({ subsets: ["latin"] });
-const poppins = Poppins({ subsets: ["latin"] , weight: ['400', '600']});
+const poppins = Poppins({ subsets: ["latin"], weight: ["400", "600"] });
 
 export const metadata: Metadata = constructMetadata();
 
@@ -19,7 +17,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={cn("relative h-full font-sans antialiased")}>
+      <body
+        className={cn(
+          "relative h-full font-sans antialiased",
+          poppins.className
+        )}
+      >
         <main className="relative flex flex-col min-h-screen">
           <TrpcProvider>
             <Navbar />

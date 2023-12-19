@@ -34,15 +34,15 @@ export const EmailTemplate = ({
       <Body style={main}>
         <Container style={container}>
           <Img
-            src={`${process.env.NEXT_PUBLIC_SERVER_URL}/hippo-newsletter-sign-up.png`}
+            src={`${process.env.NEXT_PUBLIC_SERVER_URL}/logo.png`}
             width='150'
             height='150'
-            alt='DigitalHippo'
+            alt='DigiBee'
             style={logo}
           />
           <Text style={paragraph}>Hi there,</Text>
           <Text style={paragraph}>
-            Welcome to DigitalHippo, the marketplace for
+            Welcome to DigiBee, the marketplace for
             high quality digital goods. Use the button below
             to {actionLabel}.
           </Text>
@@ -97,9 +97,9 @@ const btnContainer = {
 
 const button = {
   padding: '12px 12px',
-  backgroundColor: '#2563eb',
+  backgroundColor: '#FACC15',
   borderRadius: '3px',
-  color: '#fff',
+  color: '#000',
   fontSize: '16px',
   textDecoration: 'none',
   textAlign: 'center' as const,
