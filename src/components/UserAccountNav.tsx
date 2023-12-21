@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import useAuth from "@/hooks/use-auth";
 import { User } from "@/payload-types";

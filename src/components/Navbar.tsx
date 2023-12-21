@@ -1,14 +1,13 @@
-import React, { use } from "react";
-import MaxWidthWrapper from "./MaxWidthWrapper";
-import Link from "next/link";
-import { Icons } from "./Icons";
-import NavItems from "./NavItems";
-import { buttonVariants } from "./ui/button";
-import Cart from "./Cart";
 import { getServerSideUser } from "@/lib/payload-utlis";
 import { cookies } from "next/headers";
-import UserAccountNav from "./UserAccountNav";
 import Image from "next/image";
+import Link from "next/link";
+import Cart from "./Cart";
+import MaxWidthWrapper from "./MaxWidthWrapper";
+import NavItems from "./NavItems";
+import UserAccountNav from "./UserAccountNav";
+import { buttonVariants } from "./ui/button";
+import MobileNav from "./MobileNav";
 
 const Navbar = async () => {
   const nextCookies = cookies();
@@ -21,7 +20,8 @@ const Navbar = async () => {
         <MaxWidthWrapper>
           <div className="border-b border-gray-200">
             <div className="flex items-center h-16">
-              {/* TODO: Mobile Nav */}
+              {/* Mobile Nav */}
+              <MobileNav />
               <div className="ml-4 lg:ml-0">
                 <Link href="/">
                   <div className="w-12 h-12 relative">
@@ -70,10 +70,9 @@ const Navbar = async () => {
                       />
                     </div>
                   )}
-
-                  <div className="ml-4 flow-root lg:ml-6">
-                    <Cart />
-                  </div>
+                </div>
+                <div className="ml-4 flow-root lg:ml-6">
+                  <Cart />
                 </div>
               </div>
             </div>
