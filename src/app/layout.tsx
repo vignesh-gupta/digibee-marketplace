@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
-import { Inter, Poppins } from "next/font/google";
-import "./globals.css";
-import { cn, constructMetadata } from "@/lib/utils";
-import Navbar from "@/components/Navbar";
 import TrpcProvider from "@/components/Provider";
+import Navbar from "@/components/nav/Navbar";
+import { cn, constructMetadata } from "@/lib/utils";
+import type { Metadata } from "next";
+import { Poppins } from "next/font/google";
 import { Toaster } from "sonner";
+import "./globals.css";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "600"] });
 
