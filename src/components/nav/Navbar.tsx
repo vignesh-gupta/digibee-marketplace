@@ -2,12 +2,12 @@ import { getServerSideUser } from "@/lib/payload-utlis";
 import { cookies } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
-import Cart from "./Cart";
-import MaxWidthWrapper from "./MaxWidthWrapper";
-import NavItems from "./NavItems";
-import UserAccountNav from "./UserAccountNav";
-import { buttonVariants } from "./ui/button";
+import Cart from "../Cart";
+import MaxWidthWrapper from "../MaxWidthWrapper";
+import UserAccountNav from "../UserAccountNav";
+import { buttonVariants } from "../ui/button";
 import MobileNav from "./MobileNav";
+import NavItems from "./NavItems";
 
 const Navbar = async () => {
   const nextCookies = cookies();
