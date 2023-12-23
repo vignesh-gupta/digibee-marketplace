@@ -3,14 +3,14 @@
 import useAuth from "@/hooks/use-auth";
 import { User } from "@/payload-types";
 import Link from "next/link";
-import { Button } from "./ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
 
 const UserAccountNav = ({ user }: { user: User }) => {
   const { signOut } = useAuth();
