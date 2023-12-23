@@ -8,8 +8,10 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import UserNav from "./UserNav";
+import { User } from "@/payload-types";
 
-const MobileNav = () => {
+const MobileNav = ({ user }: { user: User | null }) => {
   return (
     <Sheet>
       <SheetTrigger asChild className="block lg:hidden">
@@ -36,6 +38,10 @@ const MobileNav = () => {
             </AccordionItem>
           </Accordion>
         ))}
+
+        <div className="mt-2">
+          <UserNav user={user} className="flex flex-col items-start" />
+        </div>
       </SheetContent>
     </Sheet>
   );

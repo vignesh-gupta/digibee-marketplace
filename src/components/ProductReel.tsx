@@ -26,11 +26,7 @@ const ProductReel = ({ title, subtitle, href, query }: ProductReelProps) => {
     }
   );
 
-  console.log("data", data);
-
   const products = data?.pages.flatMap((page) => page.items);
-
-  console.log("products", products);
   let productMap: (Product | null)[] = [];
 
   if (products && products.length) {
