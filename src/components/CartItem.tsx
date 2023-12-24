@@ -1,4 +1,4 @@
-import { PRODUCT_CATEGORIES } from "@/config";
+import { PRODUCT_CATEGORIES } from "@/lib/config";
 import { useCart } from "@/hooks/use-cart";
 import { formatPrice } from "@/lib/utils";
 import { Product } from "@/payload-types";
@@ -11,8 +11,6 @@ type CartItemProps = {
 
 const CartItem = ({ product }: CartItemProps) => {
   const { removeItem } = useCart();
-  
-
 
   const { image } = product.images[0];
 
@@ -21,19 +19,19 @@ const CartItem = ({ product }: CartItemProps) => {
   )?.label;
 
   return (
-    <div className="space-y-3 py-2 group">
+    <div className="py-2 space-y-3 group">
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-center space-x-4">
-          <div className="relative aspect-square h-16 w-16 rounded overflow-hidden">
+          <div className="relative w-16 h-16 overflow-hidden rounded aspect-square">
             {typeof image !== "string" && image.url ? (
               <Image
-                src={image.url}
+                src={`https://digibee-mediafiles.s3.ap-south-1.amazonaws.com/media/${image.filename}`}
                 fill
                 alt={product.name}
-                className="absolute object-cover group-hover:scale-110 transition-transform duration-300 ease-in-out"
+                className="absolute object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"
               />
             ) : (
-              <div className="flex justify-center items-center bg-secondary h-full">
+              <div className="flex items-center justify-center h-full bg-secondary">
                 <ImageIcon
                   className="text-muted-foreground"
                   aria-hidden="true"
@@ -44,11 +42,11 @@ const CartItem = ({ product }: CartItemProps) => {
           </div>
 
           <div className="flex flex-col self-start">
-            <span className="line-clamp-1 text-sm mb-1 font-medium">
+            <span className="mb-1 text-sm font-medium line-clamp-1">
               {product.name}
             </span>
 
-            <span className="line-clamp-1 capitalize text-xs text-muted-foreground">
+            <span className="text-xs capitalize line-clamp-1 text-muted-foreground">
               {label}
             </span>
 
@@ -64,7 +62,7 @@ const CartItem = ({ product }: CartItemProps) => {
         </div>
 
         <div className="flex flex-col space-y-1 font-medium">
-          <span className="ml-auto line-clamp-1 text-sm">
+          <span className="ml-auto text-sm line-clamp-1">
             {formatPrice(product.price)}
           </span>
         </div>
