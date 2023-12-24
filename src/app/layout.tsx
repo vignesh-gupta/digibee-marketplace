@@ -1,4 +1,4 @@
-import TrpcProvider from "@/components/Provider";
+import TrpcProvider from "@/components/TrpcProvider";
 import Navbar from "@/components/nav/Navbar";
 import { cn, constructMetadata } from "@/lib/utils";
 import type { Metadata } from "next";

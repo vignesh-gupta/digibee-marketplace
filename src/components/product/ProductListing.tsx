@@ -2,7 +2,7 @@
 
 import { Product } from "@/payload-types";
 import { useEffect, useState } from "react";
-import { Skeleton } from "./ui/skeleton";
+import { Skeleton } from "../ui/skeleton";
 import Link from "next/link";
 import { cn, formatPrice } from "@/lib/utils";
 import { PRODUCT_CATEGORIES } from "@/config";
@@ -51,11 +51,11 @@ const ProductListing = ({ index, product }: ProductListingProps) => {
         <div className="flex flex-col w-full">
           <ProductImageSlider urls={validURLs} />
 
-          <h3 className="mt-4 font-medium text-sm text-gray-700">
+          <h3 className="mt-4 text-sm font-medium text-foreground/80">
             {product.name}
           </h3>
-          <p className="mt-1 text-sm text-gray-500">{label}</p>
-          <p className="mt-1 font-medium text-sm text-gray-900">
+          <p className="mt-1 text-sm text-foreground/50">{label}</p>
+          <p className="mt-1 text-sm font-medium text-foreground/90">
             {formatPrice(product.price)}
           </p>
         </div>
@@ -69,13 +69,13 @@ const ProductListing = ({ index, product }: ProductListingProps) => {
 const ProductPlaceholder = () => {
   return (
     <div className="flex flex-col w-full">
-      <div className="relative bg-zinc-100 aspect-square overflow-hidden rounded-xl w-full">
-        <Skeleton className="h-full w-full" />
+      <div className="relative w-full overflow-hidden bg-zinc-100 aspect-square rounded-xl">
+        <Skeleton className="w-full h-full" />
       </div>
 
-      <Skeleton className="mt-4 w-2/3 h-4 rounded-lg" />
-      <Skeleton className="mt-4 w-16 h-4 rounded-lg" />
-      <Skeleton className="mt-4 w-12 h-4 rounded-lg" />
+      <Skeleton className="w-2/3 h-4 mt-4 rounded-lg" />
+      <Skeleton className="w-16 h-4 mt-4 rounded-lg" />
+      <Skeleton className="w-12 h-4 mt-4 rounded-lg" />
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import AddToCartButton from "@/components/AddToCartButton";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
-import ProductImageSlider from "@/components/ProductImageSlider";
-import ProductReel from "@/components/ProductReel";
+import ProductImageSlider from "@/components/product/ProductImageSlider";
+import ProductReel from "@/components/product/ProductReel";
 import { PRODUCT_CATEGORIES } from "@/config";
 import { getPayloadClient } from "@/get-payload";
 import { formatPrice } from "@/lib/utils";
@@ -51,8 +51,8 @@ const ProductDetails = async ({
 
   return (
     <MaxWidthWrapper>
-      <div className="bg-white">
-        <div className=" mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+      <div className="bg-background">
+        <div className="max-w-2xl px-4 py-16 mx-auto  sm:px-6 sm:py-24 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
           {/* Product Detail*/}
           <div className="lg:max-w-lg lg:self-end">
             <ol className="flex items-center space-x-2">
@@ -61,7 +61,7 @@ const ProductDetails = async ({
                   <div className="flex items-center text-sm">
                     <Link
                       href={breadcrumb.href}
-                      className="font-medium text-muted-foreground text-sm hover:text-gray-900"
+                      className="text-sm font-medium text-muted-foreground hover:text-gray-900"
                     >
                       {breadcrumb.name}
                     </Link>
@@ -70,7 +70,7 @@ const ProductDetails = async ({
                         viewBox="0 0 20 20"
                         fill="currentColor"
                         aria-hidden="true"
-                        className="ml-2 h-5 w-5 flex-shrink-0 text-gray-300"
+                        className="flex-shrink-0 w-5 h-5 ml-2 text-gray-300"
                       >
                         <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z" />
                       </svg>
@@ -92,7 +92,7 @@ const ProductDetails = async ({
                   {formatPrice(product.price)}
                 </p>
 
-                <div className="ml-4 border-l text-muted-foreground border-gray-300 pl-4">
+                <div className="pl-4 ml-4 border-l border-gray-300 text-muted-foreground">
                   {label}
                 </div>
               </div>
@@ -103,10 +103,10 @@ const ProductDetails = async ({
                 </p>
               </div>
 
-              <div className="mt-6 flex items-center">
+              <div className="flex items-center mt-6">
                 <Check
                   aria-hidden="true"
-                  className="h-5 w-5 flex-shrink-0 text-green-500"
+                  className="flex-shrink-0 w-5 h-5 text-green-500"
                 />
                 <p className="ml-2 text-sm text-muted-foreground">
                   Eligible for Instant Delivery
@@ -116,7 +116,7 @@ const ProductDetails = async ({
           </div>
           {/* Product Image */}
           <div className="mt-10 lg:col-start-2 lg:row-span-2 lg:mt-0 lg:self-center">
-            <div className="aspect-square rounded-lg">
+            <div className="rounded-lg aspect-square">
               <ProductImageSlider urls={validUrls} />
             </div>
           </div>
@@ -129,10 +129,10 @@ const ProductDetails = async ({
               </div>
 
               <div className="mt-6 text-center">
-                <div className="group inline-flex text-sm font-medium">
+                <div className="inline-flex text-sm font-medium group">
                   <Shield
                     aria-hidden="true"
-                    className="mr-2 h-5 w-5 flex-shrink-0 text-gray-400"
+                    className="flex-shrink-0 w-5 h-5 mr-2 text-gray-400"
                   />
                   <span className="text-muted-foreground hover:text-gray-700">
                     30 Day Return Guarantee
