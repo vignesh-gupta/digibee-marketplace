@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 import { getPayloadClient } from "@/get-payload";
 import { notFound, redirect } from "next/navigation";
 import { Product, ProductFile, User } from "@/payload-types";
-import { PRODUCT_CATEGORIES } from "@/config";
+import { PRODUCT_CATEGORIES } from "@/lib/config";
 import { formatPrice } from "@/lib/utils";
 import Link from "next/link";
 import PaymentComponentStatus from "@/components/PaymentStatus";
