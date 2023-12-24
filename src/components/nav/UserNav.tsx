@@ -20,7 +20,7 @@ const UserNav = ({ user, className }: UserNavProps) => {
         </Link>
       )}
       {user ? null : (
-        <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
+        <span className="h-6 w-px bg-foreground/5" aria-hidden="true" />
       )}
 
       {user ? (
@@ -32,12 +32,12 @@ const UserNav = ({ user, className }: UserNavProps) => {
       )}
 
       {user ? (
-        <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
+        <span className="h-6 w-px bg-foreground/5" aria-hidden="true" />
       ) : null}
 
       {user ? null : (
         <div className="flex lg:ml-6">
-          <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
+          <span className="h-6 w-px bg-foreground/5" aria-hidden="true" />
         </div>
       )}
     </div>

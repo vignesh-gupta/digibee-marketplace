@@ -17,12 +17,11 @@ const Navbar = async () => {
   const { user } = await getServerSideUser(nextCookies);
 
   return (
-    <div className="sticky inset-x-0 top-0 z-50 h-16 bg-background">
-      <header className="relative bg-white">
+    <div className="sticky border-b border-foreground/10 top-0 z-50 h-16 bg-background">
+      <header className="relative w-full">
         <MaxWidthWrapper>
-          <div className="border-b border-gray-200">
+          <div className="">
             <div className="flex items-center h-16">
-              {/* Mobile Nav */}
               <MobileNav user={user} />
               <div className="ml-4 lg:ml-0">
                 <Link href="/">
