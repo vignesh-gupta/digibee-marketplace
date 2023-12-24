@@ -9,6 +9,7 @@ import { buttonVariants } from "../ui/button";
 import MobileNav from "./MobileNav";
 import NavItems from "./NavItems";
 import UserNav from "./UserNav";
+import { ThemeSwitch } from "../ui/theme-switch";
 
 const Navbar = async () => {
   const nextCookies = cookies();
@@ -39,6 +40,9 @@ const Navbar = async () => {
                   user={user}
                   className="hidden lg:flex lg:flex-1 lg:justify-end lg:space-x-6 lg:items-center"
                 />
+                <div className="ml-4 flow-root lg:ml-6">
+                  <ThemeSwitch />
+                </div>
                 <div className="ml-4 flow-root lg:ml-6">
                   <Cart />
                 </div>
