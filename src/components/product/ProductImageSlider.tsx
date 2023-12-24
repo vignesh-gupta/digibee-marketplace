@@ -29,19 +29,19 @@ const ProductImageSlider = ({ urls }: { urls: string[] }) => {
   }, [swiper, urls]);
 
   const activeStyle =
-    "active:scale-[0.97] grid opacity-100 hover:scale-105 absolute top-1/2 -translate-y-1/2 aspect-square h-6 w-6 z-50 place-items-center rounded-full border-2 bg-white border-zinc-300";
+    "active:scale-[0.97] grid opacity-100 hover:scale-105 absolute top-1/2 -translate-y-1/2 aspect-square h-6 w-6 z-50 place-items-center rounded-full border-2 bg-background border-zinc-300";
 
   const inactiveStyle = "hidden text-gray-400";
 
   return (
-    <div className="group relative bg-zinc-100 aspect-square overflow-hidden rounded-xl">
-      <div className="absolute z-10 inset-0 opacity-0 group-hover:opacity-100 transition">
+    <div className="relative overflow-hidden group bg-zinc-100 aspect-square rounded-xl">
+      <div className="absolute inset-0 z-10 transition opacity-0 group-hover:opacity-100">
         <div
           onClick={(e) => {
             e.preventDefault();
             swiper?.slideNext();
           }}
-          className="bg-transparent absolute top-0 right-0 bottom-0 h-full w-1/12"
+          className="absolute top-0 bottom-0 right-0 w-1/12 h-full bg-transparent"
         >
           <button
             className={cn(activeStyle, "right-3 transition", {
@@ -51,7 +51,7 @@ const ProductImageSlider = ({ urls }: { urls: string[] }) => {
             })}
             aria-label="next image"
           >
-            <ChevronRight className="h-4 w-4 text-zinc-700" />
+            <ChevronRight className="w-4 h-4 text-zinc-700" />
           </button>
         </div>
         <div
@@ -59,7 +59,7 @@ const ProductImageSlider = ({ urls }: { urls: string[] }) => {
             e.preventDefault();
             swiper?.slidePrev();
           }}
-          className="bg-transparent absolute top-0 left-0 bottom-0 h-full w-1/12"
+          className="absolute top-0 bottom-0 left-0 w-1/12 h-full bg-transparent"
         >
           <button
             className={cn(activeStyle, "left-3 transition", {
@@ -69,7 +69,7 @@ const ProductImageSlider = ({ urls }: { urls: string[] }) => {
             })}
             aria-label="prev image"
           >
-            <ChevronLeft className="h-4 w-4 text-zinc-700" />
+            <ChevronLeft className="w-4 h-4 text-zinc-700" />
           </button>
         </div>
       </div>
@@ -84,18 +84,18 @@ const ProductImageSlider = ({ urls }: { urls: string[] }) => {
         spaceBetween={50}
         slidesPerView={1}
         modules={[Pagination]}
-        className="h-full w-full"
+        className="w-full h-full"
       >
         {urls.map((url, i) => (
           <SwiperSlide
             key={`${url}-${i}`}
-            className="-z-10 relative h-full w-full"
+            className="relative w-full h-full -z-10"
           >
             <Image
               src={url}
               fill
               loading="eager"
-              className="-z-10 h-full w-full object-cover object-center"
+              className="object-cover object-center w-full h-full -z-10"
               alt="Product image"
             />
           </SwiperSlide>
