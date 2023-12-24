@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { PRODUCT_CATEGORIES } from "@/config";
+import { PRODUCT_CATEGORIES } from "@/lib/config";
 import { cn } from "@/lib/utils";
 import { ChevronDown } from "lucide-react";
 import Image from "next/image";
@@ -39,11 +39,11 @@ const NavItem = ({ category, handleOpen, isOpen, isAnyOpen }: NavItemProps) => {
           )}
         >
           <div
-            className="absolute inset-x-0 top-1/2 bg-white shadow "
+            className="absolute inset-x-0 top-1/2 bg-background shadow "
             aria-hidden="true"
           />
 
-          <div className="relative bg-white">
+          <div className="relative bg-background">
             <div className="mx-auto max-w-7xl px-8">
               <div className="grid grid-cols-4 gap-x-8 gap-y-10 py-16">
                 <div className="col-span-4 col-start-1 grid grid-cols-3 gap-x-8">
@@ -62,7 +62,7 @@ const NavItem = ({ category, handleOpen, isOpen, isAnyOpen }: NavItemProps) => {
                       </div>
                       <Link
                         href={item.href}
-                        className="mt-6 block font-medium text-gray-900"
+                        className="mt-6 block font-medium text-foreground"
                       >
                         {item.name}
                       </Link>
