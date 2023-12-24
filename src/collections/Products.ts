@@ -1,4 +1,4 @@
-import { PRODUCT_CATEGORIES } from "../config";
+import { PRODUCT_CATEGORIES } from "../lib/config";
 import { stripe } from "../lib/stripe";
 import { Product, User } from "../payload-types";
 import {
