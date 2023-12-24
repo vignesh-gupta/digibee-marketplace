@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { Skeleton } from "../ui/skeleton";
 import Link from "next/link";
 import { cn, formatPrice } from "@/lib/utils";
-import { PRODUCT_CATEGORIES } from "@/config";
+import { PRODUCT_CATEGORIES } from "@/lib/config";
 import ProductImageSlider from "./ProductImageSlider";
 
 type ProductListingProps = {
