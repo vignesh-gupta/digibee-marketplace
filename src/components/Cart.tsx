@@ -96,7 +96,7 @@ const Cart = () => {
           <div className="flex flex-col items-center justify-center h-full space-y-1">
             <div className="relative mb-4 w-60 h-60 text-muted-foreground">
               <Image
-                src="/hippo-empty-cart.png"
+                src="/empty-cart.png"
                 fill
                 alt="Empty Shopping Cart"
                 aria-hidden="true"
