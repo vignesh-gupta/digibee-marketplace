@@ -54,7 +54,7 @@ export const EmailTemplate = ({
           <Text style={paragraph}>
             Best,
             <br />
-            The DigitalHippo team
+            The DigiBee team
           </Text>
           <Hr style={hr} />
           <Text style={footer}>

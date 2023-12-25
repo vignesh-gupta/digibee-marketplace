@@ -6,6 +6,7 @@ import { Poppins } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ui/theme-provider";
+import Footer from "@/components/Footer";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "600"] });
 
@@ -34,6 +35,7 @@ export default function RootLayout({
             <TrpcProvider>
               <Navbar />
               <div className="flex-1 grow">{children}</div>
+              <Footer />
             </TrpcProvider>
           </main>
           <Toaster position="bottom-right" />

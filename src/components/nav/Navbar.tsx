@@ -17,7 +17,7 @@ const Navbar = async () => {
   const { user } = await getServerSideUser(nextCookies);
 
   return (
-    <div className="sticky border-b border-foreground/10 top-0 z-50 h-16 bg-background">
+    <div className="sticky top-0 z-50 border-b supports-backdrop-blur:bg-background/90 border-foreground/10 backdrop-blur">
       <header className="relative w-full">
         <MaxWidthWrapper>
           <div className="">
@@ -25,7 +25,7 @@ const Navbar = async () => {
               <MobileNav user={user} />
               <div className="ml-4 lg:ml-0">
                 <Link href="/">
-                  <div className="w-12 h-12 relative">
+                  <div className="relative w-12 h-12">
                     <Image src="/logo.png" fill alt="Digibee Logo" />
                   </div>
                 </Link>
@@ -34,15 +34,15 @@ const Navbar = async () => {
                 <NavItems />
               </div>
 
-              <div className="ml-auto flex items-center">
+              <div className="flex items-center ml-auto">
                 <UserNav
                   user={user}
                   className="hidden lg:flex lg:flex-1 lg:justify-end lg:space-x-6 lg:items-center"
                 />
-                <div className="ml-4 flow-root lg:ml-6">
+                <div className="flow-root ml-4 lg:ml-6">
                   <ThemeSwitch />
                 </div>
-                <div className="ml-4 flow-root lg:ml-6">
+                <div className="flow-root ml-4 lg:ml-6">
                   <Cart />
                 </div>
               </div>

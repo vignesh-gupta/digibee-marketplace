@@ -38,7 +38,7 @@ export default function Home() {
           </h1>
 
           <p className="mt-4 [text-wrap:balance]">
-            Welcome to DigitalHippo. Every asset on our platform is carefully
+            Welcome to DigiBee. Every asset on our platform is carefully
             reviewed by our team to ensure best quality.
           </p>
 
