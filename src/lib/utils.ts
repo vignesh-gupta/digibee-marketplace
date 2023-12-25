@@ -1,6 +1,8 @@
 import { type ClassValue, clsx } from "clsx";
 import { Metadata } from "next";
 import { twMerge } from "tailwind-merge";
+import { PRODUCT_CATEGORIES } from "./config";
+import { Product } from "@/payload-types";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -25,16 +27,21 @@ export function formatPrice(
   }).format(numericPrice);
 }
 
+export function getLabel(category: string | undefined) {
+  if (!category) return null;
+  return PRODUCT_CATEGORIES.find(({ value }) => value === category)?.label;
+}
+
 export function constructMetadata({
-  title = 'DigiBee - the marketplace for digital assets',
-  description = 'DigiBee is an open-source marketplace for high-quality digital goods.',
-  image = '/thumbnail.png',
+  title = "DigiBee - the marketplace for digital assets",
+  description = "DigiBee is an open-source marketplace for high-quality digital goods.",
+  image = "/thumbnail.png",
   noIndex = false,
 }: {
-  title?: string
-  description?: string
-  image?: string
-  noIndex?: boolean
+  title?: string;
+  description?: string;
+  image?: string;
+  noIndex?: boolean;
 } = {}): Metadata {
   return {
     title,
@@ -49,18 +56,18 @@ export function constructMetadata({
       ],
     },
     twitter: {
-      card: 'summary_large_image',
+      card: "summary_large_image",
       title,
       description,
       images: [image],
-      creator: '@joshtriedcoding',
+      creator: "@vigneshfixes",
     },
-    metadataBase: new URL('https://digiBee.up.railway.app'),
+    metadataBase: new URL("https://digiBee.up.railway.app"),
     ...(noIndex && {
       robots: {
         index: false,
         follow: false,
       },
     }),
-  }
+  };
 }

@@ -1,6 +1,6 @@
 import { PRODUCT_CATEGORIES } from "@/lib/config";
 import { useCart } from "@/hooks/use-cart";
-import { formatPrice } from "@/lib/utils";
+import { formatPrice, getLabel } from "@/lib/utils";
 import { Product } from "@/payload-types";
 import { ImageIcon, X } from "lucide-react";
 import Image from "next/image";
@@ -14,9 +14,7 @@ const CartItem = ({ product }: CartItemProps) => {
 
   const { image } = product.images[0];
 
-  const label = PRODUCT_CATEGORIES.find(
-    ({ value }) => value === product.category
-  )?.label;
+  const label = getLabel(product.category);
 
   return (
     <div className="py-2 space-y-3 group">

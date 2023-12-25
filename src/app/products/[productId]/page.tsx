@@ -4,7 +4,7 @@ import ProductImageSlider from "@/components/product/ProductImageSlider";
 import ProductReel from "@/components/product/ProductReel";
 import { PRODUCT_CATEGORIES } from "@/lib/config";
 import { getPayloadClient } from "@/get-payload";
-import { formatPrice } from "@/lib/utils";
+import { formatPrice, getLabel } from "@/lib/utils";
 import { Check, Shield } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -41,9 +41,7 @@ const ProductDetails = async ({
 
   if (!product) return notFound();
 
-  const label = PRODUCT_CATEGORIES.find(
-    ({ value }) => value === product.category
-  )?.label;
+  const label = getLabel(product.category)
 
   const validURLs = product.images
     .map(({ image }) =>

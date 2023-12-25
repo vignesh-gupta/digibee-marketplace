@@ -5,7 +5,7 @@ import { getPayloadClient } from "@/get-payload";
 import { notFound, redirect } from "next/navigation";
 import { Product, ProductFile, User } from "@/payload-types";
 import { PRODUCT_CATEGORIES } from "@/lib/config";
-import { formatPrice } from "@/lib/utils";
+import { formatPrice, getLabel } from "@/lib/utils";
 import Link from "next/link";
 import PaymentComponentStatus from "@/components/PaymentStatus";
 import PaymentStatus from "@/components/PaymentStatus";
@@ -96,9 +96,7 @@ const ThankYouPage = async ({ searchParams }: ThankYouPageProps) => {
 
           <ul className="mt-6 divide-y divide-gray-200 border-t border-gray-200 text-sm font-medium text-muted-foreground">
             {(order.products as Product[]).map((product) => {
-              const label = PRODUCT_CATEGORIES.find(
-                (c) => c.value === product.category
-              )?.label;
+              const label = getLabel(product.category)
 
               const downloadLink = (product.product_files as ProductFile)
                 .url as string;
