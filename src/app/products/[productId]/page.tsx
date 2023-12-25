@@ -2,7 +2,6 @@ import AddToCartButton from "@/components/AddToCartButton";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import ProductImageSlider from "@/components/product/ProductImageSlider";
 import ProductReel from "@/components/product/ProductReel";
-import { PRODUCT_CATEGORIES } from "@/lib/config";
 import { getPayloadClient } from "@/get-payload";
 import { formatPrice, getLabel } from "@/lib/utils";
 import { Check, Shield } from "lucide-react";

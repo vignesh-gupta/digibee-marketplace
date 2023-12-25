@@ -1,11 +1,10 @@
 "use client";
 
+import { cn, formatPrice, getLabel } from "@/lib/utils";
 import { Product } from "@/payload-types";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Skeleton } from "../ui/skeleton";
-import Link from "next/link";
-import { cn, formatPrice, getLabel } from "@/lib/utils";
-import { PRODUCT_CATEGORIES } from "@/lib/config";
 import ProductImageSlider from "./ProductImageSlider";
 
 type ProductListingProps = {
