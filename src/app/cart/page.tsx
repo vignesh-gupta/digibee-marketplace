@@ -57,7 +57,7 @@ const CartPage = () => {
                   className="relative mb-4 h-40 w-40 text-muted-foreground"
                 >
                   <Image
-                    src="/hippo-empty-cart.png"
+                    src="/empty-cart.png"
                     layout="fill"
                     alt="Empty Cart"
                     loading="eager"
