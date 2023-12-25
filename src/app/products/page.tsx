@@ -1,6 +1,5 @@
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import ProductReel from "@/components/product/ProductReel";
-import { PRODUCT_CATEGORIES } from "@/lib/config";
 import { getLabel } from "@/lib/utils";
 
 type Param = string | string[] | undefined;
