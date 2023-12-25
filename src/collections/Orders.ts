@@ -14,7 +14,7 @@ const Orders: CollectionConfig = {
   slug: "orders",
   admin: {
     useAsTitle: "Your Orders",
-    description: "A summary of all your orders on DigitalHippo.",
+    description: "A summary of all your orders on DigiBee.",
   },
   access: {
     read: yourOwn,

@@ -34,21 +34,22 @@ const NavItem = ({ category, handleOpen, isOpen, isAnyOpen }: NavItemProps) => {
       {isOpen ? (
         <div
           className={cn(
-            "absolute inset-x-0 top-full text-sm text-muted-foreground",
+            "absolute inset-x-0 top-full text-sm text-muted-foreground bg-background",
             { "animate-in fade-in-10 slide-in-from-top-5 ": !isAnyOpen }
           )}
         >
           <div
-            className="absolute inset-x-0 top-1/2 bg-background shadow "
+            className="absolute inset-x-0 top-1/2 shadow "
             aria-hidden="true"
           />
 
-          <div className="relative bg-background">
+          <div className="relative">
             <div className="mx-auto max-w-7xl px-8">
               <div className="grid grid-cols-4 gap-x-8 gap-y-10 py-16">
                 <div className="col-span-4 col-start-1 grid grid-cols-3 gap-x-8">
                   {category.featured.map((item) => (
-                    <div
+                    <Link
+                      href={item.href}
                       key={item.name}
                       className="group relative text-base sm:text-sm"
                     >
@@ -60,16 +61,13 @@ const NavItem = ({ category, handleOpen, isOpen, isAnyOpen }: NavItemProps) => {
                           className="object-cover object-center "
                         />
                       </div>
-                      <Link
-                        href={item.href}
-                        className="mt-6 block font-medium text-foreground"
-                      >
+                      <h6 className="mt-6 block font-medium text-foreground">
                         {item.name}
-                      </Link>
+                      </h6>
                       <p className="mt-1" aria-hidden="true">
                         Shop Now
                       </p>
-                    </div>
+                    </Link>
                   ))}
                 </div>
               </div>

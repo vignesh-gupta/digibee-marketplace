@@ -22,7 +22,7 @@ const UserAccountNav = ({ user }: { user: User }) => {
           My Account
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="bg-background w-60">
+      <DropdownMenuContent className="w-60">
         <div className="flex items-center justify-start p-2 gap-2">
           <div className="flex flex-col space-y-0.5 leading-none">
             <p className="font-medium text-sm text-foreground">{user.email}</p>
