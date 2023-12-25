@@ -18,6 +18,7 @@ import { useCart } from "@/hooks/use-cart";
 import CartItem from "./CartItem";
 import { ScrollArea } from "./ui/scroll-area";
 import { useEffect, useState } from "react";
+import { TRANSACTION_FEE } from "@/lib/constants";
 
 const Cart = () => {
   const { items } = useCart();
@@ -32,10 +33,9 @@ const Cart = () => {
   }
 
   const itemCount = items.length ?? 0,
-    fee = 1,
     cartTotal = items.reduce(
       (total, { product }) => total + product.price,
-      fee
+      TRANSACTION_FEE
     );
 
   return (
@@ -73,7 +73,7 @@ const Cart = () => {
                 </div>
                 <div className="flex">
                   <span className="flex-1">Transaction Fee</span>
-                  <span>{formatPrice(fee)}</span>
+                  <span>{formatPrice(TRANSACTION_FEE)}</span>
                 </div>
                 <div className="flex">
                   <span className="flex-1">Total</span>

@@ -3,13 +3,14 @@
 import { Button } from "@/components/ui/button";
 import { PRODUCT_CATEGORIES } from "@/lib/config";
 import { useCart } from "@/hooks/use-cart";
-import { cn, formatPrice } from "@/lib/utils";
+import { cn, formatPrice, getLabel } from "@/lib/utils";
 import { trpc } from "@/trpc/client";
 import { Check, Loader2, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { TRANSACTION_FEE } from "@/lib/constants";
 
 const CartPage = () => {
   const { items, removeItem } = useCart();
@@ -29,8 +30,7 @@ const CartPage = () => {
 
   const [isMounted, setIsMounted] = useState(false);
 
-  let fee = 1,
-    cartTotal = items.reduce((total, { product }) => total + product.price, 0);
+  let cartTotal = items.reduce((total, { product }) => total + product.price, 0);
 
   const productIds = items.map(({ product }) => product.id);
 
@@ -79,9 +79,7 @@ const CartPage = () => {
             >
               {isMounted &&
                 items.map(({ product }) => {
-                  const label = PRODUCT_CATEGORIES.find(
-                    (c) => c.value === product.category
-                  )?.label;
+                  const label = getLabel(product.category)
 
                   const { image } = product.images[0];
 
@@ -173,7 +171,7 @@ const CartPage = () => {
                 </div>
                 <div className="text-sm font-medium text-gray-900">
                   {isMounted ? (
-                    formatPrice(fee)
+                    formatPrice(Number(TRANSACTION_FEE))
                   ) : (
                     <Loader2 className="h-5 w-5 text-muted-foreground animate-spin" />
                   )}
@@ -185,7 +183,7 @@ const CartPage = () => {
                 </div>
                 <div className=" text-base font-medium text-gray-900">
                   {isMounted ? (
-                    formatPrice(cartTotal + fee)
+                    formatPrice(cartTotal + Number(TRANSACTION_FEE))
                   ) : (
                     <Loader2 className="h-5 w-5 text-muted-foreground animate-spin" />
                   )}

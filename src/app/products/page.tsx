@@ -1,6 +1,7 @@
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import ProductReel from "@/components/product/ProductReel";
 import { PRODUCT_CATEGORIES } from "@/lib/config";
+import { getLabel } from "@/lib/utils";
 
 type Param = string | string[] | undefined;
 
@@ -16,9 +17,7 @@ const ProductsPage = ({ searchParams }: ProductsPageProps) => {
   const sort = parse(searchParams.sort);
   const category = parse(searchParams.category);
 
-  const label = PRODUCT_CATEGORIES.find(
-    ({ value }) => value === category
-  )?.label;
+  const label = getLabel(category)
 
   return (
     <MaxWidthWrapper>
