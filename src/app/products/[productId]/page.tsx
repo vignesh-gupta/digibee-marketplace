@@ -3,6 +3,7 @@ import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import ProductImageSlider from "@/components/product/ProductImageSlider";
 import ProductReel from "@/components/product/ProductReel";
 import { getPayloadClient } from "@/get-payload";
+import { S3_URL } from "@/lib/constants";
 import { formatPrice, getLabel } from "@/lib/utils";
 import { Check, Shield } from "lucide-react";
 import Link from "next/link";
@@ -46,7 +47,7 @@ const ProductDetails = async ({
     .map(({ image }) =>
       typeof image === "string"
         ? image
-        : `https://digibee-mediafiles.s3.ap-south-1.amazonaws.com/media/${image.filename}`
+        : `${S3_URL}/media/${image.filename}`
     )
     .filter(Boolean) as string[];
 

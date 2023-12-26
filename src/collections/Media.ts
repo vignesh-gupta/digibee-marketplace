@@ -1,6 +1,7 @@
 import { S3UploadCollectionConfig } from "payload-s3-upload";
 import { Access } from "payload/types";
 import { User } from "../payload-types";
+import { S3_URL } from "../lib/constants";
 
 const isAdminOrHasAccessToImage =
   (): Access =>
@@ -65,7 +66,7 @@ const Media: S3UploadCollectionConfig = {
       prefix: "media", // files will be stored in bucket folder images/xyz
     },
     adminThumbnail: ({ doc }) =>
-      `https://digibee-mediafiles.s3.ap-south-1.amazonaws.com/media/${doc.filename}`,
+      `${S3_URL}/media/${doc.filename}`,
   },
   fields: [
     {
