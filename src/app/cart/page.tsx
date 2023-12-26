@@ -1,16 +1,15 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { PRODUCT_CATEGORIES } from "@/lib/config";
 import { useCart } from "@/hooks/use-cart";
+import { S3_URL, TRANSACTION_FEE } from "@/lib/constants";
 import { cn, formatPrice, getLabel } from "@/lib/utils";
 import { trpc } from "@/trpc/client";
 import { Check, Loader2, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
-import { TRANSACTION_FEE } from "@/lib/constants";
+import { useEffect, useState } from "react";
 
 const CartPage = () => {
   const { items, removeItem } = useCart();
@@ -90,9 +89,9 @@ const CartPage = () => {
                     >
                       <div className="flex-shrink-0">
                         <div className="relative h-24 w-24">
-                          {typeof image !== "string" && image.url ? (
+                          {typeof image !== "string" && image.filename ? (
                             <Image
-                              src={image.url}
+                              src={`${S3_URL}/media/${image.filename}`}
                               fill
                               alt={product.name}
                               className="h-full w-full rounded-md object-center object-cover sm:h-48 sm:w-48"

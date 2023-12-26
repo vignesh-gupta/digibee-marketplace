@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Skeleton } from "../ui/skeleton";
 import ProductImageSlider from "./ProductImageSlider";
+import { S3_URL } from "@/lib/constants";
 
 type ProductListingProps = {
   product: Product | null;
@@ -33,7 +34,7 @@ const ProductListing = ({ index, product }: ProductListingProps) => {
     .map(({ image }) =>
       typeof image === "string"
         ? image
-        : `https://digibee-mediafiles.s3.ap-south-1.amazonaws.com/media/${image.filename}`
+        : `${S3_URL}/media/${image.filename}`
     )
     .filter(Boolean) as string[];
 

@@ -4,6 +4,7 @@ import { formatPrice, getLabel } from "@/lib/utils";
 import { Product } from "@/payload-types";
 import { ImageIcon, X } from "lucide-react";
 import Image from "next/image";
+import { S3_URL } from "@/lib/constants";
 
 type CartItemProps = {
   product: Product;
@@ -23,7 +24,7 @@ const CartItem = ({ product }: CartItemProps) => {
           <div className="relative w-16 h-16 overflow-hidden rounded aspect-square">
             {typeof image !== "string" && image.url ? (
               <Image
-                src={`https://digibee-mediafiles.s3.ap-south-1.amazonaws.com/media/${image.filename}`}
+                src={`${S3_URL}/media/${image.filename}`}
                 fill
                 alt={product.name}
                 className="absolute object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"
