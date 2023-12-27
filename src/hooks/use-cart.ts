@@ -16,6 +16,7 @@ export type CartState = {
   addItem: (product: Product) => void;
   removeItem: (productId: string) => void;
   clearCart: () => void;
+  checkIfItemExists: (id: string) => boolean;
 };
 
 export const useCart = create<CartState>()(
@@ -29,6 +30,14 @@ export const useCart = create<CartState>()(
           items: state.items.filter((item) => item.product.id !== id),
         })),
       clearCart: () => set({ items: [] }),
+      checkIfItemExists: (id: string) => {
+        let item = null;
+        set((state) => {
+          item = state.items.find((item) => item.product.id === id);
+          return state;
+        });
+        return !!item;
+      },
     }),
     {
       name: "cart-storage",
