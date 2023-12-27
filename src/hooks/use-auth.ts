@@ -1,8 +1,10 @@
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { useCart } from "./use-cart";
 
 const useAuth = () => {
   const router = useRouter();
+  const { clearCart } = useCart()
   const signOut = async () => {
     try {
       const res = await fetch(
@@ -20,6 +22,7 @@ const useAuth = () => {
         throw new Error("Something went wrong");
       }
 
+      clearCart();
       router.push("/sign-in");
       router.refresh();
       toast.success("Signed out successfully.");
