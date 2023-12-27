@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import { twMerge } from "tailwind-merge";
 import { PRODUCT_CATEGORIES } from "./config";
 import { Product } from "@/payload-types";
+import { S3_URL } from "./constants";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -30,6 +31,16 @@ export function formatPrice(
 export function getLabel(category: string | undefined) {
   if (!category) return null;
   return PRODUCT_CATEGORIES.find(({ value }) => value === category)?.label;
+}
+
+export function getValidURLs(product: Product, dir: 'media' | 'product_files'){
+  return product.images
+    .map(({ image }) =>
+      typeof image === "string"
+        ? image
+        : `${S3_URL}/${dir}/${image.filename}`
+    )
+    .filter(Boolean) as string[];
 }
 
 export function constructMetadata({

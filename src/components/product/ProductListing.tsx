@@ -1,6 +1,6 @@
 "use client";
 
-import { cn, formatPrice, getLabel } from "@/lib/utils";
+import { cn, formatPrice, getLabel, getValidURLs } from "@/lib/utils";
 import { Product } from "@/payload-types";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -30,13 +30,7 @@ const ProductListing = ({ index, product }: ProductListingProps) => {
 
   const label = getLabel(product.category);
 
-  const validURLs = product.images
-    .map(({ image }) =>
-      typeof image === "string"
-        ? image
-        : `${S3_URL}/media/${image.filename}`
-    )
-    .filter(Boolean) as string[];
+  const validURLs = getValidURLs(product, 'media');
 
   if (product && isVisible) {
     return (
