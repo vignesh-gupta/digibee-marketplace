@@ -7,32 +7,29 @@ import { useCart } from "@/hooks/use-cart";
 import { Product } from "@/payload-types";
 
 const AddToCartButton = ({ product }: { product: Product }) => {
-  const { addItem } = useCart();
+  const { addItem, checkIfItemExists } = useCart();
 
-  const [isSuccess, setIsSuccess] = useState(false);
+  const [isAdded, setIsAdded] = useState(false);
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      setIsSuccess(false);
-    }, 1000);
-
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, [isSuccess]);
+    if (checkIfItemExists(product.id)) {
+      setIsAdded(true);
+    }
+  }, [checkIfItemExists, product.id]);
 
   return (
     <Button
       onClick={() => {
         addItem(product);
-        setIsSuccess(true);
+        setIsAdded(true);
       }}
+      disabled={isAdded}
       size="lg"
       className={cn("w-full transition", {
-        "bg-green-600 hover:bg-green-700": isSuccess,
+        "bg-green-600 hover:bg-green-700": isAdded,
       })}
     >
-      {isSuccess ? "Added!" : "Add to Cart"}
+      {isAdded ? "Added!" : "Add to Cart"}
     </Button>
   );
 };
