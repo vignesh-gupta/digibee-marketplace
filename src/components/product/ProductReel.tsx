@@ -62,26 +62,15 @@ const ProductReel = ({ title, subtitle, href, query }: ProductReelProps) => {
 
       <div className="relative">
         <div className="mt-6 flex items-center w-full">
-          {products && products.length ? (
-            <div className="w-full grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-10 lg:gap-x-8">
-              {productMap.map((product, i) => (
-                <ProductListing
-                  key={`${product?.id}-${i}`}
-                  product={product}
-                  index={i}
-                />
-              ))}
-            </div>
-          ) : (
-            <div className="w-full flex flex-col text-muted-foreground items-center">
-              <div className="relative h-52 w-52">
-                <Image src="/not-found.png" fill alt="No items found" className="object-center object-cover " />
-              </div>
-
-              <p>Seems like there are no item</p>
-
-            </div>
-          )}
+          <div className="w-full grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-10 lg:gap-x-8">
+            {productMap.map((product, i) => (
+              <ProductListing
+                key={`${product?.id}-${i}`}
+                product={product}
+                index={i}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>

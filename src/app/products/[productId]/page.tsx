@@ -4,7 +4,7 @@ import ProductImageSlider from "@/components/product/ProductImageSlider";
 import ProductReel from "@/components/product/ProductReel";
 import { getPayloadClient } from "@/get-payload";
 import { S3_URL } from "@/lib/constants";
-import { formatPrice, getLabel } from "@/lib/utils";
+import { formatPrice, getLabel, getValidURLs } from "@/lib/utils";
 import { Check, Shield } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -43,13 +43,7 @@ const ProductDetails = async ({
 
   const label = getLabel(product.category)
 
-  const validURLs = product.images
-    .map(({ image }) =>
-      typeof image === "string"
-        ? image
-        : `${S3_URL}/media/${image.filename}`
-    )
-    .filter(Boolean) as string[];
+  const validURLs = getValidURLs(product, 'media');
 
   return (
     <MaxWidthWrapper>
