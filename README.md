@@ -1,6 +1,7 @@
 # DigiBee - A Modern Digital Product Martketplace
 
-![banner - DigiBee](./public/thumbnail.png)
+![thumbnail](https://github.com/vignesh-gupta/digibee-marketplace/assets/52371759/32f36a2c-e6ba-4485-ae65-59485b058f6b)
+
 
 ## Intro
 
