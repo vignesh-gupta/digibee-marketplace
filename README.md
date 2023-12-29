@@ -38,8 +38,8 @@ DigiBee is a Full-Stack built with [Next.js](https://nextjs.org/) for frontend a
 
 ## Author
 
- - [![Vignesh Gupta](https://img.shields.io/badge/Vignesh-Gupta-000000?style=for-the-badge&logo=About.me&logoColor=white)](https://vigneshgupta.vercel.app/) 
  - [![@vigneshfixes](https://img.shields.io/badge/vigneshfixes-000000?style=for-the-badge&logo=x&logoColor=white)](https://twitter.com/intent/follow?screen_name=vigneshfixes)
+ - [![Vignesh Gupta](https://img.shields.io/badge/Website-000000?style=for-the-badge&logo=About.me&logoColor=white)](https://vigneshgupta.vercel.app/) 
 
 
 
