@@ -21,7 +21,7 @@ DigiBee is a Full-Stack built with [Next.js](https://nextjs.org/) for frontend a
 
 ## Tech Stack
 
-- [Next.js](https://nextjs.org/) (v14)[https://nextjs.org/blog/next-14] – React framework for building performant apps with the best developer experience
+- [Next.js](https://nextjs.org/) [v14](https://nextjs.org/blog/next-14) – React framework for building performant apps with the best developer experience
 - [Payload](https://payloadcms.com/) – An highly customizable, headless CMS for Next.js
 - [Stripe](https://stripe.com/) – Payment processing for internet businesses
 - [Trpc](https://trpc.io/) - Makes the APIs End-to-end typesafe and boost the development speed and experience.
@@ -38,7 +38,8 @@ DigiBee is a Full-Stack built with [Next.js](https://nextjs.org/) for frontend a
 
 ## Author
 
-- [![Vignesh Gupta](https://img.shields.io/badge/Vignesh Gupta-000000?style=for-the-badge&logo=About.me&logoColor=white)](https://vigneshgupta.vercel.app/) / ([![@vigneshfixes](https://img.shields.io/badge/vigneshfixes-000000?style=for-the-badge&logo=x&logoColor=white)](https://twitter.com/intent/follow?screen_name=vigneshfixes))
+ - [![Vignesh Gupta](https://img.shields.io/badge/Vignesh-Gupta-000000?style=for-the-badge&logo=About.me&logoColor=white)](https://vigneshgupta.vercel.app/) 
+ - [![@vigneshfixes](https://img.shields.io/badge/vigneshfixes-000000?style=for-the-badge&logo=x&logoColor=white)](https://twitter.com/intent/follow?screen_name=vigneshfixes)
 
 
 
