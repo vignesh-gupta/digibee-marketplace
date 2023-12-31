@@ -6,11 +6,60 @@ import { Product } from "../payload-types";
 
 export const cartRouter = router({
   /************************************************************************************************
-  addItemToCart - Adds a product to the user's cart and creates a cart if one doesn't exist
-    @param - productId: string - The ID of the product to add to the cart
-    @returns - success: boolean - Whether or not the operation was successful
-    @returns - message: string - A message describing the outcome of the operation
-  ************************************************************************************************/
+   * getCart - Gets the user's cart
+   * @returns - cart: Cart - The user's cart
+   * **********************************************************************************************/
+
+  getCart: privateProcedure.mutation(async ({ ctx }) => {
+    const { user } = ctx;
+
+    const payload = await getPayloadClient();
+
+    // Check if user has a cart
+    let cart = await payload
+      .find({
+        collection: "cart",
+        limit: 1,
+        where: {
+          user: {
+            equals: user.id,
+          },
+        },
+      })
+      .then((res) => res.docs.at(0));
+
+    if (!cart) {
+      cart = await payload.create({
+        collection: "cart",
+        data: {
+          products: [],
+          user: user.id,
+        },
+      });
+
+      await payload.update({
+        collection: "users",
+        where: {
+          id: {
+            equals: user.id,
+          },
+        },
+        data: {
+          cart: cart.id,
+        },
+      });
+      return { cart, success: true, message: "Cart Created" };
+    }
+
+    return { cart, success: true, message: "Cart Updated" };
+  }),
+
+  /************************************************************************************************
+   * addItemToCart - Adds a product to the user's cart and creates a cart if one doesn't exist
+   * @param - productId: string - The ID of the product to add to the cart
+   * @returns - success: boolean - Whether or not the operation was successful
+   * @returns - message: string - A message describing the outcome of the operation
+   * **********************************************************************************************/
   addItemToCart: privateProcedure
     .input(z.object({ productId: z.string() }))
     .mutation(async ({ input, ctx }) => {
@@ -45,7 +94,7 @@ export const cartRouter = router({
           typeof product === "string" ? product : product.id
         ) || [];
 
-      if (cart[0]) {
+      if (!cart[0]) {
         // If user has a cart, add the product to the cart
         await payload.update({
           collection: "cart",
@@ -83,4 +132,10 @@ export const cartRouter = router({
         return { success: true, message: "Cart created" };
       }
     }),
+
+  /************************************************************************************************
+   * removeItemFromCart - Removes a product from the user's cart
+   * @param - productId: string - The ID of the product to remove from the cart
+   * @returns - success: boolean - Whether or not the operation was successful
+   * **********************************************************************************************/
 });
