@@ -62,6 +62,13 @@ const Users: CollectionConfig = {
         { label: "User", value: "user" },
       ],
     },
+    {
+      name: 'cart',
+      label: 'Cart',
+      type: 'relationship',
+      relationTo: 'cart',
+      hasMany: false,
+    }
   ],
 };
 

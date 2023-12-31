@@ -13,6 +13,7 @@ export interface Config {
     media: Media;
     product_files: ProductFile;
     orders: Order;
+    cart: Cart;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -23,6 +24,7 @@ export interface User {
   products?: (string | Product)[] | null;
   product_files?: (string | ProductFile)[] | null;
   role: 'admin' | 'user';
+  cart?: (string | null) | Cart;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -40,11 +42,11 @@ export interface Product {
   id: string;
   user?: (string | null) | User;
   name: string;
+  description?: string | null;
   price: number;
-  description: string;
   category: 'ui_kits' | 'icons';
   product_files: string | ProductFile;
-  approvedForSale: 'pending' | 'approved' | 'rejected';
+  approvedForSale?: ('pending' | 'approved' | 'denied') | null;
   priceId?: string | null;
   stripeId?: string | null;
   images: {
@@ -77,32 +79,13 @@ export interface Media {
   filesize?: number | null;
   width?: number | null;
   height?: number | null;
-  sizes?: {
-    thumbnail?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-    card?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-    tablet?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-  };
+}
+export interface Cart {
+  id: string;
+  products: (string | Product)[];
+  user: string | User;
+  updatedAt: string;
+  createdAt: string;
 }
 export interface Order {
   id: string;
