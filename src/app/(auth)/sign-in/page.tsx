@@ -3,6 +3,7 @@
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useCart } from "@/hooks/use-cart";
 import { cn } from "@/lib/utils";
 import {
   AuthCredentialValidator,
@@ -21,8 +22,9 @@ const SignInPage = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const isSeller = searchParams.get("as") === "seller";
+  const { loadItems } = useCart();
 
+  const isSeller = searchParams.get("as") === "seller";
   const origin = searchParams.get("origin");
 
   const {
@@ -34,14 +36,15 @@ const SignInPage = () => {
   });
 
   const { mutate: getCart } = trpc.cart.getCart.useMutation({
-    onSuccess: (res) => {
-      console.log(res);
+    onSuccess: ({ cart: { products } }) => {
+      // @ts-ignore TODO: Not sure what is the issue but it works
+      loadItems(typeof products === "string" ? null : products);
     },
   });
 
   const { mutate: signIn, isLoading } = trpc.auth.signIn.useMutation({
     onSuccess: () => {
-      console.log("Cart", getCart())
+      getCart();
 
       if (origin) {
         router.push(`/${origin}`);

@@ -76,7 +76,7 @@ export const cartRouter = router({
       });
 
       if (!product) {
-        throw new TRPCError({ code: "NOT_FOUND" });
+        throw new TRPCError({ code: "NOT_FOUND" , message: "Product not found" });
       }
 
       // Check if user has a cart
@@ -95,42 +95,22 @@ export const cartRouter = router({
         ) || [];
 
       if (!cart[0]) {
-        // If user has a cart, add the product to the cart
-        await payload.update({
-          collection: "cart",
-          where: {
-            user: {
-              equals: user.id,
-            },
-          },
-          data: {
-            products: Array.from(new Set([...allProductIds, product.id])),
-          },
-        });
-        return { success: true, message: "Cart Updated" };
-      } else {
-        // If user doesn't have a cart, `create a cart` and `add the product` to the cart and `add the cart to the user`
-        const newCart = await payload.create({
-          collection: "cart",
-          data: {
-            products: [product.id],
-            user: user.id,
-          },
-        });
-
-        await payload.update({
-          collection: "users",
-          where: {
-            id: {
-              equals: user.id,
-            },
-          },
-          data: {
-            cart: newCart.id,
-          },
-        });
-        return { success: true, message: "Cart created" };
+        throw new TRPCError({ code: "NOT_FOUND" , message: "Cart not found" });
       }
+      
+      // If user has a cart, add the product to the cart
+      await payload.update({
+        collection: "cart",
+        where: {
+          user: {
+            equals: user.id,
+          },
+        },
+        data: {
+          products: Array.from(new Set([...allProductIds, product.id])),
+        },
+      });
+      return { success: true, message: "Cart Updated" };
     }),
 
   /************************************************************************************************
