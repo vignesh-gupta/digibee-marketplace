@@ -33,8 +33,16 @@ const SignInPage = () => {
     resolver: zodResolver(AuthCredentialValidator),
   });
 
+  const { mutate: getCart } = trpc.cart.getCart.useMutation({
+    onSuccess: (res) => {
+      console.log(res);
+    },
+  });
+
   const { mutate: signIn, isLoading } = trpc.auth.signIn.useMutation({
     onSuccess: () => {
+      console.log("Cart", getCart())
+
       if (origin) {
         router.push(`/${origin}`);
         return;
@@ -58,8 +66,8 @@ const SignInPage = () => {
   });
 
   const onSubmit = ({ email, password }: TAuthCredentialValidator) => {
-    // TODO: handle submit = Send data to server
     signIn({ email, password });
+    // setTimeout(() => getCart(), 1000);
   };
 
   const continueAsRole = (isSeller: boolean = false) => {

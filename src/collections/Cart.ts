@@ -11,7 +11,6 @@ const Cart: CollectionConfig = {
       label: "Products",
       type: "relationship",
       relationTo: "products",
-      required: true,
       hasMany: true,
     },
     {
