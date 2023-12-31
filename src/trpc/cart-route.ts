@@ -76,7 +76,10 @@ export const cartRouter = router({
       });
 
       if (!product) {
-        throw new TRPCError({ code: "NOT_FOUND" , message: "Product not found" });
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          message: "Product not found",
+        });
       }
 
       // Check if user has a cart
@@ -95,9 +98,9 @@ export const cartRouter = router({
         ) || [];
 
       if (!cart[0]) {
-        throw new TRPCError({ code: "NOT_FOUND" , message: "Cart not found" });
+        throw new TRPCError({ code: "NOT_FOUND", message: "Cart not found" });
       }
-      
+
       // If user has a cart, add the product to the cart
       await payload.update({
         collection: "cart",
@@ -118,4 +121,53 @@ export const cartRouter = router({
    * @param - productId: string - The ID of the product to remove from the cart
    * @returns - success: boolean - Whether or not the operation was successful
    * **********************************************************************************************/
+
+  removeItemFromCart: privateProcedure
+    .input(z.object({ productId: z.string() }))
+    .mutation(async ({ input, ctx }) => {
+      const { user } = ctx;
+      const { productId } = input;
+
+      const payload = await getPayloadClient();
+
+      // Check if product exists
+      const product = await payload.findByID({
+        collection: "products",
+        id: productId,
+      });
+
+      if(!product) {
+        throw new TRPCError({ code: "NOT_FOUND", message: "Product not found" });
+      }
+
+      // Check if user has a cart
+      const { docs: cart } = await payload.find({
+        collection: "cart",
+        where: {
+          user: {
+            equals: user.id,
+          },
+        },
+      });
+
+      if (!cart[0]) {
+        throw new TRPCError({ code: "NOT_FOUND", message: "Cart not found" });
+      }
+
+      // If user has a cart, remove the product from the cart
+      const { docs: updatedCart } = await payload.update({
+        collection: "cart",
+        where: {
+          user: {
+            equals: user.id,
+          },
+        },
+        data: {
+          products: cart[0].products.filter((product) => product !== productId),
+        },
+      });
+
+      return { success: true, message: "Cart Updated", cart: updatedCart[0] };
+
+    }),
 });

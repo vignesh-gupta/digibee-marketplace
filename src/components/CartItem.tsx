@@ -5,6 +5,8 @@ import { Product } from "@/payload-types";
 import { ImageIcon, X } from "lucide-react";
 import Image from "next/image";
 import { S3_URL } from "@/lib/constants";
+import { trpc } from "@/trpc/client";
+import { toast } from "sonner";
 
 type CartItemProps = {
   product: Product;
@@ -12,10 +14,23 @@ type CartItemProps = {
 
 const CartItem = ({ product }: CartItemProps) => {
   const { removeItem } = useCart();
+  const { mutate: removeCartItem } = trpc.cart.removeItemFromCart.useMutation({
+    onSuccess: ({ cart }) => {
+      console.log(cart);
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
 
   const { image } = product.images[0];
 
   const label = getLabel(product.category);
+
+  const handleRemoveItem = () => {
+    removeItem(product.id);
+    removeCartItem({ productId: product.id });
+  };
 
   return (
     <div className="py-2 space-y-3 group">
@@ -52,7 +67,7 @@ const CartItem = ({ product }: CartItemProps) => {
             <div className="mt-4 text-xs text-muted-foreground">
               <button
                 className="flex items-center gap-0.5 "
-                onClick={() => removeItem(product.id)}
+                onClick={handleRemoveItem}
               >
                 <X className="w-3 h-3" /> Remove
               </button>

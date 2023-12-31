@@ -19,7 +19,7 @@ const MobileNav = ({ user }: { user: User | null }) => {
           <Menu className="h-10" />
         </Button>
       </SheetTrigger>
-      <SheetContent side="left">
+      <SheetContent side="left" className="lg:hidden" >
         {PRODUCT_CATEGORIES.map((product, i) => (
           <Accordion key={product.value} type="single" collapsible>
             <AccordionItem value="item-1">
