@@ -28,7 +28,6 @@ export const useCart = create<CartState>()(
     (set) => ({
       items: [],
       loadItems: (products) => {
-        console.log("Cart product loadItems",products);
         set({ items: products?.map((product) => ({ product })) ?? [] });
       },
       addItem: (product) =>
