@@ -36,7 +36,7 @@ const CartPage = () => {
   return (
     <div className="bg-background">
       <div className="mx-auto max-w-2xl px-4 pb-24 pt-16 sm:px-6 lg:max-w-7xl lg:px-8">
-        <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+        <h1 className="text-3xl font-bold tracking-tight text-foreground/90 sm:text-4xl">
           Shopping Cart
         </h1>
 
@@ -72,7 +72,7 @@ const CartPage = () => {
 
             <ul
               className={cn({
-                "divide-y divide-gray-200 border-b border-t border-gray-200":
+                "divide-y divide-foreground/20 text-foreground/20 border-b border-t border-foreground/20":
                   isMounted && items.length > 0,
               })}
             >
@@ -107,7 +107,7 @@ const CartPage = () => {
                               <h3 className="text-sm">
                                 <Link
                                   href={`/products/${product.id}`}
-                                  className="text-gray-700 hover:text-gray-900 font-medium"
+                                  className="text-foreground/70 hover:text-foreground/90 font-medium"
                                 >
                                   {product.name}
                                 </Link>
@@ -120,7 +120,7 @@ const CartPage = () => {
                               </p>
                             </div>
 
-                            <p className="mt-1 font-medium text-gray-900 text-sm">
+                            <p className="mt-1 font-medium text-foreground/90 text-sm">
                               {formatPrice(product.price)}
                             </p>
                           </div>
@@ -138,7 +138,7 @@ const CartPage = () => {
                           </div>
                         </div>
 
-                        <p className="space-x-2 mt-4 text-sm text-gray-700 flex">
+                        <p className="space-x-2 mt-4 text-sm text-foreground/70 flex">
                           <Check className="h-5 w-5 flex-shrink-0 text-green-500" />
                           <span>Eligible for instant delivery</span>
                         </p>
@@ -149,13 +149,13 @@ const CartPage = () => {
             </ul>
           </div>
 
-          <section className="mt-16 rounded-lg bg-gray-50 px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8">
-            <h2 className="font-medium text-gray-900 text-lg">Order Summary</h2>
+          <section className="mt-16 rounded-lg bg-foreground/5 px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8">
+            <h2 className="font-medium text-foreground/90 text-lg">Order Summary</h2>
 
             <div className="mt-6 space-y-4">
               <div className="flex items-center justify-between">
-                <p className="text-sm text-gray-600">Subtotal</p>
-                <p className="font-medium text-gray-900 text-sm">
+                <p className="text-sm text-foreground/60">Subtotal</p>
+                <p className="font-medium text-foreground/90 text-sm">
                   {isMounted ? (
                     formatPrice(cartTotal)
                   ) : (
@@ -164,11 +164,11 @@ const CartPage = () => {
                 </p>
               </div>
 
-              <div className="flex items-center justify-between border-t border-gray-200 pt-4">
+              <div className="flex items-center justify-between border-t border-foreground/20 text-foreground/20 pt-4">
                 <div className="flex items-center text-sm text-muted-foreground">
                   <span>Flat Transaction fees</span>
                 </div>
-                <div className="text-sm font-medium text-gray-900">
+                <div className="text-sm font-medium text-foreground/90">
                   {isMounted ? (
                     formatPrice(Number(TRANSACTION_FEE))
                   ) : (
@@ -176,11 +176,11 @@ const CartPage = () => {
                   )}
                 </div>
               </div>
-              <div className="flex items-center justify-between border-t border-gray-200 pt-4">
-                <div className="flex items-center text-base font-medium text-gray-900 text-muted-foreground">
+              <div className="flex items-center justify-between border-t border-muted text-foreground/20 pt-4">
+                <div className="flex items-center text-base font-medium text-muted-foreground">
                   Order Total
                 </div>
-                <div className=" text-base font-medium text-gray-900">
+                <div className=" text-base font-medium text-foreground/90">
                   {isMounted ? (
                     formatPrice(cartTotal + Number(TRANSACTION_FEE))
                   ) : (
