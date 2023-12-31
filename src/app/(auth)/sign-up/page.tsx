@@ -47,7 +47,7 @@ const SignUpPage = () => {
       toast.error("Something went wrong. Please try again.");
     },
     onSuccess: ({ sentToEmail }) => {
-      router.push("/verify?email=" + sentToEmail);
+      router.push("/verify?to=" + sentToEmail);
       router.refresh();
       toast.success(`Verification email sent to ${sentToEmail}`);
     },
