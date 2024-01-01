@@ -83,23 +83,22 @@ export const cartRouter = router({
       }
 
       // Check if user has a cart
-      const { docs: cart } = await payload.find({
+      if (!user.cart) {
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          message: "Cart not found",
+        });
+      }
+
+      const cart = await payload.findByID({
         collection: "cart",
-        where: {
-          user: {
-            equals: user.id,
-          },
-        },
+        id: typeof user.cart === "string" ? user.cart : user.cart.id,
       });
 
       let allProductIds =
-        cart[0]?.products?.map((product) =>
+        cart?.products?.map((product) =>
           typeof product === "string" ? product : product.id
         ) || [];
-
-      if (!cart[0]) {
-        throw new TRPCError({ code: "NOT_FOUND", message: "Cart not found" });
-      }
 
       // If user has a cart, add the product to the cart
       await payload.update({
@@ -136,38 +135,34 @@ export const cartRouter = router({
         id: productId,
       });
 
-      if(!product) {
-        throw new TRPCError({ code: "NOT_FOUND", message: "Product not found" });
+      if (!product) {
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          message: "Product not found",
+        });
       }
 
-      // Check if user has a cart
-      const { docs: cart } = await payload.find({
-        collection: "cart",
-        where: {
-          user: {
-            equals: user.id,
-          },
-        },
-      });
-
-      if (!cart[0]) {
+      if (!user.cart) {
         throw new TRPCError({ code: "NOT_FOUND", message: "Cart not found" });
       }
 
-      // If user has a cart, remove the product from the cart
-      const { docs: updatedCart } = await payload.update({
+      const cart = await payload.findByID({
         collection: "cart",
-        where: {
-          user: {
-            equals: user.id,
-          },
-        },
+        id: typeof user.cart === "string" ? user.cart : user.cart.id,
+      });
+
+      // If user has a cart, remove the product from the cart
+      const updatedCart = await payload.update({
+        collection: "cart",
+        id: cart.id,
         data: {
-          products: cart[0].products.filter((product) => product !== productId),
+          products: cart.products.filter(
+            (product) =>
+              (typeof product === "string" ? product : product.id) !== productId
+          ),
         },
       });
 
-      return { success: true, message: "Cart Updated", cart: updatedCart[0] };
-
+      return { success: true, message: "Cart Updated", updatedCart };
     }),
 });

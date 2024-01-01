@@ -3,7 +3,6 @@ import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import ProductImageSlider from "@/components/product/ProductImageSlider";
 import ProductReel from "@/components/product/ProductReel";
 import { getPayloadClient } from "@/get-payload";
-import { S3_URL } from "@/lib/constants";
 import { formatPrice, getLabel, getValidURLs } from "@/lib/utils";
 import { Check, Shield } from "lucide-react";
 import Link from "next/link";
