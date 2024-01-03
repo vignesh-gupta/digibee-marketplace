@@ -4,16 +4,19 @@
   "private": true,
   "main": "dist/server.js",
   "scripts": {
-    "gen:type": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload generate:types",
-    "dev": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts nodemon --max-old-space-size=4096",
-    "dev:turbo": "next dev --turbo",
+    "gen:types": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload generate:types",
+    "dev:app": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts nodemon",
+    "dev:db": "docker-compose up -d",
+    "dev": "yarn dev:db && yarn dev:app",
     "lint": "next lint",
+    "type-check": "tsc --noEmit",
     "copyfiles": "copyfiles -u 1 \"src/**/*.{html,css,scss,ttf,woff,woff2,eot,svg,jpg,png}\" dist/ && copyfiles next.config.js /app  ",
     "build:payload": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload build",
     "build:server": "tsc --project tsconfig.server.json",
     "build:next": "cross-env PAYLOAD_CONFIG_PATH=dist/payload.config.js NEXT_BUILD=true node dist/server.js",
     "build": "cross-env NODE_ENV=production yarn build:payload && yarn build:server && yarn build:next",
-    "start": "cross-env PAYLOAD_CONFIG_PATH=dist/payload.config.js NODE_ENV=production node dist/server.js"
+    "start": "cross-env PAYLOAD_CONFIG_PATH=dist/payload.config.js NODE_ENV=production node dist/server.js",
+    "pr:precheck": "yarn lint && yarn gen:types && yarn type-check && yarn build"
   },
   "resolutions": {
     "cliui": "7.0.2"
