@@ -51,7 +51,7 @@ To get started with Digibee locally, follow these steps
 3. Clone your fork
 
    ```sh
-    git clone https://github.com/<YOUR_GITHUB_ACCOUNT_NAME>/code-racer.git
+    git clone https://github.com/<YOUR_GITHUB_ACCOUNT_NAME>/digibee-marketplace.git
    ```
 
 4. Navigate to the project directory
