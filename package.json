@@ -4,6 +4,7 @@
   "private": true,
   "main": "dist/server.js",
   "scripts": {
+    "predev": "docker-compose down",
     "gen:types": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload generate:types",
     "dev:app": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts nodemon",
     "dev:db": "docker-compose up -d",
