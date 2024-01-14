@@ -4,7 +4,7 @@ import { slateEditor } from "@payloadcms/richtext-slate";
 import dotenv from "dotenv";
 import path from "path";
 import { buildConfig } from "payload/config";
-import { Cart, Media, Orders, ProductFiles, Products, Users } from "./collections";
+import { Cart, Media, Orders, ProductFiles, Products, Users, ListCart } from "./collections";
 import { S3Client } from "@aws-sdk/client-s3";
 import s3Upload from "payload-s3-upload";
 
@@ -12,7 +12,7 @@ dotenv.config({ path: path.resolve(__dirname, "../.env") });
 
 export default buildConfig({
   serverURL: process.env.NEXT_PUBLIC_SERVER_URL || "",
-  collections: [Users, Products, Media, ProductFiles, Orders, Cart],
+  collections: [Users, Products, Media, ProductFiles, Orders, Cart , ListCart],
   routes: {
     admin: "/sell",
   },

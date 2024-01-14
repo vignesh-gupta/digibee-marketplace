@@ -1,9 +1,16 @@
 import { CollectionConfig } from "payload/types";
+import { ownedOnly } from "./access";
 
 const Cart: CollectionConfig = {
   slug: "cart",
   admin: {
     hidden: true,
+  },
+  access: {
+    read: ownedOnly,
+    create: ownedOnly,
+    update: ownedOnly,
+    delete: ownedOnly,
   },
   fields: [
     {
@@ -22,6 +29,6 @@ const Cart: CollectionConfig = {
       hasMany: false,
     },
   ],
-}
+};
 
 export default Cart;
