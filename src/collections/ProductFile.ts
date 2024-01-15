@@ -20,7 +20,7 @@ export const ProductFiles: S3UploadCollectionConfig = {
         const files = args.req?.files;
         if (files && files.file && files.file.name && operation === "create") {
           const parts = files.file.name.split(".");
-          files.file.name = `media-${(Math.random() + 1)
+          files.file.name = `product_files-${(Math.random() + 1)
             .toString(36)
             .substring(2)}-${Math.random().toString(36).substring(2, 15)}.${
             parts[parts.length - 1]
@@ -44,7 +44,7 @@ export const ProductFiles: S3UploadCollectionConfig = {
       bucket: process.env.S3_BUCKET_NAME!,
       prefix: "product_files", // files will be stored in bucket folder images/xyz
     },
-    adminThumbnail: ({ doc }) => `${S3_URL}/media/${doc.filename}`,
+    adminThumbnail: ({ doc }) => `${S3_URL}/product_files/${doc.filename}`,
   },
   fields: [
     {
