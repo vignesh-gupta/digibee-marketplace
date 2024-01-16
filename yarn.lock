@@ -1453,10 +1453,10 @@
   resolved "https://registry.yarnpkg.com/@one-ini/wasm/-/wasm-0.1.1.tgz#6013659736c9dbfccc96e8a9c2b3de317df39323"
   integrity sha512-XuySG1E38YScSJoMlqovLru4KTUNSjgVTIjyh7qMX6aNN5HY5Ct5LhRJdxO79JtTzKfzV/bnWpz+zquYrISsvw==
 
-"@payloadcms/bundler-webpack@^1.0.5":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@payloadcms/bundler-webpack/-/bundler-webpack-1.0.5.tgz#155398ed476d0a46450516b2c2175c905e028e42"
-  integrity sha512-TjzRTGRDQPrxGoMZ+fV76Pzx3nXC37oSZe/+dA/5HM18fRA9vlu/z54r8HHvThZc7ywx0iRiSwgPZYzQu5xUVQ==
+"@payloadcms/bundler-webpack@^1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@payloadcms/bundler-webpack/-/bundler-webpack-1.0.6.tgz#f37e1bcb364bd810df8da481afceb195e07f52f2"
+  integrity sha512-hKnRqF2IhYCqNwb8FjKNnjR9fKCXVK2PJgPu3R89dvFhvMnwkbkbj86LMCC4dLmQ9RXmmh/drw4Q5acQ/Xec8g==
   dependencies:
     compression "1.7.4"
     connect-history-api-fallback "1.6.0"
@@ -1484,10 +1484,10 @@
     webpack-dev-middleware "6.0.1"
     webpack-hot-middleware "^2.25.3"
 
-"@payloadcms/db-mongodb@^1.1.0":
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/@payloadcms/db-mongodb/-/db-mongodb-1.3.0.tgz#2bcbdccbf02899b6cc7e7d3a378b2a4abe860f09"
-  integrity sha512-JNqRTZCaT1kdDLCoQb30IJnjo9oJeTkI0FiiuXxLEyZ6lhiAVKpAA/4RoDoEWCibZ5NJ3d2OvYcfSXhDOHGNmg==
+"@payloadcms/db-mongodb@^1.3.1":
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/@payloadcms/db-mongodb/-/db-mongodb-1.3.1.tgz#bc4078b368d0a979cfd68f9397955c43d2b9928f"
+  integrity sha512-lZnQwROCunKO6X8Jd/71j9ZUfEbDN8OpdnahQiauTKmTFow66pP1UCJnFDQv906IZTyBL9VqKiz3ltFrwr0pvA==
   dependencies:
     bson-objectid "2.0.4"
     deepmerge "4.3.1"
@@ -1506,7 +1506,7 @@
   dependencies:
     range-parser "^1.2.1"
 
-"@payloadcms/richtext-slate@^1.2.1":
+"@payloadcms/richtext-slate@^1.3.1":
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/@payloadcms/richtext-slate/-/richtext-slate-1.3.1.tgz#049468143845fb0dd0aafaeb428bbb1d8a863e70"
   integrity sha512-DwHDn0F7PTGP1WGLQmpNRUdfhwHQwOFpBzXuQtIqlykkj5AAsZrLmfjQabTHPOzKZdLkMRrxhYOGERi4F1T5Hw==
@@ -1816,6 +1816,25 @@
     "@babel/runtime" "^7.13.10"
     "@radix-ui/react-compose-refs" "1.0.1"
 
+"@radix-ui/react-tooltip@^1.0.7":
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-tooltip/-/react-tooltip-1.0.7.tgz#8f55070f852e7e7450cc1d9210b793d2e5a7686e"
+  integrity sha512-lPh5iKNFVQ/jav/j6ZrWq3blfDJ0OH9R6FlNUHPMqdLuQ9vwDgFsRxvl8b7Asuy5c8xmoojHUxKHQSOAvMHxyw==
+  dependencies:
+    "@babel/runtime" "^7.13.10"
+    "@radix-ui/primitive" "1.0.1"
+    "@radix-ui/react-compose-refs" "1.0.1"
+    "@radix-ui/react-context" "1.0.1"
+    "@radix-ui/react-dismissable-layer" "1.0.5"
+    "@radix-ui/react-id" "1.0.1"
+    "@radix-ui/react-popper" "1.1.3"
+    "@radix-ui/react-portal" "1.0.4"
+    "@radix-ui/react-presence" "1.0.1"
+    "@radix-ui/react-primitive" "1.0.3"
+    "@radix-ui/react-slot" "1.0.2"
+    "@radix-ui/react-use-controllable-state" "1.0.1"
+    "@radix-ui/react-visually-hidden" "1.0.3"
+
 "@radix-ui/react-use-callback-ref@1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@radix-ui/react-use-callback-ref/-/react-use-callback-ref-1.0.1.tgz#f4bb1f27f2023c984e6534317ebc411fc181107a"
@@ -1861,6 +1880,14 @@
   dependencies:
     "@babel/runtime" "^7.13.10"
     "@radix-ui/react-use-layout-effect" "1.0.1"
+
+"@radix-ui/react-visually-hidden@1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-visually-hidden/-/react-visually-hidden-1.0.3.tgz#51aed9dd0fe5abcad7dee2a234ad36106a6984ac"
+  integrity sha512-D4w41yN5YRKtu464TLnByKzMDG/JlMPHtfZgQAu9v6mNakUqGUI9vUrfQKz8NK41VMm/xbZbh76NUTVtIYqOMA==
+  dependencies:
+    "@babel/runtime" "^7.13.10"
+    "@radix-ui/react-primitive" "1.0.3"
 
 "@radix-ui/rect@1.0.1":
   version "1.0.1"
@@ -7463,10 +7490,10 @@ payload-s3-upload@^2.1.1:
   dependencies:
     sanitize-filename "^1.6.3"
 
-payload@^2.3.1:
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/payload/-/payload-2.7.0.tgz#2ab092b1a478f108ba0375878135788e250e0950"
-  integrity sha512-kvrXTVR/FEGchFeOeUgUOMycGiAvr/W7Sb+ODrMNMe3jvbFw+PqK82WtpEJtvDxxYs7h30toFOZUManJEhi2Uw==
+payload@^2.8.1:
+  version "2.8.1"
+  resolved "https://registry.yarnpkg.com/payload/-/payload-2.8.1.tgz#c47c08489efef7478b38f4119f40c4376384760c"
+  integrity sha512-g+FbNWmmx4b/4I9fLxXbx5cKNPCwWJBDTH2SoLqCooAsX5r/NS78Ae5KcWwRH+xVdoiMXG2vQ9Li4npJ+ckJlQ==
   dependencies:
     "@date-io/date-fns" "2.16.0"
     "@dnd-kit/core" "6.0.8"

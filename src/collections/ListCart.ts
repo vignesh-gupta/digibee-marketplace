@@ -4,7 +4,7 @@ import { OwnedAndAdmin } from "./access";
 const ListCart: CollectionConfig = {
   slug: "list",
   access: {
-    read: OwnedAndAdmin,
+    read: () => true,
     create: OwnedAndAdmin,
     update: OwnedAndAdmin,
     delete: OwnedAndAdmin,
