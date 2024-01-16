@@ -8,6 +8,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "./ui/tooltip";
+import TooltipButton from "./TooltipButton";
 
 const ListActions = ({ user, list }: { user: User; list: List }) => {
   const isOwner =
@@ -16,40 +17,19 @@ const ListActions = ({ user, list }: { user: User; list: List }) => {
   return (
     <div className="flex gap-2">
       <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button size="icon" variant="outline">
-              <Copy className="h-4 w-4" />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent>
-            <p>Create a copy of list</p>
-          </TooltipContent>
-        </Tooltip>
+        <TooltipButton tooltipLabel="Create a copy of list">
+          <Copy className="h-4 w-4" />
+        </TooltipButton>
 
         {isOwner && (
           <>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button size="icon" variant="outline">
-                  <Edit className="h-4 w-4" />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Edit list</p>
-              </TooltipContent>
-            </Tooltip>
+            <TooltipButton tooltipLabel="Edit list">
+              <Edit className="h-4 w-4" />
+            </TooltipButton>
 
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button size="icon" variant="outline">
-                  <Trash className="h-4 w-4" />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Delete list</p>
-              </TooltipContent>
-            </Tooltip>
+            <TooltipButton tooltipLabel="Delete list">
+              <Trash className="h-4 w-4" />
+            </TooltipButton>
           </>
         )}
       </TooltipProvider>
