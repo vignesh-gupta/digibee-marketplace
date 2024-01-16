@@ -4,7 +4,7 @@ import { useCart } from "./use-cart";
 
 const useAuth = () => {
   const router = useRouter();
-  const { clearCart } = useCart()
+  const { clearCart } = useCart();
   const signOut = async () => {
     try {
       const res = await fetch(
