@@ -156,7 +156,7 @@ export const cartRouter = router({
         collection: "cart",
         id: cart.id,
         data: {
-          products: cart.products.filter(
+          products: cart.products?.filter(
             (product) =>
               (typeof product === "string" ? product : product.id) !== productId
           ),
