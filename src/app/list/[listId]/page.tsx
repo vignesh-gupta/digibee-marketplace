@@ -8,6 +8,7 @@ import { Check, Loader2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import ListActions from "./_component/ListActions";
 
 type ListPageProps = {
   params: {
@@ -48,7 +49,7 @@ const ListPage = ({ params: { listId } }: ListPageProps) => {
           <h1 className="text-3xl font-bold tracking-tight text-foreground/90 sm:text-4xl">
             Shared Cart
           </h1>
-          {/* {user && listData && <ListActions user={user} list={listData} />} */}
+          {user && listData && <ListActions user={user} list={listData} />}
         </div>
 
         <div className="mt-12 lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-12 xl:gap-x-16">
