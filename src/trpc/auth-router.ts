@@ -1,10 +1,23 @@
 import { AuthCredentialValidator } from "../lib/validators/account-credentials-validator";
-import { publicProcedure, router } from "./trpc";
+import { privateProcedure, publicProcedure, router } from "./trpc";
 import { getPayloadClient } from "../get-payload";
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 
 export const authRouter = router({
+  getUser: privateProcedure.query(async ({ ctx }) => {
+    const { user } = ctx;
+
+    const existingUser = await (
+      await getPayloadClient()
+    ).findByID<"users">({
+      collection: "users",
+      id: user.id,
+    });
+
+    if (!existingUser) throw new TRPCError({ code: "NOT_FOUND" });
+    return existingUser;
+  }),
   createPayloadUser: publicProcedure
     .input(AuthCredentialValidator)
     .mutation(async ({ input }) => {

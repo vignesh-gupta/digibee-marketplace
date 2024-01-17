@@ -5,11 +5,13 @@ import { z } from "zod";
 import { getPayloadClient } from "../get-payload";
 import { paymentRouter } from "./payment-router";
 import { cartRouter } from "./cart-route";
+import { listRouter } from "./cart-list";
 
 export const appRouter = router({
   auth: authRouter,
   payment: paymentRouter,
   cart: cartRouter,
+  list: listRouter,
   products: publicProcedure
     .input(
       z.object({

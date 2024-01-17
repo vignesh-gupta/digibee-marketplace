@@ -1,69 +1,66 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { useCart } from "@/hooks/use-cart";
 import { S3_URL, TRANSACTION_FEE } from "@/lib/constants";
 import { cn, formatPrice, getLabel } from "@/lib/utils";
+import { List, Product } from "@/payload-types";
 import { trpc } from "@/trpc/client";
-import { Check, Loader2, X } from "lucide-react";
+import { Check, Loader2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const CartPage = () => {
+type ListPageProps = {
+  params: {
+    listId: string;
+  };
+};
+
+const ListPage = ({ params: { listId } }: ListPageProps) => {
+  let { data: user } = trpc.auth.getUser.useQuery();
   const [isMounted, setIsMounted] = useState(false);
-
-  const router = useRouter();
-
   useEffect(() => {
     setIsMounted(true);
+    return () => setIsMounted(false);
   }, []);
 
-  const { items, removeItem } = useCart();
-  const { mutate: createCheckoutSession, isLoading } =
-    trpc.payment.createSession.useMutation({
-      onSuccess: ({ url }) => {
-        if (url) router.push(url);
-      },
-    });
+  const { data: listData } = trpc.list.getList.useQuery<List>({
+    id: listId,
+  });
 
-  const { mutate: createCartList, isLoading: IsListCreating } =
-    trpc.list.createList.useMutation({
-      onSuccess: ({ listId }) => {
-        console.log(listId);
-        router.push(`/list/${listId}`);
-      },
-    });
-
-  const createList = async () => {
-    console.log("create list");
-    createCartList({ productIds: items.map(({ product }) => product.id) });
-  };
-  let cartTotal = items.reduce(
-    (total, { product }) => total + product.price,
+  let cartTotal = (listData?.products as Product[])?.reduce(
+    (total, product) => total + product.price,
     0
   );
 
-  const productIds = items.map(({ product }) => product.id);
+  if (isMounted && !listData)
+    return (
+      <div className="bg-background">
+        <p className="text-center pt-16 text-muted-foreground">
+          No such List found!
+        </p>
+      </div>
+    );
 
   return (
     <div className="bg-background">
       <div className="mx-auto max-w-2xl px-4 pb-24 pt-16 sm:px-6 lg:max-w-7xl lg:px-8">
-        <h1 className="text-3xl font-bold tracking-tight text-foreground/90 sm:text-4xl">
-          Shopping Cart
-        </h1>
+        <div className="flex gap-2 md:justify-between md:items-center flex-col md:flex-row ">
+          <h1 className="text-3xl font-bold tracking-tight text-foreground/90 sm:text-4xl">
+            Shared Cart
+          </h1>
+          {/* {user && listData && <ListActions user={user} list={listData} />} */}
+        </div>
 
         <div className="mt-12 lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-12 xl:gap-x-16">
           <div
             className={cn("lg:col-span-7", {
               "rounded-lg border-2 border-dashed border-zinc-200 p-12":
-                isMounted && items.length === 0,
+                isMounted && listData?.products?.length === 0,
             })}
           >
             <h2 className="sr-only">Items in your shopping cart</h2>
 
-            {isMounted && items.length === 0 ? (
+            {isMounted && listData?.products?.length === 0 ? (
               <div className="flex h-full flex-col items-center justify-center space-y-1">
                 <div
                   aria-hidden="true"
@@ -87,11 +84,11 @@ const CartPage = () => {
             <ul
               className={cn({
                 "divide-y divide-foreground/20 text-foreground/20 border-b border-t border-foreground/20":
-                  isMounted && items.length > 0,
+                  isMounted && (listData?.products as Product[])?.length > 0,
               })}
             >
               {isMounted &&
-                items.map(({ product }) => {
+                (listData?.products as Product[])?.map((product) => {
                   const label = getLabel(product.category);
 
                   const { image } = product.images[0];
@@ -137,18 +134,6 @@ const CartPage = () => {
                             <p className="mt-1 font-medium text-foreground/90 text-sm">
                               {formatPrice(product.price)}
                             </p>
-                          </div>
-
-                          <div className="mt-4 sm:mt-0 sm:pr-9 w-20">
-                            <div className="absolute right-0 top-0">
-                              <Button
-                                aria-label="remove item"
-                                onClick={() => removeItem(product.id)}
-                                variant="ghost"
-                              >
-                                <X className="h-5 w-5 " aria-hidden="true" />
-                              </Button>
-                            </div>
                           </div>
                         </div>
 
@@ -205,22 +190,6 @@ const CartPage = () => {
                 </div>
               </div>
             </div>
-
-            <div className="mt-6">
-              {isMounted && (
-                <Button
-                  disabled={items.length === 0 || isLoading}
-                  onClick={() => createCheckoutSession({ productIds })}
-                  className="w-full"
-                  size="lg"
-                >
-                  {isLoading && (
-                    <Loader2 className="h-5 w-5 animate-spin mr-1.5" />
-                  )}
-                  Checkout
-                </Button>
-              )}
-            </div>
           </section>
         </div>
       </div>
@@ -228,4 +197,4 @@ const CartPage = () => {
   );
 };
 
-export default CartPage;
+export default ListPage;
