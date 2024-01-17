@@ -1,8 +1,7 @@
-import { z } from "zod";
-import { privateProcedure, router } from "./trpc";
-import { getPayloadClient } from "../get-payload";
 import { TRPCError } from "@trpc/server";
-import { Product } from "../payload-types";
+import { z } from "zod";
+import { getPayloadClient } from "../get-payload";
+import { privateProcedure, router } from "./trpc";
 
 export const cartRouter = router({
   /************************************************************************************************

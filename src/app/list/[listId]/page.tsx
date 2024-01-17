@@ -1,5 +1,6 @@
 "use client";
 
+import ListActions from "./_components/ListActions";
 import { S3_URL, TRANSACTION_FEE } from "@/lib/constants";
 import { cn, formatPrice, getLabel } from "@/lib/utils";
 import { List, Product } from "@/payload-types";
@@ -8,7 +9,6 @@ import { Check, Loader2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import ListActions from "./_component/ListActions";
 
 type ListPageProps = {
   params: {
