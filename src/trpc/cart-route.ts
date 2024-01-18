@@ -5,10 +5,10 @@ import { TRPCError } from "@trpc/server";
 import { Product } from "../payload-types";
 
 export const cartRouter = router({
-  /************************************************************************************************
+  /**
    * getCart - Gets the user's cart
    * @returns - cart: Cart - The user's cart
-   * **********************************************************************************************/
+   */
 
   getCart: privateProcedure.mutation(async ({ ctx }) => {
     const { user } = ctx;
@@ -54,12 +54,12 @@ export const cartRouter = router({
     return { cart, success: true, message: "Cart Updated" };
   }),
 
-  /************************************************************************************************
+  /**
    * addItemToCart - Adds a product to the user's cart and creates a cart if one doesn't exist
    * @param - productId: string - The ID of the product to add to the cart
    * @returns - success: boolean - Whether or not the operation was successful
    * @returns - message: string - A message describing the outcome of the operation
-   * **********************************************************************************************/
+   */
   addItemToCart: privateProcedure
     .input(z.object({ productId: z.string() }))
     .mutation(async ({ input, ctx }) => {
@@ -115,11 +115,11 @@ export const cartRouter = router({
       return { success: true, message: "Cart Updated" };
     }),
 
-  /************************************************************************************************
+  /**
    * removeItemFromCart - Removes a product from the user's cart
    * @param - productId: string - The ID of the product to remove from the cart
    * @returns - success: boolean - Whether or not the operation was successful
-   * **********************************************************************************************/
+   */
 
   removeItemFromCart: privateProcedure
     .input(z.object({ productId: z.string() }))

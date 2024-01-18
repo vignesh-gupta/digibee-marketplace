@@ -17,7 +17,7 @@ const useListActions = () => {
   });
 
   const { mutate: updateList } = trpc.list.updateList.useMutation({
-    onSuccess: ({ success }) => {
+    onSuccess: () => {
       console.log("success");
     },
     onError: (error) => {
@@ -26,7 +26,7 @@ const useListActions = () => {
   })
 
   const { mutate: deleteList } = trpc.list.deleteList.useMutation({
-    onSuccess: ({ success }) => {
+    onSuccess: () => {
       console.log("success");
       router.push("/");
       toast.success("List Deleted successfully!");
