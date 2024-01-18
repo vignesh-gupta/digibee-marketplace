@@ -63,7 +63,7 @@ export const listRouter = router({
         id,
       });
 
-      if (list.user !== user.id) {
+      if ((typeof list.user === "string" ? list.user : list.user.id) !== user.id) {
         throw new TRPCError({ code: "UNAUTHORIZED" });
       }
 
@@ -91,7 +91,7 @@ export const listRouter = router({
         id,
       });
 
-      if (list.user !== user.id) {
+      if ((typeof list.user === "string" ? list.user : list.user.id) !== user.id) {
         throw new TRPCError({ code: "UNAUTHORIZED" });
       }
 
