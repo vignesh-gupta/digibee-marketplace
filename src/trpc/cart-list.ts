@@ -45,4 +45,61 @@ export const listRouter = router({
 
       return list;
     }),
+  updateList: privateProcedure
+    .input(
+      z.object({
+        id: z.string(),
+        productIds: z.array(z.string()).default([]),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      const { user } = ctx;
+      const { id, productIds } = input;
+
+      const payload = await getPayloadClient();
+
+      const list = await payload.findByID({
+        collection: "list",
+        id,
+      });
+
+      if (list.user !== user.id) {
+        throw new TRPCError({ code: "UNAUTHORIZED" });
+      }
+
+      await payload.update({
+        collection: "list",
+        id,
+        data: {
+          products: Array.from(new Set(productIds)),
+        },
+      });
+
+      return { success: true, message: "List Updated" };
+    }),
+
+  deleteList: privateProcedure
+    .input(z.object({ id: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      const { user } = ctx;
+      const { id } = input;
+
+      const payload = await getPayloadClient();
+
+      const list = await payload.findByID({
+        collection: "list",
+        id,
+      });
+
+      if (list.user !== user.id) {
+        throw new TRPCError({ code: "UNAUTHORIZED" });
+      }
+
+      await payload.delete({
+        collection: "list",
+        id,
+      });
+
+      return { success: true, message: "List Deleted" };
+    }),
 });
