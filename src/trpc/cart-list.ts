@@ -5,7 +5,7 @@ import { TRPCError } from "@trpc/server";
 
 export const listRouter = router({
   createList: privateProcedure
-    .input(z.object({ productIds: z.array(z.string()) }))
+    .input(z.object({ productIds: z.array(z.string()).default([]) }))
     .mutation(async ({ ctx, input }) => {
       const { user } = ctx;
       const { productIds } = input;
