@@ -2,22 +2,7 @@ import { S3UploadCollectionConfig } from "payload-s3-upload";
 import { Access } from "payload/types";
 import { User } from "../payload-types";
 import { S3_URL } from "../lib/constants";
-
-const isAdminOrHasAccessToImage =
-  (): Access =>
-  async ({ req }) => {
-    const user = req.user as User;
-
-    if (!user) return false;
-
-    if (user.role === "admin") return true;
-
-    return {
-      user: {
-        equals: req.user.id,
-      },
-    };
-  };
+import { OwnedAndAdmin } from "./access";
 
 const Media: S3UploadCollectionConfig = {
   slug: "media",
@@ -32,10 +17,10 @@ const Media: S3UploadCollectionConfig = {
         return true;
       }
 
-      return await isAdminOrHasAccessToImage()({ req });
+      return await OwnedAndAdmin({ req });
     },
-    delete: isAdminOrHasAccessToImage(),
-    update: isAdminOrHasAccessToImage(),
+    delete: OwnedAndAdmin,
+    update: OwnedAndAdmin,
   },
   hooks: {
     beforeOperation: [
@@ -65,8 +50,7 @@ const Media: S3UploadCollectionConfig = {
       bucket: process.env.S3_BUCKET_NAME!,
       prefix: "media", // files will be stored in bucket folder images/xyz
     },
-    adminThumbnail: ({ doc }) =>
-      `${S3_URL}/media/${doc.filename}`,
+    adminThumbnail: ({ doc }) => `${S3_URL}/media/${doc.filename}`,
   },
   fields: [
     {
