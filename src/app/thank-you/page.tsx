@@ -1,5 +1,6 @@
 import PaymentStatus from "@/components/PaymentStatus";
 import { getPayloadClient } from "@/get-payload";
+import { S3_URL } from "@/lib/constants";
 import { getServerSideUser } from "@/lib/payload-utlis";
 import { formatPrice, getLabel } from "@/lib/utils";
 import { Product, ProductFile, User } from "@/payload-types";
@@ -65,7 +66,7 @@ const ThankYouPage = async ({ searchParams }: ThankYouPageProps) => {
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8 lg:py-32 xl:gap-x-24">
         <div className="lg:col-start-2 ">
           <p className="text-sm font-medium text-blue-600">Order Successful</p>
-          <h1 className="mt-2 text-4xl font-bold text-gray-900 sm:text-5xl">
+          <h1 className="mt-2 text-4xl font-bold text-foreground/90 sm:text-5xl">
             Thank you for ordering!
           </h1>
 
@@ -74,7 +75,7 @@ const ThankYouPage = async ({ searchParams }: ThankYouPageProps) => {
               Your order is processed and your assets are available to download
               below. We&apos;ve also sent receipt to{" "}
               {typeof order.user !== "string" ? (
-                <span className="font-medium text-gray-900">
+                <span className="font-medium text-foreground/90">
                   {order.user.email}
                 </span>
               ) : null}
@@ -89,12 +90,12 @@ const ThankYouPage = async ({ searchParams }: ThankYouPageProps) => {
 
           <div className="mt-1.5 text-sm font-medium flex gap-2">
             <p className="text-muted-foreground">Order No. :</p>
-            <p className="text-gray-900">{orderId}</p>
+            <p className="text-foreground/90">{orderId}</p>
           </div>
 
           <ul className="mt-6 divide-y divide-gray-200 border-t border-gray-200 text-sm font-medium text-muted-foreground">
             {(order.products as Product[]).map((product) => {
-              const label = getLabel(product.category)
+              const label = getLabel(product.category);
 
               const downloadLink = (product.product_files as ProductFile)
                 .url as string;
@@ -109,7 +110,7 @@ const ThankYouPage = async ({ searchParams }: ThankYouPageProps) => {
                   <div className="relative h-24 w-24">
                     {typeof image !== "string" && image.url ? (
                       <Image
-                        src={image.url}
+                        src={`${S3_URL}/media/${image.filename}`}
                         fill
                         alt={product.name}
                         className="flex-none rounded-md bg-gray-100 object-cover object-center"
@@ -119,7 +120,7 @@ const ThankYouPage = async ({ searchParams }: ThankYouPageProps) => {
 
                   <div className="flex-auto flex flex-col justify-between">
                     <div className="space-y-1">
-                      <h3 className="text-gray-900">{product.name}</h3>
+                      <h3 className="text-foreground/90">{product.name}</h3>
 
                       <p className="my-1">Category {label}</p>
                     </div>
@@ -135,7 +136,7 @@ const ThankYouPage = async ({ searchParams }: ThankYouPageProps) => {
                     ) : null}
                   </div>
 
-                  <p className="flex-none font-medium text-gray-900">
+                  <p className="flex-none font-medium text-foreground/90">
                     {formatPrice(product.price)}
                   </p>
                 </li>
@@ -146,15 +147,15 @@ const ThankYouPage = async ({ searchParams }: ThankYouPageProps) => {
           <div className="space-y-6 border-t border-gray-200 pt-6 text-sm font-medium text-muted-foreground">
             <div className="flex justify-between">
               <p>Subtotal</p>
-              <p className="text-gray-900">{formatPrice(orderTotal)}</p>
+              <p className="text-foreground/90">{formatPrice(orderTotal)}</p>
             </div>
 
             <div className="flex justify-between">
               <p>Transaction Fee</p>
-              <p className="text-gray-900">{formatPrice(1)}</p>
+              <p className="text-foreground/90">{formatPrice(1)}</p>
             </div>
 
-            <div className="flex items-center justify-between border-t border-gray-200 pt-6 text-gray-900">
+            <div className="flex items-center justify-between border-t border-gray-200 pt-6 text-foreground/90">
               <p className="text-base">Total</p>
               <p className="text-base">{formatPrice(orderTotal + 1)}</p>
             </div>
