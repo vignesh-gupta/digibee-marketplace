@@ -94,7 +94,7 @@ const Products: CollectionConfig = {
           const createdProduct = await stripe.products.create({
             name: data.name,
             default_price_data: {
-              currency: "USD",
+              currency: "INR",
               unit_amount: Math.round(data.price * 100),
             },
           });
@@ -121,6 +121,16 @@ const Products: CollectionConfig = {
           };
 
           return updated;
+        }
+
+        if (args.operation === "delete") {
+          const data = args.data as Product;
+
+          if (data.stripeId) {
+            await stripe.products.del(data.stripeId);
+          } else {
+            throw new Error("Stripe ID not found");
+          }
         }
       },
     ],
@@ -149,7 +159,7 @@ const Products: CollectionConfig = {
     },
     {
       name: "price",
-      label: "Price in USD",
+      label: "Price in INR",
       min: 0,
       max: 1000,
       type: "number",
