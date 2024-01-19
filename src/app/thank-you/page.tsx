@@ -52,6 +52,18 @@ const ThankYouPage = async ({ searchParams }: ThankYouPageProps) => {
     0
   );
 
+  await payload.update({
+    collection: "cart",
+    where: {
+      user: {
+        equals: typeof user === "string" ? user : user.id,
+      },
+    },
+    data: {
+      products: [],
+    },
+  });
+
   return (
     <main className="relative lg:min-h-full">
       <div className="hidden md:block h-80 overflow-hidden lg:absolute lg:h-full lg:w-1/2 lg:pr-4 xl:pr-12">
@@ -97,8 +109,9 @@ const ThankYouPage = async ({ searchParams }: ThankYouPageProps) => {
             {(order.products as Product[]).map((product) => {
               const label = getLabel(product.category);
 
-              const downloadLink = (product.product_files as ProductFile)
-                .url as string;
+              const downloadLink = `${S3_URL}/product_files/${
+                (product.product_files as ProductFile).filename
+              }`;
 
               const { image } = product.images[0];
 
