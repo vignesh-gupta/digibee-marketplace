@@ -2,8 +2,24 @@ import { S3UploadCollectionConfig } from "payload-s3-upload";
 import { Access } from "payload/types";
 import { User } from "../payload-types";
 import { S3_URL } from "../lib/constants";
-import { OwnedAndAdmin } from "./access";
 
+const isAdminOrHasAccessToImage =
+  (): Access =>
+  async ({ req }) => {
+    const user = req.user as User;
+
+    if (!user) return false;
+
+    if (user.role === "admin") return true;
+
+    return {
+      user: {
+        equals: req.user.id,
+      },
+    };
+  };
+
+  
 const Media: S3UploadCollectionConfig = {
   slug: "media",
   admin: {
@@ -17,10 +33,10 @@ const Media: S3UploadCollectionConfig = {
         return true;
       }
 
-      return await OwnedAndAdmin({ req });
+      return await isAdminOrHasAccessToImage()({ req });
     },
-    delete: OwnedAndAdmin,
-    update: OwnedAndAdmin,
+    delete: isAdminOrHasAccessToImage(),
+    update: isAdminOrHasAccessToImage(),
   },
   hooks: {
     beforeOperation: [

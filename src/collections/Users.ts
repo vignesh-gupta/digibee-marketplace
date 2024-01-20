@@ -1,6 +1,15 @@
-import { CollectionConfig } from "payload/types";
+import { Access, CollectionConfig } from "payload/types";
 import { PrimaryActionEmailHtml } from "../components/email/PrimaryActionEmail";
-import { OwnedAndAdmin } from "./access";
+
+const adminAndUserOnly: Access = ({ req: { user } }) => {
+  if (user.role === "admin") return true;
+
+  return {
+    id: {
+      equals: user.id,
+    },
+  };
+};
 
 const Users: CollectionConfig = {
   slug: "users",
@@ -16,7 +25,7 @@ const Users: CollectionConfig = {
     },
   },
   access: {
-    read: OwnedAndAdmin,
+    read: adminAndUserOnly,
     create: (): boolean => true,
     update: ({ req }) => req.user.role === "admin",
     delete: ({ req }) => req.user.role === "admin",
