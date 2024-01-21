@@ -109,20 +109,29 @@ const Products: CollectionConfig = {
         } else if (args.operation === "update") {
           const data = args.data as Product;
 
-          const currentPriceId = data.priceId;
-          const newPrice = await stripe.prices.create({
-            product: data.stripeId!,
-            currency: "INR",
-            unit_amount: Math.round(data.price * 100),
-          });
-          const updatedProduct = await stripe.products.update(data.stripeId!, {
-            name: data.name,
-            default_price: newPrice.id!,
-          });
+          // Check if price is updated
+          const currentPriceId = data.priceId as string;
+          const currentPriceData = await stripe.prices.retrieve(currentPriceId);
 
-          if (currentPriceId) {
+          let updatedProduct = null;
+
+          if (currentPriceData.unit_amount !== data.price * 100) {
+            const newPrice = await stripe.prices.create({
+              product: data.stripeId!,
+              currency: "INR",
+              unit_amount: Math.round(data.price * 100),
+            });
             await stripe.prices.update(currentPriceId, {
               active: false,
+            });
+            updatedProduct = await stripe.products.update(data.stripeId!, {
+              name: data.name,
+              default_price: newPrice.id!,
+            });
+          } else {
+            updatedProduct = await stripe.products.update(data.stripeId!, {
+              name: data.name,
+              default_price: currentPriceId,
             });
           }
 

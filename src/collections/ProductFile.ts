@@ -96,9 +96,8 @@ export const ProductFiles: S3UploadCollectionConfig = {
     mimeTypes: [
       "image/*",
       "font/*",
-      "application/postscript",
-      "application/pdf",
-      "application/zip",
+      "application/*",
+      "text/*",
     ],
     s3: {
       bucket: process.env.S3_BUCKET_NAME!,
