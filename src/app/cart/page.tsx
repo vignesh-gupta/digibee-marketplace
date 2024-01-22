@@ -36,10 +36,9 @@ const CartPage = () => {
       },
     });
 
-  const createList = async () => {
-    console.log("create list");
+  const createList = async () =>
     createCartList({ productIds: items.map(({ product }) => product.id) });
-  };
+
   let cartTotal = items.reduce(
     (total, { product }) => total + product.price,
     0
@@ -55,7 +54,7 @@ const CartPage = () => {
         </h1>
 
         <p>
-          Want to share the same products with friends?
+          Want to share the same products with everyone?
           <Button
             variant="link"
             size="sm"
@@ -142,7 +141,7 @@ const CartPage = () => {
 
                             <div className="mt-1 flex text-sm">
                               <p className="text-muted-foreground">
-                                Category ${label}
+                                Category {label}
                               </p>
                             </div>
 

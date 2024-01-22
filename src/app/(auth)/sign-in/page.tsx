@@ -47,7 +47,7 @@ const SignInPage = () => {
       getCart();
 
       if (origin) {
-        router.push(`/${origin}`);
+        router.push(decodeURIComponent(origin));
         return;
       }
       if (isSeller) {

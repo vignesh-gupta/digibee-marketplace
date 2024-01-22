@@ -8,22 +8,19 @@ import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 
 const AddToCartButton = ({ product }: { product: Product }) => {
-  const { addItem, checkIfItemExists } = useCart();
-
   const [isAdded, setIsAdded] = useState(false);
 
-  const { mutate } = trpc.cart.addItemToCart.useMutation();
+  const { addItem, checkIfItemExists } = useCart();
+  const { mutate: addItems } = trpc.cart.addItemsToCart.useMutation();
 
   useEffect(() => {
-    if (checkIfItemExists(product.id)) {
-      setIsAdded(true);
-    }
+    if (checkIfItemExists(product.id)) setIsAdded(true);
   }, [checkIfItemExists, product.id]);
 
   const handleAddToCart = async () => {
     addItem(product);
     setIsAdded(true);
-    mutate({ productId: product.id });
+    addItems({ productIds: [product.id] });
   };
 
   return (
