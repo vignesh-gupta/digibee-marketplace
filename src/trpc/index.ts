@@ -5,7 +5,7 @@ import { z } from "zod";
 import { getPayloadClient } from "../get-payload";
 import { paymentRouter } from "./payment-router";
 import { cartRouter } from "./cart-route";
-import { listRouter } from "./cart-list";
+import { listRouter } from "./list-route";
 
 export const appRouter = router({
   auth: authRouter,

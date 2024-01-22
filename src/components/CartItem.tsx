@@ -1,12 +1,10 @@
-import { PRODUCT_CATEGORIES } from "@/lib/config";
 import { useCart } from "@/hooks/use-cart";
+import { S3_URL } from "@/lib/constants";
 import { formatPrice, getLabel } from "@/lib/utils";
 import { Product } from "@/payload-types";
+import { trpc } from "@/trpc/client";
 import { ImageIcon, X } from "lucide-react";
 import Image from "next/image";
-import { S3_URL } from "@/lib/constants";
-import { trpc } from "@/trpc/client";
-import { toast } from "sonner";
 
 type CartItemProps = {
   product: Product;

@@ -2,7 +2,6 @@ import { S3UploadCollectionConfig } from "payload-s3-upload";
 import { BeforeChangeHook } from "payload/dist/collections/config/types";
 import { S3_URL } from "../lib/constants";
 import { User } from "../payload-types";
-import { OwnedAndPurchased } from "./access";
 
 const addUser: BeforeChangeHook = ({ req, data }) => {
   const user = req.user as User | null;
@@ -39,7 +38,12 @@ export const ProductFiles: S3UploadCollectionConfig = {
     staticDir: "product_files",
     staticURL: "/product_files",
     disableLocalStorage: true,
-    mimeTypes: ["image/*", "font/*", "application/postscript"],
+    mimeTypes: [
+      "image/*",
+      "font/*",
+      "application/*",
+      "text/*",
+    ],
     s3: {
       bucket: process.env.S3_BUCKET_NAME!,
       prefix: "product_files", // files will be stored in bucket folder images/xyz
