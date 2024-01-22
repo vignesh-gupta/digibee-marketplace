@@ -1,5 +1,6 @@
 import { S3UploadCollectionConfig } from "payload-s3-upload";
 import { BeforeChangeHook } from "payload/dist/collections/config/types";
+import { Access } from "payload/types";
 import { S3_URL } from "../lib/constants";
 import { User } from "../payload-types";
 

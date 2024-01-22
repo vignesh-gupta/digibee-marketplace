@@ -1,6 +1,24 @@
 import { S3UploadCollectionConfig } from "payload-s3-upload";
 import { S3_URL } from "../lib/constants";
 import { OwnedAndAdmin } from "./access";
+import { Access } from "payload/config";
+import { User } from "../payload-types";
+
+const isAdminOrHasAccessToImage =
+  (): Access =>
+  async ({ req }) => {
+    const user = req.user as User;
+
+    if (!user) return false;
+
+    if (user.role === "admin") return true;
+
+    return {
+      user: {
+        equals: req.user.id,
+      },
+    };
+  };
 
   
 const Media: S3UploadCollectionConfig = {
