@@ -1,8 +1,7 @@
-import { z } from "zod";
-import { privateProcedure, router } from "./trpc";
-import { getPayloadClient } from "../get-payload";
 import { TRPCError } from "@trpc/server";
-import { Product } from "../payload-types";
+import { z } from "zod";
+import { getPayloadClient } from "../get-payload";
+import { privateProcedure, router } from "./trpc";
 
 export const cartRouter = router({
   /**
@@ -16,17 +15,10 @@ export const cartRouter = router({
     const payload = await getPayloadClient();
 
     // Check if user has a cart
-    let cart = await payload
-      .find({
-        collection: "cart",
-        limit: 1,
-        where: {
-          user: {
-            equals: user.id,
-          },
-        },
-      })
-      .then((res) => res.docs.at(0));
+    let cart = await payload.findByID({
+      collection: "cart",
+      id: (typeof user.cart === "string" ? user.cart : user?.cart?.id) || "",
+    });
 
     if (!cart) {
       cart = await payload.create({
@@ -55,30 +47,32 @@ export const cartRouter = router({
   }),
 
   /**
-   * addItemToCart - Adds a product to the user's cart and creates a cart if one doesn't exist
+   * addItemsToCart - Adds products to the user's cart if they exist
    * @param - productId: string - The ID of the product to add to the cart
    * @returns - success: boolean - Whether or not the operation was successful
    * @returns - message: string - A message describing the outcome of the operation
    */
-  addItemToCart: privateProcedure
-    .input(z.object({ productId: z.string() }))
+  addItemsToCart: privateProcedure
+    .input(z.object({ productIds: z.array(z.string()) }))
     .mutation(async ({ input, ctx }) => {
       const { user } = ctx;
-
-      const { productId } = input;
+      const { productIds } = input;
 
       const payload = await getPayloadClient();
 
-      // Check if product exists
-      const product = await payload.findByID({
+      const { docs: products } = await payload.find({
         collection: "products",
-        id: productId,
+        where: {
+          id: {
+            in: productIds,
+          },
+        },
       });
 
-      if (!product) {
+      if (!products || products.length !== productIds.length) {
         throw new TRPCError({
           code: "NOT_FOUND",
-          message: "Product not found",
+          message: "Some Product(s) were not found",
         });
       }
 
@@ -92,7 +86,7 @@ export const cartRouter = router({
 
       const cart = await payload.findByID({
         collection: "cart",
-        id: typeof user.cart === "string" ? user.cart : user.cart.id,
+        id: typeof user.cart === "string" ? user.cart : user?.cart.id,
       });
 
       let allProductIds =
@@ -101,7 +95,7 @@ export const cartRouter = router({
         ) || [];
 
       // If user has a cart, add the product to the cart
-      await payload.update({
+      const { docs } = await payload.update({
         collection: "cart",
         where: {
           user: {
@@ -109,12 +103,12 @@ export const cartRouter = router({
           },
         },
         data: {
-          products: Array.from(new Set([...allProductIds, product.id])),
+          products: Array.from(new Set([...allProductIds, ...productIds])),
         },
       });
-      return { success: true, message: "Cart Updated" };
-    }),
 
+      return { success: true, message: "Cart Updated", updatedCart: docs[0] };
+    }),
   /**
    * removeItemFromCart - Removes a product from the user's cart
    * @param - productId: string - The ID of the product to remove from the cart
