@@ -4,7 +4,15 @@ import { slateEditor } from "@payloadcms/richtext-slate";
 import dotenv from "dotenv";
 import path from "path";
 import { buildConfig } from "payload/config";
-import { Cart, Media, Orders, ProductFiles, Products, Users,ListCart } from "./collections";
+import {
+  Cart,
+  Media,
+  Orders,
+  ProductFiles,
+  Products,
+  Users,
+  ListCart,
+} from "./collections";
 import { S3Client } from "@aws-sdk/client-s3";
 import s3Upload from "payload-s3-upload";
 

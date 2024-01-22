@@ -8,7 +8,7 @@ import { trpc } from "@/trpc/client";
 import { Check, Loader2, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const CartPage = () => {
@@ -52,6 +52,29 @@ const CartPage = () => {
         <h1 className="text-3xl font-bold tracking-tight text-foreground/90 sm:text-4xl">
           Shopping Cart
         </h1>
+        <p>
+          Want to share the same products with friends?
+          <Button
+            variant="link"
+            size="sm"
+            onClick={createList}
+            disabled={IsListCreating}
+          >
+            Create a cart list
+          </Button>
+        </p>
+
+        <p>
+          Want to share the same products with everyone?
+          <Button
+            variant="link"
+            size="sm"
+            onClick={createList}
+            disabled={IsListCreating}
+          >
+            Create a cart list
+          </Button>
+        </p>
 
         <p>
           Want to share the same products with everyone?
@@ -153,6 +176,7 @@ const CartPage = () => {
                           <div className="mt-4 sm:mt-0 sm:pr-9 w-20">
                             <div className="absolute right-0 top-0">
                               <Button
+                                size="icon"
                                 aria-label="remove item"
                                 onClick={() => removeItem(product.id)}
                                 variant="ghost"

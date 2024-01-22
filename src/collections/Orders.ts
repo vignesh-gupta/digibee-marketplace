@@ -1,14 +1,5 @@
-import { Access, CollectionConfig } from "payload/types";
-
-const yourOwn: Access = ({ req: { user } }) => {
-  if (user.role === "admin") return true;
-
-  return {
-    user: {
-      equals: user?.id,
-    },
-  };
-};
+import { CollectionConfig } from "payload/types";
+import { OwnedAndAdmin } from "./access";
 
 const Orders: CollectionConfig = {
   slug: "orders",
@@ -17,7 +8,7 @@ const Orders: CollectionConfig = {
     description: "A summary of all your orders on DigiBee.",
   },
   access: {
-    read: yourOwn,
+    read: OwnedAndAdmin,
     update: ({ req }) => req.user.role === "admin",
     delete: ({ req }) => req.user.role === "admin",
     create: ({ req }) => req.user.role === "admin",
