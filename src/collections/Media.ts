@@ -2,6 +2,7 @@ import { S3UploadCollectionConfig } from "payload-s3-upload";
 import { S3_URL } from "../lib/constants";
 import { OwnedAndAdmin } from "./access";
 
+  
 const Media: S3UploadCollectionConfig = {
   slug: "media",
   admin: {

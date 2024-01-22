@@ -1,6 +1,5 @@
 import { CollectionConfig } from "payload/types";
 import { PrimaryActionEmailHtml } from "../components/email/PrimaryActionEmail";
-import { OwnedAndAdmin } from "./access";
 
 
 const Users: CollectionConfig = {
@@ -55,12 +54,12 @@ const Users: CollectionConfig = {
       ],
     },
     {
-      name: 'cart',
-      label: 'Cart',
-      type: 'relationship',
-      relationTo: 'cart',
+      name: "cart",
+      label: "Cart",
+      type: "relationship",
+      relationTo: "cart",
       hasMany: false,
-    }
+    },
   ],
 };
 

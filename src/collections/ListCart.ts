@@ -1,10 +1,24 @@
-import { CollectionConfig } from "payload/types";
-import { OwnedAndAdmin } from "./access";
+import { User } from "@/payload-types";
+import { Access, CollectionConfig } from "payload/types";
+
+ const OwnedAndAdmin: Access = ({ req }) => {
+  const user = req.user as User;
+
+  if (!user) return false;
+
+  if (user.role === "admin") return true;
+
+  return {
+    user: {
+      equals: user?.id,
+    },
+  };
+};
 
 const ListCart: CollectionConfig = {
   slug: "list",
   access: {
-    read: OwnedAndAdmin,
+    read: () => true,
     create: OwnedAndAdmin,
     update: OwnedAndAdmin,
     delete: OwnedAndAdmin,

@@ -13,11 +13,12 @@ import { useEffect, useState } from "react";
 
 const CartPage = () => {
   const [isMounted, setIsMounted] = useState(false);
+
+  const router = useRouter();
+
   useEffect(() => {
     setIsMounted(true);
   }, []);
-
-  const router = useRouter();
 
   const { items, removeItem } = useCart();
   const { mutate: createCheckoutSession, isLoading } =
@@ -35,10 +36,8 @@ const CartPage = () => {
       },
     });
 
-  const createList = async () => {
-    console.log("create list");
+  const createList = async () =>
     createCartList({ productIds: items.map(({ product }) => product.id) });
-  };
 
   let cartTotal = items.reduce(
     (total, { product }) => total + product.price,
@@ -55,6 +54,18 @@ const CartPage = () => {
         </h1>
         <p>
           Want to share the same products with friends?
+          <Button
+            variant="link"
+            size="sm"
+            onClick={createList}
+            disabled={IsListCreating}
+          >
+            Create a cart list
+          </Button>
+        </p>
+
+        <p>
+          Want to share the same products with everyone?
           <Button
             variant="link"
             size="sm"
@@ -141,7 +152,7 @@ const CartPage = () => {
 
                             <div className="mt-1 flex text-sm">
                               <p className="text-muted-foreground">
-                                Category ${label}
+                                Category {label}
                               </p>
                             </div>
 

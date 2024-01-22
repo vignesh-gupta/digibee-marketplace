@@ -1,16 +1,17 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { useCart } from "@/hooks/use-cart";
 import { S3_URL, TRANSACTION_FEE } from "@/lib/constants";
 import { cn, formatPrice, getLabel } from "@/lib/utils";
-import { Product } from "@/payload-types";
+import { List, Product } from "@/payload-types";
 import { trpc } from "@/trpc/client";
-import { Check, Loader2, X } from "lucide-react";
+import { Check, Loader2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import ListActions from "./_components/ListActions";
+import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
+import { useCart } from "@/hooks/use-cart";
 
 type ListPageProps = {
   params: {
@@ -22,18 +23,24 @@ const ListPage = ({ params: { listId } }: ListPageProps) => {
   const [isMounted, setIsMounted] = useState(false);
   useEffect(() => {
     setIsMounted(true);
+    return () => setIsMounted(false);
   }, []);
 
-  const { data: listData } = trpc.list.getList.useQuery({
+  const { loadItems } = useCart();
+
+  let { data: user } = trpc.auth.getUser.useQuery();
+  const { data: listData } = trpc.list.getList.useQuery<List>({
     id: listId,
   });
+  const { mutate: addItems } = trpc.cart.addItemsToCart.useMutation({
+    onSuccess({ updatedCart: { products } }) {
+      // @ts-ignore TODO: Not sure what is the issue but it works
+      loadItems(typeof products === "string" ? null : products);
+      toast.success("Added to cart!");
+    },
+  });
 
-  let cartTotal = (listData?.products as Product[])?.reduce(
-    (total, product) => total + product.price,
-    0
-  );
-
-  if (!listData)
+  if (isMounted && !listData)
     return (
       <div className="bg-background">
         <p className="text-center pt-16 text-muted-foreground">
@@ -42,12 +49,44 @@ const ListPage = ({ params: { listId } }: ListPageProps) => {
       </div>
     );
 
+  let cartTotal = (listData?.products as Product[])?.reduce(
+    (total, product) => total + product.price,
+    0
+  );
+
+  const loadToCart = async () => {
+    if (!listData?.products) {
+      toast.error("Something went wrong, please try again later");
+    }
+    addItems({
+      productIds:
+        listData?.products?.map((product) =>
+          typeof product === "string" ? product : product.id
+        ) || [],
+    });
+  };
   return (
     <div className="bg-background">
       <div className="mx-auto max-w-2xl px-4 pb-24 pt-16 sm:px-6 lg:max-w-7xl lg:px-8">
-        <h1 className="text-3xl font-bold tracking-tight text-foreground/90 sm:text-4xl">
-          Shared Cart
-        </h1>
+        <div className="flex gap-2 md:justify-between md:items-center flex-col md:flex-row ">
+          <h1 className="text-3xl font-bold tracking-tight text-foreground/90 sm:text-4xl">
+            Shared Cart
+          </h1>
+          {user && listData && listData.products && (
+            <ListActions user={user} list={listData} />
+          )}
+        </div>
+        <p>
+          Liked the products?
+          <Button
+            variant="link"
+            size="sm"
+            onClick={loadToCart}
+            // disabled={IsListCreating}
+          >
+            Load to your cart
+          </Button>
+        </p>
 
         <div className="mt-12 lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-12 xl:gap-x-16">
           <div
@@ -125,7 +164,7 @@ const ListPage = ({ params: { listId } }: ListPageProps) => {
 
                             <div className="mt-1 flex text-sm">
                               <p className="text-muted-foreground">
-                                Category ${label}
+                                Category {label}
                               </p>
                             </div>
 
