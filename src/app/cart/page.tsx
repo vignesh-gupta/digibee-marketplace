@@ -76,6 +76,18 @@ const CartPage = () => {
           </Button>
         </p>
 
+        <p>
+          Want to share the same products with everyone?
+          <Button
+            variant="link"
+            size="sm"
+            onClick={createList}
+            disabled={IsListCreating}
+          >
+            Create a cart list
+          </Button>
+        </p>
+
         <div className="mt-12 lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-12 xl:gap-x-16">
           <div
             className={cn("lg:col-span-7", {

@@ -1,4 +1,4 @@
-import { CollectionConfig } from "payload/types";
+import { Access, CollectionConfig } from "payload/types";
 import { PrimaryActionEmailHtml } from "../components/email/PrimaryActionEmail";
 
 
