@@ -52,29 +52,6 @@ const CartPage = () => {
         <h1 className="text-3xl font-bold tracking-tight text-foreground/90 sm:text-4xl">
           Shopping Cart
         </h1>
-        <p>
-          Want to share the same products with friends?
-          <Button
-            variant="link"
-            size="sm"
-            onClick={createList}
-            disabled={IsListCreating}
-          >
-            Create a cart list
-          </Button>
-        </p>
-
-        <p>
-          Want to share the same products with everyone?
-          <Button
-            variant="link"
-            size="sm"
-            onClick={createList}
-            disabled={IsListCreating}
-          >
-            Create a cart list
-          </Button>
-        </p>
 
         <p>
           Want to share the same products with everyone?
