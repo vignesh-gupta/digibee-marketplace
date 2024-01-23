@@ -1,7 +1,7 @@
 import { User } from "@/payload-types";
 import { Access, CollectionConfig } from "payload/types";
 
- const OwnedAndAdmin: Access = ({ req }) => {
+const OwnedAndAdmin: Access = ({ req }) => {
   const user = req.user as User;
 
   if (!user) return false;
