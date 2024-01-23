@@ -8,7 +8,7 @@ import { trpc } from "@/trpc/client";
 import { Check, Loader2, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const CartPage = () => {
