@@ -20,29 +20,6 @@ export const cartRouter = router({
       id: (typeof user.cart === "string" ? user.cart : user?.cart?.id) || "",
     });
 
-    if (!cart) {
-      cart = await payload.create({
-        collection: "cart",
-        data: {
-          products: [],
-          user: user.id,
-        },
-      });
-
-      await payload.update({
-        collection: "users",
-        where: {
-          id: {
-            equals: user.id,
-          },
-        },
-        data: {
-          cart: cart.id,
-        },
-      });
-      return { cart, success: true, message: "Cart Created" };
-    }
-
     return { cart, success: true, message: "Cart Updated" };
   }),
 

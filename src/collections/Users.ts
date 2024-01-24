@@ -1,5 +1,8 @@
 import { Access, CollectionConfig } from "payload/types";
 import { PrimaryActionEmailHtml } from "../components/email/PrimaryActionEmail";
+import { AfterChangeHook } from "payload/dist/collections/config/types";
+import { getPayloadClient } from "../get-payload";
+import { User } from "../payload-types";
 
 const adminAndUserOnly: Access = ({ req: { user } }) => {
   if (user.role === "admin") return true;
@@ -9,6 +12,26 @@ const adminAndUserOnly: Access = ({ req: { user } }) => {
       equals: user.id,
     },
   };
+};
+
+const createCart: AfterChangeHook<User> = async ({ operation, req, doc }) => {
+  if (operation === "create") {
+    const cart = await req.payload.create({
+      collection: "cart",
+      data: {
+        user: doc.id,
+        products: [],
+      },
+    });
+
+    await req.payload.update({
+      collection: "users",
+      id: doc.id,
+      data: {
+        cart: cart.id,
+      },
+    });
+  }
 };
 
 const Users: CollectionConfig = {
@@ -33,6 +56,9 @@ const Users: CollectionConfig = {
   admin: {
     hidden: ({ user }) => user.role !== "admin",
     defaultColumns: ["id"],
+  },
+  hooks: {
+    afterChange: [createCart],
   },
   fields: [
     {

@@ -7,7 +7,6 @@ const useListActions = () => {
 
   const { mutate: copyList } = trpc.list.createList.useMutation({
     onSuccess: ({ listId }) => {
-      console.log("success");
       router.push(`/list/${listId}`);
       toast.success("List Copied successfully!");
     },
@@ -17,28 +16,23 @@ const useListActions = () => {
   });
 
   const { mutate: updateList } = trpc.list.updateList.useMutation({
-    onSuccess: () => {
-      console.log("success");
-    },
+    onSuccess: () => {},
     onError: (error) => {
       console.log(error);
     },
-  })
+  });
 
   const { mutate: deleteList } = trpc.list.deleteList.useMutation({
     onSuccess: () => {
-      console.log("success");
       router.push("/");
       toast.success("List Deleted successfully!");
     },
     onError: (error) => {
       console.log(error);
     },
-  })
+  });
 
-  return { copyList , updateList , deleteList }
-  
+  return { copyList, updateList, deleteList };
 };
-
 
 export default useListActions;

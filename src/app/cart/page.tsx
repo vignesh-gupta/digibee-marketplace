@@ -31,7 +31,6 @@ const CartPage = () => {
   const { mutate: createCartList, isLoading: IsListCreating } =
     trpc.list.createList.useMutation({
       onSuccess: ({ listId }) => {
-        console.log(listId);
         router.push(`/list/${listId}`);
       },
     });
