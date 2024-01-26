@@ -1,4 +1,4 @@
-import VerifyEmail from "@/components/VerifyEmail";
+import VerifyEmail from "@/app/(auth)/_component/VerifyEmail";
 import Image from "next/image";
 import React from "react";
 
