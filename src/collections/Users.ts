@@ -1,7 +1,6 @@
+import { AfterChangeHook } from "payload/dist/collections/config/types";
 import { Access, CollectionConfig } from "payload/types";
 import { PrimaryActionEmailHtml } from "../components/email/PrimaryActionEmail";
-import { AfterChangeHook } from "payload/dist/collections/config/types";
-import { getPayloadClient } from "../get-payload";
 import { User } from "../payload-types";
 
 const adminAndUserOnly: Access = ({ req: { user } }) => {
@@ -37,6 +36,17 @@ const createCart: AfterChangeHook<User> = async ({ operation, req, doc }) => {
 const Users: CollectionConfig = {
   slug: "users",
   auth: {
+    forgotPassword: {
+      generateEmailHTML: (arg) => {
+        const token = arg?.token || "";
+
+        return PrimaryActionEmailHtml({
+          actionLabel: "reset your password",
+          buttonText: "Reset Password",
+          href: `${process.env.NEXT_PUBLIC_SERVER_URL}/reset-password?token=${token}`,
+        });
+      },
+    },
     verify: {
       generateEmailHTML: ({ token }) => {
         return PrimaryActionEmailHtml({
