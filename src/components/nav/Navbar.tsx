@@ -2,7 +2,7 @@ import { getServerSideUser } from "@/lib/payload-utlis";
 import { cookies } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
-import Cart from "../Cart";
+import Cart from "../cart/Cart";
 import MaxWidthWrapper from "../MaxWidthWrapper";
 import UserAccountNav from "./UserAccountNav";
 import { buttonVariants } from "../ui/button";

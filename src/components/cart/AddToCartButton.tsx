@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { Product } from "@/payload-types";
 import { trpc } from "@/trpc/client";
 import { useEffect, useState } from "react";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 
 const AddToCartButton = ({ product }: { product: Product }) => {
   const [isAdded, setIsAdded] = useState(false);
