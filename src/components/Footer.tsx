@@ -7,7 +7,7 @@ import MaxWidthWrapper from "./MaxWidthWrapper";
 
 const Footer = () => {
   const pathname = usePathname();
-  const pathsToMinimize = ["/verify-email", "/sign-up", "/sign-in"];
+  const pathsToMinimize = ["/verify-email", "/sign-up", "/sign-in" , "/forgot-password"];
 
   return (
     <footer className="flex-grow-0 mt-5 ">

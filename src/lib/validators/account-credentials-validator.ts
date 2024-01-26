@@ -8,3 +8,9 @@ export const AuthCredentialValidator = z.object({
 });
 
 export type TAuthCredentialValidator = z.infer<typeof AuthCredentialValidator>;
+
+export const AuthEmailValidator = z.object({
+  email: z.string().email(),
+});
+
+export type TAuthEmailValidator = z.infer<typeof AuthEmailValidator>;

@@ -34,7 +34,9 @@ export default function RootLayout({
           <main className="relative flex flex-col min-h-screen">
             <TrpcProvider>
               <Navbar />
-              <div className="flex-1 grow">{children}</div>
+              <div className="flex-1 flex flex-col justify-center">
+                {children}
+              </div>
               <Footer />
             </TrpcProvider>
           </main>
