@@ -5,9 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 import {
-  AuthCredentialValidator,
   AuthEmailValidator,
-  TAuthCredentialValidator,
   TAuthEmailValidator,
 } from "@/lib/validators/account-credentials-validator";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -37,7 +35,7 @@ const ForgotPasswordPage = () => {
       },
       body: JSON.stringify({ email }),
     });
-    router.push("/reset-password");
+    router.push("/reset-password?to=" + email);
   };
 
   return (

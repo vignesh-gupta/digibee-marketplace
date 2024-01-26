@@ -14,3 +14,11 @@ export const AuthEmailValidator = z.object({
 });
 
 export type TAuthEmailValidator = z.infer<typeof AuthEmailValidator>;
+
+export const AuthPasswordValidator = z.object({
+  password: z
+    .string()
+    .min(8, { message: "Password must be of at least 8 character long" }),
+});
+
+export type TAuthPasswordValidator = z.infer<typeof AuthPasswordValidator>;

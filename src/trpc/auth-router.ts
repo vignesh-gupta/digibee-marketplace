@@ -88,4 +88,29 @@ export const authRouter = router({
         throw new TRPCError({ code: "UNAUTHORIZED" });
       }
     }),
+  resetPassword: publicProcedure
+    .input(
+      z.object({
+        token: z.string(),
+        password: z.string().min(8),
+      })
+    )
+    .mutation(async ({ input }) => {
+      const { token, password } = input;
+
+      const payload = await getPayloadClient();
+
+      const { user } = await payload.resetPassword({
+        collection: "users",
+        overrideAccess: true,
+        data: {
+          token,
+          password,
+        },
+      });
+
+      if (!user) throw new TRPCError({ code: "UNAUTHORIZED" });
+
+      return { success: true, user };
+    }),
 });
