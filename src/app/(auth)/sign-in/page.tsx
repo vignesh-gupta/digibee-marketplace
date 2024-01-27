@@ -135,6 +135,12 @@ const SignInPage = () => {
                   {errors?.password?.message}
                 </p>
               )}
+              <Link
+                className="text-primary text-sm hover:underline underline-offset-4"
+                href="/forgot-password"
+              >
+                forgot password?
+              </Link>
             </div>
 
             <Button>Sign in</Button>

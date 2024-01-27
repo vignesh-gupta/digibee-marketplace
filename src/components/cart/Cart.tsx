@@ -9,14 +9,14 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { ShoppingCart } from "lucide-react";
-import { Separator } from "./ui/separator";
+import { Separator } from "@/components/ui/separator";
 import { formatPrice } from "@/lib/utils";
-import { buttonVariants } from "./ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
 import { useCart } from "@/hooks/use-cart";
 import CartItem from "./CartItem";
-import { ScrollArea } from "./ui/scroll-area";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { useEffect, useState } from "react";
 import { TRANSACTION_FEE } from "@/lib/constants";
 

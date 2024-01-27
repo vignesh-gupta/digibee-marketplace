@@ -1,6 +1,5 @@
-import VerifyEmail from "@/app/(auth)/_component/VerifyEmail";
 import Image from "next/image";
-import React from "react";
+import ResetPassword from "../_component/ResetPassword";
 
 interface PageProps {
   searchParams: {
@@ -8,7 +7,7 @@ interface PageProps {
   };
 }
 
-const VerifyPage = ({ searchParams }: PageProps) => {
+const ResetPasswordPage = ({ searchParams }: PageProps) => {
   const token = searchParams.token;
   const toEmail = searchParams.to;
 
@@ -16,7 +15,7 @@ const VerifyPage = ({ searchParams }: PageProps) => {
     <>
       {token && typeof token === "string" ? (
         <div className="grid gap-6">
-          <VerifyEmail token={token} />
+          <ResetPassword token={token} />
         </div>
       ) : (
         <div className="flex flex-col items-center justify-center h-full space-y-1">
@@ -28,12 +27,12 @@ const VerifyPage = ({ searchParams }: PageProps) => {
 
           {toEmail ? (
             <p className="text-center text-muted-foreground">
-              We&apos;ve sent a verification email to{" "}
+              We&apos;ve sent a password reset email to{" "}
               <span className="font-semibold">{toEmail}</span>.
             </p>
           ) : (
             <p className="text-center text-muted-foreground">
-              We&apos;ve sent a verification link to your email
+              We&apos;ve sent a password reset link to your email
             </p>
           )}
         </div>
@@ -42,4 +41,4 @@ const VerifyPage = ({ searchParams }: PageProps) => {
   );
 };
 
-export default VerifyPage;
+export default ResetPasswordPage;
