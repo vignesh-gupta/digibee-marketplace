@@ -84,10 +84,26 @@ export const listRouter = router({
 
       const payload = await getPayloadClient();
 
+      if (!productIds.length) {
+        payload.delete({
+          collection: "list",
+          where: {
+            id: {
+              equals: id,
+            },
+          },
+        });
+        return { message: "List Deleted due to no products" };
+      }
+
       const list = await payload.findByID({
         collection: "list",
         id,
       });
+
+      if (!list) {
+        throw new TRPCError({ code: "NOT_FOUND" });
+      }
 
       // Check if user is the owner of the list
       const userId = typeof user.id === "string" ? user.id : user.id;

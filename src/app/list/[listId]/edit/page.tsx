@@ -36,6 +36,9 @@ const ListEditPage = ({ params: { listId } }: ListEditPageProps) => {
   );
 
   const { mutate: updateList } = trpc.list.updateList.useMutation({
+    onSuccess: ({ message }) => {
+      toast.success(message);
+    },
     onError: (error) => {
       console.log(error);
       toast.error("Something went wrong");
