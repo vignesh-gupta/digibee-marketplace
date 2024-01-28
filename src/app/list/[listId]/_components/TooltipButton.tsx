@@ -1,10 +1,10 @@
-import React, { DOMAttributes } from "react";
+import { Button } from "@/components/ui/button";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Button } from "@/components/ui/button";
+import React from "react";
 
 type TooltipButtonProps = {
   tooltipLabel: string;
