@@ -8,16 +8,15 @@ import React from "react";
 import { Button } from "../ui/button";
 import { useCart } from "@/hooks/use-cart";
 
-const CartItemLG = ({
-  product,
-  isEditable,
-}: {
+type CartItemLGProps = {
   product: Product;
   isEditable?: boolean;
-}) => {
+  onClick?: (id: string) => void;
+};
+
+const CartItemLG = ({ product, isEditable, onClick }: CartItemLGProps) => {
   const { image } = product.images[0];
   const label = getLabel(product.category);
-  const { removeItem } = useCart();
 
   return (
     <li key={`cart-product-${product.id}`} className="flex py-6 sm:py-10">
@@ -57,13 +56,13 @@ const CartItemLG = ({
             </p>
           </div>
 
-          {isEditable && (
+          {isEditable && onClick && (
             <div className="mt-4 sm:mt-0 sm:pr-9 w-20">
               <div className="absolute right-0 top-0">
                 <Button
                   size="icon"
                   aria-label="remove item"
-                  onClick={() => removeItem(product.id)}
+                  onClick={() => onClick(product.id)}
                   variant="ghost"
                 >
                   <X className="h-5 w-5 " aria-hidden="true" />

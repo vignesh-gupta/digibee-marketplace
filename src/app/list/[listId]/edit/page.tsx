@@ -6,9 +6,11 @@ import { TRANSACTION_FEE } from "@/lib/constants";
 import { cn, formatPrice } from "@/lib/utils";
 import { List, Product } from "@/payload-types";
 import { trpc } from "@/trpc/client";
+import { Loader2 } from "lucide-react";
 import Image from "next/image";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { toast } from "sonner";
 
 type ListEditPageProps = {
   params: {
@@ -18,26 +20,43 @@ type ListEditPageProps = {
 
 const ListEditPage = ({ params: { listId } }: ListEditPageProps) => {
   const [isMounted, setIsMounted] = useState(false);
-  useEffect(() => {
-    setIsMounted(true);
-    return () => setIsMounted(false);
-  }, []);
+  const [listData, setListData] = useState<List | null>(null);
+  const router = useRouter();
 
   if (!listId) {
     console.log("no list id");
-    redirect("/");
+    router.push("/");
   }
 
   let { data: user } = trpc.auth.getUser.useQuery();
-  const { data: listData } = trpc.list.getList.useQuery<List>({
-    id: listId,
+
+  const { data } = trpc.list.getList.useQuery<List>(
+    { id: listId },
+    { enabled: !!listId }
+  );
+
+  const { mutate: updateList } = trpc.list.updateList.useMutation({
+    onError: (error) => {
+      console.log(error);
+      toast.error("Something went wrong");
+    },
   });
+
+  useEffect(() => {
+    setIsMounted(true);
+    setListData(data ?? null);
+
+    return () => {
+      setIsMounted(false);
+      setListData(null);
+    };
+  }, [data]);
 
   if (isMounted && !user) {
     console.log("no user");
-    console.log(user);
-
-    redirect(`/sign-in?origin=${encodeURIComponent(`/list/${listId}/edit`)}`);
+    router.push(
+      `/sign-in?origin=${encodeURIComponent(`/list/${listId}/edit`)}`
+    );
   }
 
   const isOwner =
@@ -46,7 +65,7 @@ const ListEditPage = ({ params: { listId } }: ListEditPageProps) => {
 
   if (isMounted && (!listData || !isOwner)) {
     console.log({ data: !listData, isOwner });
-    redirect("/");
+    router.push("/");
   }
 
   let cartTotal = (listData?.products as Product[])?.reduce(
@@ -55,7 +74,25 @@ const ListEditPage = ({ params: { listId } }: ListEditPageProps) => {
   );
 
   const handleUpdateList = async () => {
-    redirect(`/list/${listData?.id}`);
+    updateList({
+      id: listId,
+      productIds: listData?.products?.map((product) =>
+        typeof product === "string" ? product : product.id
+      ),
+    });
+    router.push(`/list/${listData?.id}`);
+  };
+
+  const handleRemoveItem = (id: string) => {
+    setListData(
+      (prev) =>
+        ({
+          ...prev,
+          products: (prev?.products as Product[])?.filter(
+            (product) => product.id !== id
+          ),
+        } as List)
+    );
   };
 
   return (
@@ -92,8 +129,8 @@ const ListEditPage = ({ params: { listId } }: ListEditPageProps) => {
                 </div>
                 <h3 className="font-semibold text-2xl">Your cart is empty</h3>
                 <p className="text-muted-foreground text-center ">
-                  Woops! Looks like you haven&apos;t added anything to your cart
-                  yet.
+                  Woops! Looks like your list is empty, if you&apos;re saving
+                  it, it might be deleted. yet.
                 </p>
               </div>
             ) : null}
@@ -105,7 +142,12 @@ const ListEditPage = ({ params: { listId } }: ListEditPageProps) => {
               })}
             >
               {(listData?.products as Product[])?.map((product) => (
-                <CartItemLG isEditable key={product.id} product={product} />
+                <CartItemLG
+                  onClick={handleRemoveItem}
+                  isEditable
+                  key={product.id}
+                  product={product}
+                />
               ))}
             </ul>
           </div>
@@ -119,7 +161,11 @@ const ListEditPage = ({ params: { listId } }: ListEditPageProps) => {
               <div className="flex items-center justify-between">
                 <p className="text-sm text-foreground/60">Subtotal</p>
                 <p className="font-medium text-foreground/90 text-sm">
-                  {formatPrice(cartTotal)}
+                  {isMounted ? (
+                    formatPrice(Number(cartTotal))
+                  ) : (
+                    <Loader2 className="h-5 w-5 text-muted-foreground animate-spin" />
+                  )}
                 </p>
               </div>
 
@@ -128,7 +174,11 @@ const ListEditPage = ({ params: { listId } }: ListEditPageProps) => {
                   <span>Flat Transaction fees</span>
                 </div>
                 <div className="text-sm font-medium text-foreground/90">
-                  {formatPrice(Number(TRANSACTION_FEE))}
+                  {isMounted ? (
+                    formatPrice(cartTotal + Number(TRANSACTION_FEE))
+                  ) : (
+                    <Loader2 className="h-5 w-5 text-muted-foreground animate-spin" />
+                  )}
                 </div>
               </div>
               <div className="flex items-center justify-between border-t border-muted text-foreground/20 pt-4">
@@ -136,7 +186,11 @@ const ListEditPage = ({ params: { listId } }: ListEditPageProps) => {
                   Order Total
                 </div>
                 <div className=" text-base font-medium text-foreground/90">
-                  {formatPrice(cartTotal + Number(TRANSACTION_FEE))}
+                  {isMounted ? (
+                    formatPrice(cartTotal + Number(TRANSACTION_FEE))
+                  ) : (
+                    <Loader2 className="h-5 w-5 text-muted-foreground animate-spin" />
+                  )}
                 </div>
               </div>
             </div>
