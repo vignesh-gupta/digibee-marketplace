@@ -2,69 +2,102 @@
 
 import CartItemLG from "@/components/cart/CartItemLG";
 import { Button } from "@/components/ui/button";
-import { useCart } from "@/hooks/use-cart";
 import { TRANSACTION_FEE } from "@/lib/constants";
 import { cn, formatPrice } from "@/lib/utils";
 import { List, Product } from "@/payload-types";
 import { trpc } from "@/trpc/client";
 import { Loader2 } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import ListActions from "./_components/ListActions";
 
-type ListPageProps = {
+type ListEditPageProps = {
   params: {
     listId: string;
   };
 };
 
-const ListPage = ({ params: { listId } }: ListPageProps) => {
+const ListEditPage = ({ params: { listId } }: ListEditPageProps) => {
   const [isMounted, setIsMounted] = useState(false);
-  useEffect(() => {
-    setIsMounted(true);
-    return () => setIsMounted(false);
-  }, []);
+  const [listData, setListData] = useState<List | null>(null);
+  const router = useRouter();
 
-  const { loadItems } = useCart();
+  if (!listId) {
+    console.log("no list id");
+    router.push("/");
+  }
 
   let { data: user } = trpc.auth.getUser.useQuery();
-  const { data: listData } = trpc.list.getList.useQuery<List>({
-    id: listId,
-  });
-  const { mutate: addItems } = trpc.cart.addItemsToCart.useMutation({
-    onSuccess({ updatedCart: { products } }) {
-      // @ts-ignore TODO: Not sure what is the issue but it works
-      loadItems(typeof products === "string" ? null : products);
-      toast.success("Added to cart!");
+
+  const { data } = trpc.list.getList.useQuery<List>(
+    { id: listId },
+    { enabled: !!listId }
+  );
+
+  const { mutate: updateList } = trpc.list.updateList.useMutation({
+    onSuccess: ({ message }) => {
+      toast.success(message);
+    },
+    onError: (error) => {
+      console.log(error);
+      toast.error("Something went wrong");
     },
   });
 
-  if (isMounted && !listData)
-    return (
-      <div className="bg-background">
-        <p className="text-center pt-16 text-muted-foreground">
-          No such List found!
-        </p>
-      </div>
+  useEffect(() => {
+    setIsMounted(true);
+    setListData(data ?? null);
+
+    return () => {
+      setIsMounted(false);
+      setListData(null);
+    };
+  }, [data]);
+
+  if (isMounted && !user) {
+    console.log("no user");
+    router.push(
+      `/sign-in?origin=${encodeURIComponent(`/list/${listId}/edit`)}`
     );
+  }
+
+  const isOwner =
+    user?.id ===
+    (typeof listData?.user === "string" ? listData.user : listData?.user.id);
+
+  if (isMounted && (!listData || !isOwner)) {
+    console.log({ data: !listData, isOwner });
+    router.push("/");
+  }
 
   let cartTotal = (listData?.products as Product[])?.reduce(
     (total, product) => total + product.price,
     0
   );
 
-  const loadToCart = async () => {
-    if (!listData?.products) {
-      toast.error("Something went wrong, please try again later");
-    }
-    addItems({
-      productIds:
-        listData?.products?.map((product) =>
-          typeof product === "string" ? product : product.id
-        ) || [],
+  const handleUpdateList = async () => {
+    updateList({
+      id: listId,
+      productIds: listData?.products?.map((product) =>
+        typeof product === "string" ? product : product.id
+      ),
     });
+    router.push(`/list/${listData?.id}`);
   };
+
+  const handleRemoveItem = (id: string) => {
+    setListData(
+      (prev) =>
+        ({
+          ...prev,
+          products: (prev?.products as Product[])?.filter(
+            (product) => product.id !== id
+          ),
+        } as List)
+    );
+  };
+
   return (
     <div className="bg-background">
       <div className="mx-auto max-w-2xl px-4 pb-24 pt-16 sm:px-6 lg:max-w-7xl lg:px-8">
@@ -72,21 +105,8 @@ const ListPage = ({ params: { listId } }: ListPageProps) => {
           <h1 className="text-3xl font-bold tracking-tight text-foreground/90 sm:text-4xl">
             Shared Cart
           </h1>
-          {user && listData && listData.products && (
-            <ListActions user={user} list={listData} />
-          )}
+          <Button onClick={handleUpdateList}>Done</Button>
         </div>
-        <p>
-          Liked the products?
-          <Button
-            variant="link"
-            size="sm"
-            onClick={loadToCart}
-            // disabled={IsListCreating}
-          >
-            Load to your cart
-          </Button>
-        </p>
 
         <div className="mt-12 lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-12 xl:gap-x-16">
           <div
@@ -112,8 +132,8 @@ const ListPage = ({ params: { listId } }: ListPageProps) => {
                 </div>
                 <h3 className="font-semibold text-2xl">Your cart is empty</h3>
                 <p className="text-muted-foreground text-center ">
-                  Woops! Looks like you haven&apos;t added anything to your cart
-                  yet.
+                  Woops! Looks like your list is empty, if you&apos;re saving
+                  it, it might be deleted. yet.
                 </p>
               </div>
             ) : null}
@@ -124,10 +144,14 @@ const ListPage = ({ params: { listId } }: ListPageProps) => {
                   isMounted && (listData?.products as Product[])?.length > 0,
               })}
             >
-              {isMounted &&
-                (listData?.products as Product[])?.map((product) => (
-                  <CartItemLG key={product.id} product={product} />
-                ))}
+              {(listData?.products as Product[])?.map((product) => (
+                <CartItemLG
+                  onClick={handleRemoveItem}
+                  isEditable
+                  key={product.id}
+                  product={product}
+                />
+              ))}
             </ul>
           </div>
 
@@ -141,7 +165,7 @@ const ListPage = ({ params: { listId } }: ListPageProps) => {
                 <p className="text-sm text-foreground/60">Subtotal</p>
                 <p className="font-medium text-foreground/90 text-sm">
                   {isMounted ? (
-                    formatPrice(cartTotal)
+                    formatPrice(Number(cartTotal))
                   ) : (
                     <Loader2 className="h-5 w-5 text-muted-foreground animate-spin" />
                   )}
@@ -154,7 +178,7 @@ const ListPage = ({ params: { listId } }: ListPageProps) => {
                 </div>
                 <div className="text-sm font-medium text-foreground/90">
                   {isMounted ? (
-                    formatPrice(Number(TRANSACTION_FEE))
+                    formatPrice(cartTotal + Number(TRANSACTION_FEE))
                   ) : (
                     <Loader2 className="h-5 w-5 text-muted-foreground animate-spin" />
                   )}
@@ -180,4 +204,4 @@ const ListPage = ({ params: { listId } }: ListPageProps) => {
   );
 };
 
-export default ListPage;
+export default ListEditPage;

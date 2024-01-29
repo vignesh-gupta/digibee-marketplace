@@ -3,12 +3,15 @@ import useListActions from "@/hooks/use-list-actions";
 import { List, User } from "@/payload-types";
 import { Copy, Edit, Trash } from "lucide-react";
 import TooltipButton from "./TooltipButton";
+import { redirect, useRouter } from "next/navigation";
 
 const ListActions = ({ user, list }: { user: User; list: List }) => {
-  const isOwner =
-    user.id === (typeof list.user === "string" ? list.user : list.user.id);
+  const router = useRouter();
 
   const { copyList, deleteList } = useListActions();
+
+  const isOwner =
+    user.id === (typeof list.user === "string" ? list.user : list.user.id);
 
   const onCopyHandler = () => {
     copyList({
@@ -24,6 +27,12 @@ const ListActions = ({ user, list }: { user: User; list: List }) => {
     });
   };
 
+  const onEditHandler = () => {
+    console.log("edit", list.id);
+
+    router.push(`/list/${list.id}/edit`);
+  };
+
   return (
     <div className="flex gap-2">
       <TooltipProvider>
@@ -36,7 +45,7 @@ const ListActions = ({ user, list }: { user: User; list: List }) => {
           </TooltipButton>
         ) : (
           <>
-            <TooltipButton tooltipLabel="Edit list">
+            <TooltipButton tooltipLabel="Edit list" onClick={onEditHandler}>
               <Edit className="h-4 w-4" />
             </TooltipButton>
 
