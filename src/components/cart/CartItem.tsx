@@ -14,7 +14,7 @@ const CartItem = ({ product }: CartItemProps) => {
   const { removeItem } = useCart();
   const { mutate: removeCartItem } = trpc.cart.removeItemFromCart.useMutation({
     onError: (error) => {
-      console.log(error);
+      console.error("[ERROR]",error);
     },
   });
 

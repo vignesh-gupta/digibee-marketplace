@@ -11,14 +11,14 @@ const useListActions = () => {
       toast.success("List Copied successfully!");
     },
     onError: (error) => {
-      console.log(error);
+      console.error("[ERROR]",error);
     },
   });
 
   const { mutate: updateList } = trpc.list.updateList.useMutation({
     onSuccess: () => {},
     onError: (error) => {
-      console.log(error);
+      console.error("[ERROR]",error);
     },
   });
 
@@ -28,7 +28,7 @@ const useListActions = () => {
       toast.success("List Deleted successfully!");
     },
     onError: (error) => {
-      console.log(error);
+      console.error("[ERROR]",error);
     },
   });
 

@@ -93,7 +93,7 @@ export const listRouter = router({
             },
           },
         });
-        return { message: "List Deleted due to no products" };
+        return { message: "List deleted due to no products" };
       }
 
       const list = await payload.findByID({

@@ -46,7 +46,7 @@ const ResetPassword = ({ token }: ResetPasswordProps) => {
       }
     },
     onError: (error) => {
-      console.log(error);
+      console.error("[ERROR]",error);
       toast.error(error.message);
     },
   });

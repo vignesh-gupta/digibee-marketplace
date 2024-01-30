@@ -27,7 +27,6 @@ const ForgotPasswordPage = () => {
   });
 
   const onSubmit = async ({ email }: TAuthEmailValidator) => {
-    console.log(email);
     await fetch("/api/users/forgot-password", {
       method: "POST",
       headers: {

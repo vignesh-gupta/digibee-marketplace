@@ -23,10 +23,7 @@ const ListEditPage = ({ params: { listId } }: ListEditPageProps) => {
   const [listData, setListData] = useState<List | null>(null);
   const router = useRouter();
 
-  if (!listId) {
-    console.log("no list id");
-    router.push("/");
-  }
+  if (!listId) router.push("/");
 
   let { data: user } = trpc.auth.getUser.useQuery();
 
@@ -37,10 +34,15 @@ const ListEditPage = ({ params: { listId } }: ListEditPageProps) => {
 
   const { mutate: updateList } = trpc.list.updateList.useMutation({
     onSuccess: ({ message }) => {
+      if (message.includes("deleted")) {
+        router.push("/");
+      } else {
+        router.push(`/list/${listId}`);
+      }
       toast.success(message);
     },
     onError: (error) => {
-      console.log(error);
+      console.error("[ERROR]", error);
       toast.error("Something went wrong");
     },
   });
@@ -55,21 +57,16 @@ const ListEditPage = ({ params: { listId } }: ListEditPageProps) => {
     };
   }, [data]);
 
-  if (isMounted && !user) {
-    console.log("no user");
+  if (isMounted && !user)
     router.push(
       `/sign-in?origin=${encodeURIComponent(`/list/${listId}/edit`)}`
     );
-  }
 
   const isOwner =
     user?.id ===
     (typeof listData?.user === "string" ? listData.user : listData?.user.id);
 
-  if (isMounted && (!listData || !isOwner)) {
-    console.log({ data: !listData, isOwner });
-    router.push("/");
-  }
+  if (isMounted && (!listData || !isOwner)) router.push("/");
 
   let cartTotal = (listData?.products as Product[])?.reduce(
     (total, product) => total + product.price,
@@ -83,7 +80,6 @@ const ListEditPage = ({ params: { listId } }: ListEditPageProps) => {
         typeof product === "string" ? product : product.id
       ),
     });
-    router.push(`/list/${listData?.id}`);
   };
 
   const handleRemoveItem = (id: string) => {

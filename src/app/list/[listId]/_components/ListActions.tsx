@@ -28,8 +28,6 @@ const ListActions = ({ user, list }: { user: User; list: List }) => {
   };
 
   const onEditHandler = () => {
-    console.log("edit", list.id);
-
     router.push(`/list/${list.id}/edit`);
   };
 
