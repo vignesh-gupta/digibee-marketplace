@@ -9,3 +9,7 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "weekly"
+    reviewers:
+      - "vignesh-gupta"
+    labels: 
+      - "dependencies"
