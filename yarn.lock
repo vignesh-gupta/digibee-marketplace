@@ -3365,17 +3365,17 @@ available-typed-arrays@^1.0.5:
   resolved "https://registry.npmjs.org/available-typed-arrays/-/available-typed-arrays-1.0.5.tgz"
   integrity sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==
 
-aws-crt@^1.19.0:
-  version "1.20.1"
-  resolved "https://registry.npmjs.org/aws-crt/-/aws-crt-1.20.1.tgz"
-  integrity sha512-Vs2Sz5LGgCDflmaPL2VPtsqc3sGGQfevU6NSeX0egPnI7R9NeNH1j3KFEhSuhRyzfynwBHJO7jM5hYiEm+GiPw==
+aws-crt@^1.21.1:
+  version "1.21.1"
+  resolved "https://registry.yarnpkg.com/aws-crt/-/aws-crt-1.21.1.tgz#f36500afdb117625e360b6e507623bf697b8b704"
+  integrity sha512-pSLf1Xg5P2Owa+n/82hkEXV22q56kbxJOxX4FB5DvvHpTokOygz6nFj+/cS9dnv3tNZgOiUjTvsz0Xk1ldyi0w==
   dependencies:
     "@aws-sdk/util-utf8-browser" "^3.109.0"
     "@httptoolkit/websocket-stream" "^6.0.1"
     axios "^1.6.0"
     buffer "^6.0.3"
     crypto-js "^4.2.0"
-    mqtt "^4.3.7"
+    mqtt "^4.3.8"
     process "^0.11.10"
 
 axe-core@=4.7.0:
@@ -6862,9 +6862,9 @@ mqtt-packet@^6.8.0:
     debug "^4.1.1"
     process-nextick-args "^2.0.1"
 
-mqtt@^4.3.7:
+mqtt@^4.3.8:
   version "4.3.8"
-  resolved "https://registry.npmjs.org/mqtt/-/mqtt-4.3.8.tgz"
+  resolved "https://registry.yarnpkg.com/mqtt/-/mqtt-4.3.8.tgz#b8cc9a6eb5e4e0cb6eea699f24cd70dd7b228f1d"
   integrity sha512-2xT75uYa0kiPEF/PE0VPdavmEkoBzMT/UL9moid0rAvlCtV48qBwxD62m7Ld/4j8tSkIO1E/iqRl/S72SEOhOw==
   dependencies:
     commist "^1.0.0"
@@ -9217,17 +9217,9 @@ stop-iteration-iterator@^1.0.0:
   dependencies:
     internal-slot "^1.0.4"
 
-stream-browserify@3.0.0:
+stream-browserify@3.0.0, stream-browserify@^3.0.0:
   version "3.0.0"
   resolved "https://registry.npmjs.org/stream-browserify/-/stream-browserify-3.0.0.tgz"
-  integrity sha512-H73RAHsVBapbim0tU2JwwOiXUj+fikfiaoYAKHF3VJfA0pe2BCzkhAHBlLG6REzE+2WNZcxOXjK7lkso+9euLA==
-  dependencies:
-    inherits "~2.0.4"
-    readable-stream "^3.5.0"
-
-stream-browserify@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/stream-browserify/-/stream-browserify-3.0.0.tgz#22b0a2850cdf6503e73085da1fc7b7d0c2122f2f"
   integrity sha512-H73RAHsVBapbim0tU2JwwOiXUj+fikfiaoYAKHF3VJfA0pe2BCzkhAHBlLG6REzE+2WNZcxOXjK7lkso+9euLA==
   dependencies:
     inherits "~2.0.4"
