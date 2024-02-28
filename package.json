@@ -45,7 +45,7 @@
     "@trpc/next": "^10.44.1",
     "@trpc/react-query": "^10.44.1",
     "@trpc/server": "^10.44.1",
-    "aws-crt": "^1.19.0",
+    "aws-crt": "^1.21.1",
     "body-parser": "^1.20.2",
     "browserify-zlib": "^0.2.0",
     "class-variance-authority": "^0.7.0",
