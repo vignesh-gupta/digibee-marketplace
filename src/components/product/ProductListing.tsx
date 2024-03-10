@@ -1,12 +1,12 @@
 "use client";
 
-import { cn, formatPrice, getLabel, getValidURLs } from "@/lib/utils";
-import { Product } from "@/payload-types";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Skeleton } from "../ui/skeleton";
+
+import { cn, formatPrice, getLabel, getValidURLs } from "@/lib/utils";
+import { Product } from "@/payload-types";
+import { Skeleton } from "@/components/ui/skeleton";
 import ProductImageSlider from "./ProductImageSlider";
-import { S3_URL } from "@/lib/constants";
 
 type ProductListingProps = {
   product: Product | null;
@@ -26,7 +26,7 @@ const ProductListing = ({ index, product }: ProductListingProps) => {
     };
   }, [index]);
 
-  if (!product || !isVisible) return <ProductPlaceholder />;
+  if (!product || !isVisible) return <ProductsPlaceholder />;
 
   const label = getLabel(product.category);
 
@@ -58,7 +58,7 @@ const ProductListing = ({ index, product }: ProductListingProps) => {
   return <div>ProductListing</div>;
 };
 
-const ProductPlaceholder = () => {
+const ProductsPlaceholder = () => {
   return (
     <div className="flex flex-col w-full">
       <div className="relative w-full overflow-hidden bg-zinc-100 aspect-square rounded-xl">

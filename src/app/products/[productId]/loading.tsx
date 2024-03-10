@@ -1,50 +1,12 @@
-import { Check, Shield } from "lucide-react";
-import Link from "next/link";
-import { notFound } from "next/navigation";
-
-import AddToCartButton from "@/components/cart/AddToCartButton";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
-import ProductImageSlider from "@/components/product/ProductImageSlider";
-import ProductReel from "@/components/product/ProductReel";
-import { getPayloadClient } from "@/get-payload";
-import { formatPrice, getLabel, getValidURLs } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import React from "react";
+import { BREADCRUMBS } from "./page";
+import Link from "next/link";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Check, Shield } from "lucide-react";
 
-type ProductDetailsProps = {
-  params: {
-    productId: string;
-  };
-};
-
-export const BREADCRUMBS = [
-  { id: 1, name: "Home", href: "/" },
-  { id: 2, name: "Products", href: "/products" },
-];
-
-const ProductDetails = async ({
-  params: { productId },
-}: ProductDetailsProps) => {
-  const payload = await getPayloadClient();
-
-  const { docs: products } = await payload.find({
-    collection: "products",
-    limit: 1,
-    where: {
-      id: {
-        equals: productId,
-      },
-      approvedForSale: {
-        equals: "approved",
-      },
-    },
-  });
-  const [product] = products;
-
-  if (!product) return notFound();
-
-  const label = getLabel(product.category)
-
-  const validURLs = getValidURLs(product, 'media');
-
+const Loading = () => {
   return (
     <MaxWidthWrapper>
       <div className="bg-background">
@@ -77,27 +39,16 @@ const ProductDetails = async ({
             </ol>
 
             <div className="mt-4">
-              <h1 className="text-3xl font-bold tracking-tight text-foreground/80 sm:text-4xl">
-                {product.name}
-              </h1>
+              <Skeleton className="w-2/3 h-8" />
             </div>
 
             <section className="mt-4">
-              <div className="flex items-center">
-                <p className="font-medium text-foreground/80">
-                  {formatPrice(product.price)}
-                </p>
+              <Skeleton className="w-1/4 h-6" />
 
-                <div className="pl-4 ml-4 border-l border-gray-300 text-muted-foreground">
-                  {label}
-                </div>
-              </div>
-
-              <div className="mt-4 space-y-6">
-                <p className="text-base text-muted-foreground">
-                  {product.description}
-                </p>
-              </div>
+              <Skeleton className="mt-4 space-y-6 h-4" />
+              <Skeleton className="mt-4 space-y-6 h-4" />
+              <Skeleton className="mt-4 space-y-6 h-4" />
+              <Skeleton className="mt-4 space-y-6 h-4" />
 
               <div className="flex items-center mt-6">
                 <Check
@@ -112,16 +63,14 @@ const ProductDetails = async ({
           </div>
           {/* Product Image */}
           <div className="mt-10 lg:col-start-2 lg:row-span-2 lg:mt-0 lg:self-center">
-            <div className="rounded-lg aspect-square">
-              <ProductImageSlider urls={validURLs} />
-            </div>
+            <Skeleton className="rounded-lg aspect-square" />
           </div>
 
           {/* Add to Cart */}
           <div className="mt-10 lg:col-start-1 lg:row-start-2 lg:max-w-lg lg:self-start">
             <div>
               <div className="mt-10">
-                <AddToCartButton product={product} />
+                <Button disabled className="w-full">Add to cart</Button>
               </div>
 
               <div className="mt-6 text-center">
@@ -139,18 +88,8 @@ const ProductDetails = async ({
           </div>
         </div>
       </div>
-
-      <ProductReel
-        title={`Similar ${label}`}
-        href="/products"
-        subtitle={`Browse similar high-quality ${label} just like '${product.name}'`}
-        query={{
-          category: product.category,
-          limit: 4,
-        }}
-      />
     </MaxWidthWrapper>
   );
 };
 
-export default ProductDetails;
+export default Loading;
