@@ -1,10 +1,14 @@
+import { Check, Shield } from "lucide-react";
+import Link from "next/link";
+
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import { Button } from "@/components/ui/button";
-import React from "react";
-import { BREADCRUMBS } from "./page";
-import Link from "next/link";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Check, Shield } from "lucide-react";
+
+const BREADCRUMBS = [
+  { id: 1, name: "Home", href: "/" },
+  { id: 2, name: "Products", href: "/products" },
+];
 
 const Loading = () => {
   return (
@@ -70,7 +74,9 @@ const Loading = () => {
           <div className="mt-10 lg:col-start-1 lg:row-start-2 lg:max-w-lg lg:self-start">
             <div>
               <div className="mt-10">
-                <Button disabled className="w-full">Add to cart</Button>
+                <Button disabled className="w-full">
+                  Add to cart
+                </Button>
               </div>
 
               <div className="mt-6 text-center">
