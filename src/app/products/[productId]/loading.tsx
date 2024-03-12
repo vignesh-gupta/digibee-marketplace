@@ -54,15 +54,8 @@ const Loading = () => {
               <Skeleton className="mt-4 space-y-6 h-4" />
               <Skeleton className="mt-4 space-y-6 h-4" />
 
-              <div className="flex items-center mt-6">
-                <Check
-                  aria-hidden="true"
-                  className="flex-shrink-0 w-5 h-5 text-green-500"
-                />
-                <p className="ml-2 text-sm text-muted-foreground">
-                  Eligible for Instant Delivery
-                </p>
-              </div>
+             
+             <Skeleton className="mt-6 w-1/2 h-6" />
             </section>
           </div>
           {/* Product Image */}

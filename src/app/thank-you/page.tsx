@@ -8,6 +8,7 @@ import { cookies } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
+import DownloadButton from "./_component/download-button";
 
 type ThankYouPageProps = {
   searchParams: {
@@ -20,9 +21,7 @@ const ThankYouPage = async ({ searchParams }: ThankYouPageProps) => {
 
   const nextCookies = cookies();
   const { user } = await getServerSideUser(nextCookies);
-
   const payload = await getPayloadClient();
-
 
   const { docs: orders } = await payload.find({
     collection: "orders",
@@ -40,13 +39,11 @@ const ThankYouPage = async ({ searchParams }: ThankYouPageProps) => {
 
   const orderUserId =
     typeof order.user === "string" ? order.user : order.user.id;
-
   if (orderUserId !== user?.id) {
     redirect("/sign-in?origin=/thank-you?orderId=" + orderId);
   }
 
   const products = order.products as Product[];
-
   const orderTotal = products.reduce(
     (total, product) => total + product.price,
     0
@@ -66,7 +63,7 @@ const ThankYouPage = async ({ searchParams }: ThankYouPageProps) => {
 
   return (
     <main className="relative lg:min-h-full">
-      <div className="hidden md:block h-80 overflow-hidden lg:absolute lg:h-full lg:w-1/2 lg:pr-4 xl:pr-12">
+      <div className="hidden lg:block h-80 overflow-hidden lg:absolute lg:h-full lg:w-1/2 lg:pr-4 xl:pr-12">
         <Image
           src="/checkout-thank-you.jpg"
           fill
@@ -75,7 +72,7 @@ const ThankYouPage = async ({ searchParams }: ThankYouPageProps) => {
         />
       </div>
 
-      <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8 lg:py-32 xl:gap-x-24">
+      <div className="mx-auto max-w-2xl px-4 py-10 sm:px-6 sm:py-16 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8 lg:py-8 xl:gap-x-24">
         <div className="lg:col-start-2 ">
           <p className="text-sm font-medium text-blue-600">Order Successful</p>
           <h1 className="mt-2 text-4xl font-bold text-foreground/90 sm:text-5xl">
@@ -138,15 +135,12 @@ const ThankYouPage = async ({ searchParams }: ThankYouPageProps) => {
                       <p className="my-1">Category {label}</p>
                     </div>
 
-                    {order._isPaid ? (
-                      <a
-                        href={downloadLink}
-                        download={product.name}
-                        className="text-blue-600 hover:underline underline-offset-2"
-                      >
-                        Download now
-                      </a>
-                    ) : null}
+                    {order._isPaid && (
+                      <DownloadButton
+                        downloadLink={downloadLink}
+                        productName={product.name}
+                      />
+                    )}
                   </div>
 
                   <p className="flex-none font-medium text-foreground/90">

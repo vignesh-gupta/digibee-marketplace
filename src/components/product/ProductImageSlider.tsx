@@ -94,7 +94,7 @@ const ProductImageSlider = ({ urls }: { urls: string[] }) => {
             <Image
               src={url}
               fill
-              loading="eager"
+              loading="lazy"
               className="object-cover object-center w-full h-full -z-10"
               alt="Product image"
             />
