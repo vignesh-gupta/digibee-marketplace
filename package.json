@@ -69,7 +69,7 @@
     "stream-browserify": "^3.0.0",
     "stripe": "^14.20.0",
     "swiper": "^11.0.5",
-    "tailwind-merge": "^2.0.0",
+    "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",
     "url": "^0.11.3",
     "util": "^0.12.5",
