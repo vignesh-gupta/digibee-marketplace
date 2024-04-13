@@ -1,0 +1,51 @@
+name: Pull Request Checks
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+env:
+  NODE_VERSION: 20.11.0
+
+jobs:
+  linting:
+    name: Lint
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Continuous integration
+        uses: ./.github/actions/ci-setup
+
+      - name: Lint Application
+        run: npm run lint 
+
+  type-check:
+    name: Types
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Continuous Integration
+        uses: ./.github/actions/ci-setup
+
+      - name: Check Application Types
+        run: npm run type-check
+
+  build:
+    name: Build
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Continuous Integration
+        uses: ./.github/actions/ci-setup
+
+      - name: Copy Env File
+        run: cp .env.example .env
+
+      - name: Build Application
+        run: npm run build
