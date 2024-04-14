@@ -13,5 +13,8 @@
     "precheck",
     "Swiper",
     "vigneshfixes"
+  ],
+  "conventionalCommits.scopes": [
+    "order"
   ]
 }

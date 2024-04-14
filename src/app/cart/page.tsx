@@ -3,12 +3,11 @@
 import CartItemLG from "@/components/cart/CartItemLG";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/hooks/use-cart";
-import { S3_URL, TRANSACTION_FEE } from "@/lib/constants";
-import { cn, formatPrice, getLabel } from "@/lib/utils";
+import { TRANSACTION_FEE } from "@/lib/constants";
+import { cn, formatPrice } from "@/lib/utils";
 import { trpc } from "@/trpc/client";
-import { Check, Loader2, X } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
