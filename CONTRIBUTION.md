@@ -24,6 +24,8 @@ Commit: [2] feat: add docker container for postgres
 
 ## Prerequisites
 
+### Install Docker
+
 You will need to [install docker](https://www.docker.com/get-started/) on your local machine.
 
 If you do not have docker, go here to download and install: <https://www.docker.com/get-started/>
@@ -39,6 +41,11 @@ Your file should look like something like this:
 ```
 
 If you are getting WSL error when you launch your desktop docker application, go here and follow these steps for windows: <https://learn.microsoft.com/en-us/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package>.
+
+
+### Own s3 bucket
+
+You will need to create your own s3 bucket to store the images. You can create a free account on [AWS](https://aws.amazon.com/) and create a bucket there.
 
 ## Installation
 
@@ -70,28 +77,18 @@ To get started with Digibee locally, follow these steps
    npm i
    ```
 
-8. Start the Database
-
-   ```sh
-   npm run dev:db
-   ```
-
-9. Start the app dev server
+8. Start the Database & Dev Server
 
    ```sh
    npm run dev
    ```
 
-10. Open your browser and visit <http://localhost:3000> to see the application running.
+9. Open your browser and visit <http://localhost:3000> to see the application running.
 
 ## Working on New Features
 
-If you're new to Github and working with open source repositories, I made a video a while back which walks you through the process:
+If you're new to Github and working with open source repositories, [@webdevcody](https://github.com/webdevcody/) made a video a while back which walks you through the process:
 [![How to make a pull request on an open source project](https://img.youtube.com/vi/8A4TsoXJOs8/0.jpg)](https://youtu.be/8A4TsoXJOs8)
-
-There is also a new video explaining how you can contribute to this project:
-<br/>
-[How to contribute to open source projects (our community project walkthrough)](https://www.youtube.com/watch?v=dLRA1lffWBw)
 
 If you want to work on a new feature, follow these steps.
 
