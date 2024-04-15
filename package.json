@@ -27,7 +27,7 @@
     "@aws-sdk/lib-storage": "^3.540.0",
     "@hookform/resolvers": "^3.3.2",
     "@payloadcms/bundler-webpack": "^1.0.6",
-    "@payloadcms/db-mongodb": "^1.4.3",
+    "@payloadcms/db-mongodb": "^1.4.4",
     "@payloadcms/plugin-cloud-storage": "^1.1.2",
     "@payloadcms/richtext-slate": "^1.4.0",
     "@radix-ui/react-accordion": "^1.1.2",
