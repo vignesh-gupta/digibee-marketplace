@@ -1924,10 +1924,10 @@
   resolved "https://registry.yarnpkg.com/@react-email/column/-/column-0.0.9.tgz#3107f50216c0cfed0a42b0386e3ccfdac0ec12e6"
   integrity sha512-1ekqNBgmbS6m97/sUFOnVvQtLYljUWamw8Y44VId95v6SjiJ4ca+hMcdOteHWBH67xkRofEOWTvqDRea5SBV8w==
 
-"@react-email/components@^0.0.15":
-  version "0.0.15"
-  resolved "https://registry.yarnpkg.com/@react-email/components/-/components-0.0.15.tgz#40157e541b057d96111b92adf505dbd636aa511e"
-  integrity sha512-jXfKiuyi94JBYfPVptEUwF57nRCvhEZIfyl2LqbL53fKsMrGlcjlN921iNnx1z41GAJOqZ8LPogeix3Iid23zw==
+"@react-email/components@^0.0.16":
+  version "0.0.16"
+  resolved "https://registry.yarnpkg.com/@react-email/components/-/components-0.0.16.tgz#469838a488a4c1fca5b34c5354ba6eabc771cb0f"
+  integrity sha512-1WATpMSH03cRvhfNjGl/Up3seZJOzN9KLzlk3Q9g/cqNhZEJ7HYxoZM4AQKAI0V3ttXzzxKv8Oj+AZQLHDiICA==
   dependencies:
     "@react-email/body" "0.0.7"
     "@react-email/button" "0.0.14"
@@ -1942,12 +1942,12 @@
     "@react-email/html" "0.0.7"
     "@react-email/img" "0.0.7"
     "@react-email/link" "0.0.7"
-    "@react-email/markdown" "0.0.8"
+    "@react-email/markdown" "0.0.9"
     "@react-email/preview" "0.0.8"
     "@react-email/render" "0.0.12"
     "@react-email/row" "0.0.7"
     "@react-email/section" "0.0.11"
-    "@react-email/tailwind" "0.0.14"
+    "@react-email/tailwind" "0.0.15"
     "@react-email/text" "0.0.7"
 
 "@react-email/container@0.0.11":
@@ -1992,12 +1992,12 @@
   resolved "https://registry.yarnpkg.com/@react-email/link/-/link-0.0.7.tgz#7670b5be4430f173a467423a5c79c2d0e261b70b"
   integrity sha512-hXPChT3ZMyKnUSA60BLEMD2maEgyB2A37yg5bASbLMrXmsExHi6/IS1h2XiUPLDK4KqH5KFaFxi2cdNo1JOKwA==
 
-"@react-email/markdown@0.0.8":
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/@react-email/markdown/-/markdown-0.0.8.tgz#4dc912c6213555dcf995ae135abe3975a7e59c31"
-  integrity sha512-x/2iTWskE0XoM13Rx80ckwbWaWdS6koYvxW6PHkOJ/k88NPnDIm+TaYvvg2DYSFJAUI0gK/LmIwenbebgNDS+w==
+"@react-email/markdown@0.0.9":
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/@react-email/markdown/-/markdown-0.0.9.tgz#a98c3a0a6c5252942c477bbe71f5e585fe887417"
+  integrity sha512-t//19Zz+W5svKqrSrqoOLpf6dq70jbwYxX8Z+NEMi4LqylklccOaYAyKrkYyulfZwhW7KDH9d2wjVk5jfUABxQ==
   dependencies:
-    md-to-react-email "4.1.0"
+    md-to-react-email "5.0.2"
 
 "@react-email/preview@0.0.8":
   version "0.0.8"
@@ -2024,10 +2024,10 @@
   resolved "https://registry.yarnpkg.com/@react-email/section/-/section-0.0.11.tgz#a20b8f8176eeed8cc455aed65e3a49fceb9a6f2f"
   integrity sha512-3bZ/DuvX1julATI7oqYza6pOtWZgLJDBaa62LFFEvYjisyN+k6lrP2KOucPsDKu2DOkUzlQgK0FOm6VQJX+C0w==
 
-"@react-email/tailwind@0.0.14":
-  version "0.0.14"
-  resolved "https://registry.yarnpkg.com/@react-email/tailwind/-/tailwind-0.0.14.tgz#e4cccbf898c388970b6affe37e44a70be3d06f5e"
-  integrity sha512-SRRcm08zxrAR5XozaW0X+GAJlTJITakZe0UXBiFZDlSDBLwFMxjaGuQwccqNF0LxDnxmduxYB71mzEAqecgTZg==
+"@react-email/tailwind@0.0.15":
+  version "0.0.15"
+  resolved "https://registry.yarnpkg.com/@react-email/tailwind/-/tailwind-0.0.15.tgz#c99825e9a2a525dd6e935a19fd10d79919937438"
+  integrity sha512-TE3NQ7VKhhvv3Zv0Z1NtoV6AF7aOWiG4juVezMZw1hZCG0mkN6iXC63u23vPQi12y6xCp20ZUHfg67kQeDSP/g==
   dependencies:
     react "18.2.0"
 
@@ -6851,10 +6851,10 @@ marked@7.0.4:
   resolved "https://registry.yarnpkg.com/marked/-/marked-7.0.4.tgz#e2558ee2d535b9df6a27c6e282dc603a18388a6d"
   integrity sha512-t8eP0dXRJMtMvBojtkcsA7n48BkauktUKzfkPSCq85ZMTJ0v76Rke4DYz01omYpPTUh4p/f7HePgRo3ebG8+QQ==
 
-md-to-react-email@4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/md-to-react-email/-/md-to-react-email-4.1.0.tgz#173b6ddac14ceac8f1674272d881f3f4c59d8ea3"
-  integrity sha512-aQvj4dCuy0wmBVvSB377qTErlpjN5Pl61+5v+B8Z76KoxOgKhbzvK3qnO94eOsuGSWwI+9n4zb3xD3/MypxM4w==
+md-to-react-email@5.0.2:
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/md-to-react-email/-/md-to-react-email-5.0.2.tgz#2ee848a7248d4df6e6a95466a269ca6b6697a704"
+  integrity sha512-x6kkpdzIzUhecda/yahltfEl53mH26QdWu4abUF9+S0Jgam8P//Ciro8cdhyMHnT5MQUJYrIbO6ORM2UxPiNNA==
   dependencies:
     marked "7.0.4"
 
