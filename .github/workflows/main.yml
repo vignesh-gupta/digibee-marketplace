@@ -19,7 +19,7 @@ jobs:
         uses: ./.github/actions/ci-setup
 
       - name: Lint Application
-        run: npm run lint 
+        run: yarn lint 
 
   type-check:
     name: Types
@@ -32,7 +32,7 @@ jobs:
         uses: ./.github/actions/ci-setup
 
       - name: Check Application Types
-        run: npm run type-check
+        run: yarn type-check
 
   build:
     name: Build
@@ -48,4 +48,4 @@ jobs:
         run: cp .env.example .env
 
       - name: Build Application
-        run: npm run build
+        run: yarn build
