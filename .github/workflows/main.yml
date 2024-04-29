@@ -19,7 +19,7 @@ jobs:
         uses: ./.github/actions/ci-setup
 
       - name: Lint Application
-        run: yarn lint 
+        run: yarn lint
 
   type-check:
     name: Types
@@ -46,6 +46,13 @@ jobs:
 
       - name: Copy Env File
         run: cp .env.example .env
+
+      - name: MongoDB in GitHub Actions
+        uses: supercharge/mongodb-github-action@v1.10.0
+        with:
+          mongodb-username: username
+          mongodb-password: password
+          mongodb-db: test
 
       - name: Build Application
         run: yarn build
