@@ -7,15 +7,15 @@ runs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ env.NODE_VERSION }}
-        cache: "npm"
+        cache: "yarn"
 
     - name: Cache NPM Dependencies
       uses: actions/cache@v3
       id: cache-primes
       with:
         path: node_modules
-        key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+        key: ${{ runner.os }}-node-${{ hashFiles('yarn.lock') }}
 
     - name: Install Dependencies
-      run: npm install
+      run: yarn install 
       shell: bash
