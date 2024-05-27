@@ -2280,10 +2280,10 @@
   resolved "https://registry.yarnpkg.com/@react-email/column/-/column-0.0.10.tgz#c29ecf6ddc8b296dd92cb169f8ba352f05527e46"
   integrity sha512-MnP8Mnwipr0X3XtdD6jMLckb0sI5/IlS6Kl/2F6/rsSWBJy5Gg6nizlekTdkwDmy0kNSe3/1nGU0Zqo98pl63Q==
 
-"@react-email/components@^0.0.18":
-  version "0.0.18"
-  resolved "https://registry.yarnpkg.com/@react-email/components/-/components-0.0.18.tgz#84803f753abc1cd05e0db8d9cf2b7a03ea44479b"
-  integrity sha512-VxaEAbLTD/CbIVNeDCzPKBV2rIard88AE5gLmZ4HbaFH7i90NIF/5MiZX5l0bNzoM8N/kjN4CQlqZ1MwN5FdOg==
+"@react-email/components@^0.0.19":
+  version "0.0.19"
+  resolved "https://registry.yarnpkg.com/@react-email/components/-/components-0.0.19.tgz#c715d03206901f07624373aeb419d6c9bf1f23a1"
+  integrity sha512-yf49eIq0NDDXzO2RTZaT8fKa16eKUFMdWWMx4V5Bq+b2JdGuAMobO5s9Ea6azSVL6RDcJ8epdY1TCR2kL2PPHw==
   dependencies:
     "@react-email/body" "0.0.8"
     "@react-email/button" "0.0.15"
@@ -2300,10 +2300,10 @@
     "@react-email/link" "0.0.8"
     "@react-email/markdown" "0.0.10"
     "@react-email/preview" "0.0.9"
-    "@react-email/render" "0.0.14"
+    "@react-email/render" "0.0.15"
     "@react-email/row" "0.0.8"
     "@react-email/section" "0.0.12"
-    "@react-email/tailwind" "0.0.17"
+    "@react-email/tailwind" "0.0.18"
     "@react-email/text" "0.0.8"
 
 "@react-email/container@0.0.12":
@@ -2370,10 +2370,10 @@
     react "18.2.0"
     react-dom "18.2.0"
 
-"@react-email/render@0.0.14":
-  version "0.0.14"
-  resolved "https://registry.yarnpkg.com/@react-email/render/-/render-0.0.14.tgz#af4cf68428fc61c36256c4dbcedb0a3a2e0d7948"
-  integrity sha512-vZD59BHp1HOatJAWydTOdgN8QbNgsjCOfmPcT9ShwisBIu3Rw8pvUVoWsrAqfHfzc4vcNTGnbt6/8mMa8LcsvQ==
+"@react-email/render@0.0.15":
+  version "0.0.15"
+  resolved "https://registry.yarnpkg.com/@react-email/render/-/render-0.0.15.tgz#77639ced997d7c6692662efe296fe6af65c93070"
+  integrity sha512-/pT5dBu0y1mogrfEpc002rgRcXpbShK6PFtxTVU6LZZ+bccvZPgk67HKc01lxpa1eYGQgZ6I+VQ02GRnMDclTg==
   dependencies:
     html-to-text "9.0.5"
     js-beautify "^1.14.11"
@@ -2391,10 +2391,10 @@
   resolved "https://registry.yarnpkg.com/@react-email/section/-/section-0.0.12.tgz#10e513648e0d3be5a88702a1012721a38a032caa"
   integrity sha512-UCD/N/BeOTN4h3VZBUaFdiSem6HnpuxD1Q51TdBFnqeNqS5hBomp8LWJJ9s4gzwHWk1XPdNfLA3I/fJwulJshg==
 
-"@react-email/tailwind@0.0.17":
-  version "0.0.17"
-  resolved "https://registry.yarnpkg.com/@react-email/tailwind/-/tailwind-0.0.17.tgz#89de12d2625c14d623918024fe37fd30e97d37bc"
-  integrity sha512-SVl0YO9b9/8EiNtvYnXTlimehwv6rz5v6JRb60IYqwWRRF6ZDHiLkAq/94o5SMrhLtPZWErcr4VleGumB+pFUg==
+"@react-email/tailwind@0.0.18":
+  version "0.0.18"
+  resolved "https://registry.yarnpkg.com/@react-email/tailwind/-/tailwind-0.0.18.tgz#b2cd16661cfff30bff8097ee3121cb9047ba5286"
+  integrity sha512-ob8CXX/Pqq1U8YfL5OJTL48WJkixizyoXMMRYTiDLDN9LVLU7lSLtcK9kOD9CgFbO2yUPQr7/5+7gnQJ+cXa8Q==
 
 "@react-email/text@0.0.8":
   version "0.0.8"
