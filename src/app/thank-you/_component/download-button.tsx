@@ -29,8 +29,6 @@ const DownloadButton = ({ downloadLink, productName }: DownloadButtonProps) => {
     }
   }, [downloadLink, productName]);
 
-  // useEffect(() => {}, [downloadFile, downloadLink, productName]);
-
   return (
     <div className="w-auto">
       <Button className="w-auto" onClick={downloadFile} variant="link">
