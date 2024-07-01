@@ -3471,10 +3471,10 @@ available-typed-arrays@^1.0.7:
   dependencies:
     possible-typed-array-names "^1.0.0"
 
-aws-crt@^1.21.2:
-  version "1.21.2"
-  resolved "https://registry.yarnpkg.com/aws-crt/-/aws-crt-1.21.2.tgz#5b75d825ce8859c13e15540557a4dc1f1e8452cc"
-  integrity sha512-/jq5yJwdethIaC+HyqCrgW2ZqxjUURBo/6CIfnD0HbpIE+vLIPQxENW/pp3Atu20Hm2WkjM9diJD4zJycK+olA==
+aws-crt@^1.21.3:
+  version "1.21.3"
+  resolved "https://registry.yarnpkg.com/aws-crt/-/aws-crt-1.21.3.tgz#e1695352e9cc6e1dd2532b518715bca752408700"
+  integrity sha512-oaiP5zoPkXwbM9T3nwSgq6CBZWx0501iefLPg12FODniIgqGMyzbMXHYC+fxbCoP5SOQVmCwtAfbNuIG5bFENg==
   dependencies:
     "@aws-sdk/util-utf8-browser" "^3.109.0"
     "@httptoolkit/websocket-stream" "^6.0.1"
