@@ -2016,10 +2016,10 @@
   resolved "https://registry.yarnpkg.com/@react-email/column/-/column-0.0.10.tgz#c29ecf6ddc8b296dd92cb169f8ba352f05527e46"
   integrity sha512-MnP8Mnwipr0X3XtdD6jMLckb0sI5/IlS6Kl/2F6/rsSWBJy5Gg6nizlekTdkwDmy0kNSe3/1nGU0Zqo98pl63Q==
 
-"@react-email/components@^0.0.19":
-  version "0.0.19"
-  resolved "https://registry.yarnpkg.com/@react-email/components/-/components-0.0.19.tgz#c715d03206901f07624373aeb419d6c9bf1f23a1"
-  integrity sha512-yf49eIq0NDDXzO2RTZaT8fKa16eKUFMdWWMx4V5Bq+b2JdGuAMobO5s9Ea6azSVL6RDcJ8epdY1TCR2kL2PPHw==
+"@react-email/components@^0.0.20":
+  version "0.0.20"
+  resolved "https://registry.yarnpkg.com/@react-email/components/-/components-0.0.20.tgz#9ec7802b6b75db3b2bf3661681873025f9ec4626"
+  integrity sha512-9grJ90RLv5ZPXq07YyQZ9A/OaM6QvGOD41Pl31I6s3UjFp7Jmxqr0wSUpuPhl0eKWriJU42E48okt4ugz29/hQ==
   dependencies:
     "@react-email/body" "0.0.8"
     "@react-email/button" "0.0.15"
@@ -2036,7 +2036,7 @@
     "@react-email/link" "0.0.8"
     "@react-email/markdown" "0.0.10"
     "@react-email/preview" "0.0.9"
-    "@react-email/render" "0.0.15"
+    "@react-email/render" "0.0.16"
     "@react-email/row" "0.0.8"
     "@react-email/section" "0.0.12"
     "@react-email/tailwind" "0.0.18"
@@ -2105,6 +2105,15 @@
     js-beautify "^1.14.11"
     react "^18.2.0"
     react-dom "^18.2.0"
+    react-promise-suspense "0.3.4"
+
+"@react-email/render@0.0.16":
+  version "0.0.16"
+  resolved "https://registry.yarnpkg.com/@react-email/render/-/render-0.0.16.tgz#cd53cf080699c9d09181c02541a745f9d2d59d5e"
+  integrity sha512-wDaMy27xAq1cJHtSFptp0DTKPuV2GYhloqia95ub/DH9Dea1aWYsbdM918MOc/b/HvVS3w1z8DWzfAk13bGStQ==
+  dependencies:
+    html-to-text "9.0.5"
+    js-beautify "^1.14.11"
     react-promise-suspense "0.3.4"
 
 "@react-email/row@0.0.8":
