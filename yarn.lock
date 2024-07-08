@@ -8814,10 +8814,10 @@ require-from-string@^2.0.2:
   resolved "https://registry.yarnpkg.com/require-from-string/-/require-from-string-2.0.2.tgz#89a7fdd938261267318eafe14f9c32e598c36909"
   integrity sha512-Xf0nWe6RseziFMu+Ap9biiUbmplq6S9/p+7w7YXP/JBHhrUDDUhwa+vANyubuqfZWTveU//DYVGsDG7RKL/vEw==
 
-resend@^3.3.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/resend/-/resend-3.3.0.tgz#467039660506f5ff1c3d0a80100a49fcbfbf41c7"
-  integrity sha512-twDI+rORUQzJC546lEUKhsLKEuqWNFxthZ27kGiK+sR2Cq7CNsro/pgM0W7qT0OiXNLEFp0u3gkJ6kqocpWmYQ==
+resend@^3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/resend/-/resend-3.4.0.tgz#0621ae49f379f6c5bbbef48e8757d6a72b791104"
+  integrity sha512-F3PVHdTHeLonSnrU5V6k8643LJ9QacLu3uI9M+BAFkmBmB1ELM2x7fdsziYZoSm6DmU6TKwiQCK0jf8dcNomcQ==
   dependencies:
     "@react-email/render" "0.0.15"
 
