@@ -1592,10 +1592,10 @@
     prompts "2.4.2"
     uuid "9.0.0"
 
-"@payloadcms/plugin-cloud-storage@^1.1.2":
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/@payloadcms/plugin-cloud-storage/-/plugin-cloud-storage-1.1.2.tgz#deb0f5131b34377c61ddd0cc70a0366e87e35c5a"
-  integrity sha512-wBpEWv4VdfltBqEi5ECSrKQ/TtNvmBWT4DLCrTCOhpNuD8dYD2rp+0Eoj7cF8f6wU7DpS5rvdQ/8gxlqh0Armw==
+"@payloadcms/plugin-cloud-storage@^1.1.3":
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/@payloadcms/plugin-cloud-storage/-/plugin-cloud-storage-1.1.3.tgz#15e6a421d7390b786fcdabbf1621f702d1252994"
+  integrity sha512-5YbCqnDnux2DR0RQwqgJAjvOybZ0GXst4h8L4eygozofELcDJKStyuaAAEv7JIA8EByDFr1DIxLSwmmQf0ytuw==
   dependencies:
     find-node-modules "^2.1.3"
     range-parser "^1.2.1"
