@@ -2226,15 +2226,13 @@
   resolved "https://registry.yarnpkg.com/@react-email/preview/-/preview-0.0.10.tgz#63dff6ac1b08b0bbc2222194a1cde1e1934cb5a3"
   integrity sha512-bRrv8teMMBlF7ttLp1zZUejkPUzrwMQXrigdagtEBOqsB8HxvJU2MR6Yyb3XOqBYldaIDOQJ1z61zyD2wRlKAw==
 
-"@react-email/render@0.0.15":
-  version "0.0.15"
-  resolved "https://registry.yarnpkg.com/@react-email/render/-/render-0.0.15.tgz#77639ced997d7c6692662efe296fe6af65c93070"
-  integrity sha512-/pT5dBu0y1mogrfEpc002rgRcXpbShK6PFtxTVU6LZZ+bccvZPgk67HKc01lxpa1eYGQgZ6I+VQ02GRnMDclTg==
+"@react-email/render@0.0.16":
+  version "0.0.16"
+  resolved "https://registry.yarnpkg.com/@react-email/render/-/render-0.0.16.tgz#cd53cf080699c9d09181c02541a745f9d2d59d5e"
+  integrity sha512-wDaMy27xAq1cJHtSFptp0DTKPuV2GYhloqia95ub/DH9Dea1aWYsbdM918MOc/b/HvVS3w1z8DWzfAk13bGStQ==
   dependencies:
     html-to-text "9.0.5"
     js-beautify "^1.14.11"
-    react "^18.2.0"
-    react-dom "^18.2.0"
     react-promise-suspense "0.3.4"
 
 "@react-email/render@0.0.17":
@@ -8564,7 +8562,7 @@ react-diff-viewer-continued@3.2.6:
     memoize-one "^6.0.0"
     prop-types "^15.8.1"
 
-react-dom@^18.0.0, react-dom@^18.2.0, react-dom@^18.3.1:
+react-dom@^18.0.0, react-dom@^18.3.1:
   version "18.3.1"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.3.1.tgz#c2265d79511b57d479b3dd3fdfa51536494c5cb4"
   integrity sha512-5m4nQKp+rZRb09LNH59GM4BxTh9251/ylbKIbpe7TpGxfJ+9kv6BLkLBXIjjspbgbnIBNqlI23tRnTWT0snUIw==
@@ -8739,7 +8737,7 @@ react-transition-group@^4.3.0, react-transition-group@^4.4.2:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
-react@^18.0.0, react@^18.2.0, react@^18.3.1:
+react@^18.0.0, react@^18.3.1:
   version "18.3.1"
   resolved "https://registry.yarnpkg.com/react/-/react-18.3.1.tgz#49ab892009c53933625bd16b2533fc754cab2891"
   integrity sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==
@@ -8881,12 +8879,12 @@ require-from-string@^2.0.2:
   resolved "https://registry.yarnpkg.com/require-from-string/-/require-from-string-2.0.2.tgz#89a7fdd938261267318eafe14f9c32e598c36909"
   integrity sha512-Xf0nWe6RseziFMu+Ap9biiUbmplq6S9/p+7w7YXP/JBHhrUDDUhwa+vANyubuqfZWTveU//DYVGsDG7RKL/vEw==
 
-resend@^3.4.0:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/resend/-/resend-3.4.0.tgz#0621ae49f379f6c5bbbef48e8757d6a72b791104"
-  integrity sha512-F3PVHdTHeLonSnrU5V6k8643LJ9QacLu3uI9M+BAFkmBmB1ELM2x7fdsziYZoSm6DmU6TKwiQCK0jf8dcNomcQ==
+resend@^3.5.0:
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/resend/-/resend-3.5.0.tgz#1db8df22477ef44951a85a455724e6c93b828322"
+  integrity sha512-bKu4LhXSecP6krvhfDzyDESApYdNfjirD5kykkT1xO0Cj9TKSiGh5Void4pGTs3Am+inSnp4dg0B5XzdwHBJOQ==
   dependencies:
-    "@react-email/render" "0.0.15"
+    "@react-email/render" "0.0.16"
 
 resolve-cwd@^3.0.0:
   version "3.0.0"
