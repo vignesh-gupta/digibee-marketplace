@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.633.0",
-    "@aws-sdk/lib-storage": "^3.540.0",
+    "@aws-sdk/lib-storage": "^3.633.0",
     "@hookform/resolvers": "^3.9.0",
     "@payloadcms/bundler-webpack": "^1.0.6",
     "@payloadcms/db-mongodb": "^1.7.2",
