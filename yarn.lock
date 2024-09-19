@@ -10145,10 +10145,10 @@ swc-minify-webpack-plugin@^2.1.0:
   resolved "https://registry.yarnpkg.com/swc-minify-webpack-plugin/-/swc-minify-webpack-plugin-2.1.2.tgz#2437e9d2a2e000901e1c9d0acacd4c6f4186f48d"
   integrity sha512-UL8UlHDddcZS5jExTuuX+DAKizdAxFXhmc0G0PB5GDNpYWf3bBDaoMjL7yoeebRnhPCerrN+17qXHk/cVzzzgg==
 
-swiper@^11.1.9:
-  version "11.1.9"
-  resolved "https://registry.yarnpkg.com/swiper/-/swiper-11.1.9.tgz#55505c7cf4723b678df8220fc06152b793585dbc"
-  integrity sha512-rflu8zvfGa3x1v/aeSufk4zRJffhOQowyvtJlp46sUBnOqAuk1Rdv5Ldj0AWWBV595iZ+ZMk7VB35ZRtRUomtA==
+swiper@^11.1.14:
+  version "11.1.14"
+  resolved "https://registry.yarnpkg.com/swiper/-/swiper-11.1.14.tgz#7901b4955c46dd0ad76fac1e9de2a69f04f34abb"
+  integrity sha512-VbQLQXC04io6AoAjIUWuZwW4MSYozkcP9KjLdrsG/00Q/yiwvhz9RQyt0nHXV10hi9NVnDNy1/wv7Dzq1lkOCQ==
 
 tabbable@^5.3.3:
   version "5.3.3"
