@@ -1970,10 +1970,10 @@
     webpack-dev-middleware "6.1.2"
     webpack-hot-middleware "^2.25.3"
 
-"@payloadcms/db-mongodb@^1.7.2":
-  version "1.7.2"
-  resolved "https://registry.yarnpkg.com/@payloadcms/db-mongodb/-/db-mongodb-1.7.2.tgz#5b0c836d5736c0586a0e40dbec92c7d35a867455"
-  integrity sha512-C2qlhDE7EBgr+2dZvjj6aqdIBWDWdKb508O7+RQEXijNHYSUxC3VXxI21WBhRcFehBXU5WpYrFBxtU3CPJEmAw==
+"@payloadcms/db-mongodb@^1.7.3":
+  version "1.7.3"
+  resolved "https://registry.yarnpkg.com/@payloadcms/db-mongodb/-/db-mongodb-1.7.3.tgz#95552deeb92a99718af8d01c5fb01ceb63fe7e58"
+  integrity sha512-/okC3ap+jMytTzUG6I/hbB4R6AqfK+Tx+0xFH6P+BY8iIsuvNPAxL/h5oJu6rvorxCnXjTf+jWt2qCupHALpLQ==
   dependencies:
     bson-objectid "2.0.4"
     deepmerge "4.3.1"
