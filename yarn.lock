@@ -9757,10 +9757,10 @@ sonic-boom@^3.0.0, sonic-boom@^3.1.0:
   dependencies:
     atomic-sleep "^1.0.0"
 
-sonner@^1.4.41:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/sonner/-/sonner-1.5.0.tgz#af359f817063318415326b33aab54c5d17c747b7"
-  integrity sha512-FBjhG/gnnbN6FY0jaNnqZOMmB73R+5IiyYAw8yBj7L54ER7HB3fOSE5OFiQiE2iXWxeXKvg6fIP4LtVppHEdJA==
+sonner@^1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/sonner/-/sonner-1.7.0.tgz#f59a2a70e049a179b6fbd1bb1bf2619d5ced07c0"
+  integrity sha512-W6dH7m5MujEPyug3lpI2l3TC3Pp1+LTgK0Efg+IHDrBbtEjyCmCHHo6yfNBOsf1tFZ6zf+jceWwB38baC8yO9g==
 
 source-list-map@^2.0.0:
   version "2.0.1"
