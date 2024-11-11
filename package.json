@@ -74,7 +74,7 @@
     "url": "^0.11.4",
     "util": "^0.12.5",
     "zod": "^3.23.8",
-    "zustand": "^4.5.5"
+    "zustand": "^5.0.1"
   },
   "devDependencies": {
     "@types/body-parser": "^1.19.5",
