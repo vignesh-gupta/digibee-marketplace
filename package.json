@@ -23,7 +23,7 @@
     "cliui": "7.0.2"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.670.0",
+    "@aws-sdk/client-s3": "^3.689.0",
     "@aws-sdk/lib-storage": "^3.633.0",
     "@hookform/resolvers": "^3.9.0",
     "@payloadcms/bundler-webpack": "^1.0.6",
