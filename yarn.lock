@@ -2055,19 +2055,19 @@
   resolved "https://registry.yarnpkg.com/@radix-ui/primitive/-/primitive-1.1.1.tgz#fc169732d755c7fbad33ba8d0cd7fd10c90dc8e3"
   integrity sha512-SJ31y+Q/zAyShtXJc8x83i9TYdbAfHZ++tUZnvjJJqFjzsdUnKsxPL6IEtBlxKkU7yzer//GQtZSV4GbldL3YA==
 
-"@radix-ui/react-accordion@^1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@radix-ui/react-accordion/-/react-accordion-1.2.1.tgz#5c942c42c24267376b26204ec6847b17d15659b3"
-  integrity sha512-bg/l7l5QzUjgsh8kjwDFommzAshnUsuVMV5NM56QVCm+7ZckYdd9P/ExR8xG/Oup0OajVxNLaHJ1tb8mXk+nzQ==
+"@radix-ui/react-accordion@^1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-accordion/-/react-accordion-1.2.2.tgz#96ac3de896189553219e342d5e773589eb119dce"
+  integrity sha512-b1oh54x4DMCdGsB4/7ahiSrViXxaBwRPotiZNnYXjLha9vfuURSAZErki6qjDoSIV0eXx5v57XnTGVtGwnfp2g==
   dependencies:
-    "@radix-ui/primitive" "1.1.0"
-    "@radix-ui/react-collapsible" "1.1.1"
-    "@radix-ui/react-collection" "1.1.0"
-    "@radix-ui/react-compose-refs" "1.1.0"
+    "@radix-ui/primitive" "1.1.1"
+    "@radix-ui/react-collapsible" "1.1.2"
+    "@radix-ui/react-collection" "1.1.1"
+    "@radix-ui/react-compose-refs" "1.1.1"
     "@radix-ui/react-context" "1.1.1"
     "@radix-ui/react-direction" "1.1.0"
     "@radix-ui/react-id" "1.1.0"
-    "@radix-ui/react-primitive" "2.0.0"
+    "@radix-ui/react-primitive" "2.0.1"
     "@radix-ui/react-use-controllable-state" "1.1.0"
 
 "@radix-ui/react-arrow@1.1.0":
@@ -2084,29 +2084,19 @@
   dependencies:
     "@radix-ui/react-primitive" "2.0.1"
 
-"@radix-ui/react-collapsible@1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@radix-ui/react-collapsible/-/react-collapsible-1.1.1.tgz#1382cc9ec48f8b473c14f3779d317f0cdf6da5e9"
-  integrity sha512-1///SnrfQHJEofLokyczERxQbWfCGQlQ2XsCZMucVs6it+lq9iw4vXy+uDn1edlb58cOZOWSldnfPAYcT4O/Yg==
+"@radix-ui/react-collapsible@1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-collapsible/-/react-collapsible-1.1.2.tgz#42477c428bb0d2eec35b9b47601c5ff0a6210165"
+  integrity sha512-PliMB63vxz7vggcyq0IxNYk8vGDrLXVWw4+W4B8YnwI1s18x7YZYqlG9PLX7XxAJUi0g2DxP4XKJMFHh/iVh9A==
   dependencies:
-    "@radix-ui/primitive" "1.1.0"
-    "@radix-ui/react-compose-refs" "1.1.0"
+    "@radix-ui/primitive" "1.1.1"
+    "@radix-ui/react-compose-refs" "1.1.1"
     "@radix-ui/react-context" "1.1.1"
     "@radix-ui/react-id" "1.1.0"
-    "@radix-ui/react-presence" "1.1.1"
-    "@radix-ui/react-primitive" "2.0.0"
+    "@radix-ui/react-presence" "1.1.2"
+    "@radix-ui/react-primitive" "2.0.1"
     "@radix-ui/react-use-controllable-state" "1.1.0"
     "@radix-ui/react-use-layout-effect" "1.1.0"
-
-"@radix-ui/react-collection@1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@radix-ui/react-collection/-/react-collection-1.1.0.tgz#f18af78e46454a2360d103c2251773028b7724ed"
-  integrity sha512-GZsZslMJEyo1VKm5L1ZJY8tGDxZNPAoUeQUIbKeJfoi7Q4kmig5AsgLMYYuyYbfjd8fBmFORAIwYAkXMnXZgZw==
-  dependencies:
-    "@radix-ui/react-compose-refs" "1.1.0"
-    "@radix-ui/react-context" "1.1.0"
-    "@radix-ui/react-primitive" "2.0.0"
-    "@radix-ui/react-slot" "1.1.0"
 
 "@radix-ui/react-collection@1.1.1":
   version "1.1.1"
