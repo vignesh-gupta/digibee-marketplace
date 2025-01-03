@@ -67,7 +67,7 @@
     "resend": "^4.0.1",
     "sonner": "^1.7.0",
     "stream-browserify": "^3.0.0",
-    "stripe": "^15.7.0",
+    "stripe": "^17.5.0",
     "swiper": "^11.1.15",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
