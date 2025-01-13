@@ -65,7 +65,7 @@
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.54.2",
     "resend": "^4.0.1",
-    "sonner": "^1.7.0",
+    "sonner": "^1.7.1",
     "stream-browserify": "^3.0.0",
     "stripe": "^17.5.0",
     "swiper": "^11.2.0",
