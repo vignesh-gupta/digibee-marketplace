@@ -68,7 +68,7 @@
     "sonner": "^1.7.1",
     "stream-browserify": "^3.0.0",
     "stripe": "^17.5.0",
-    "swiper": "^11.2.0",
+    "swiper": "^11.2.1",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
     "url": "^0.11.4",
